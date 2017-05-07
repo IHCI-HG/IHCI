@@ -227,51 +227,42 @@ export class Nav extends Component {
 
     render() {
         return (
-            <nav className='navbar navbar-default'>
-                <div className='container-fluid'>
-                    <div className='navbar-header'>
-                        <button type='button'
-                            className='navbar-toggle collapsed'
-                            data-toggle='collapse'
-                            data-target='#bs-example-navbar-collapse-1'
-                            aria-expanded='false'>
-                            <div className='sr-only'>Toggle navigation</div>
-                            <div className='icon-bar'> </div>
-                            <div className='icon-bar'> </div>
-                            <div className='icon-bar'> </div>
-                        </button>
-                        <div className='navbar-brand' onClick={() => browserHistory.push('/')}>Main</div>
-                        <div className='navbar-brand btn' onClick={this.test}>test</div>
-                    </div>
-
-                    <div className='collapse navbar-collapse'>
-                        <ul className='nav navbar-nav'>
-                            <li className='dropdown'>
-                                <a href='#'
-                                    className='dropdown-toggle'
-                                    data-toggle='dropdown' role='button'
-                                    aria-haspopup='true'
-                                    aria-expanded='false'>
-                                    demo
-                                <div className='caret'> </div>
-                                </a>
-                                <ul className='dropdown-menu'>
-                                    <li><a onClick = {() => {browserHistory.push("/aaa")}} >Action</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/")}}  >Another action</a></li>
-                                    <li className="divider"></li>
-                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/counter")}} >counter</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/TodoList")}}>todolist</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/about")}} >about</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <ul className='nav navbar-nav navbar-right'>
-                            {this.user()}
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <nav className="navbar navbar-default" role="navigation">
+	<div className="container-fluid"> 
+	<div className="navbar-header">
+		<button type="button" className="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+			<span className="sr-only">Toggle navigation</span>
+			<span className="icon-bar"></span>
+			<span className="icon-bar"></span>
+			<span className="icon-bar"></span>
+		</button>
+		<a className="navbar-brand" onClick={() => browserHistory.push('/')}>Main</a>
+        <a className="navbar-brand" onClick={this.test}>test</a>
+	</div>
+	<div className="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul className="nav navbar-nav">
+			<li className="active"><a href="#">iOS</a></li>
+			<li><a href="#">SVN</a></li>
+			<li className="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					Java <b class="caret"></b>
+				</a>
+				<ul className="dropdown-menu">
+					<li><a href="#">jmeter</a></li>
+					<li><a href="#">EJB</a></li>
+					<li><a href="#">Jasper Report</a></li>
+					<li className="divider"></li>
+					<li><a href="#">分离的链接</a></li>
+					<li className="divider"></li>
+					<li><a href="#">另一个分离的链接</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+            
         );
     }
 }
