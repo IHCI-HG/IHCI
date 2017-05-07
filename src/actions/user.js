@@ -16,8 +16,8 @@ export function cheakIfLogin() {
             getStore,
             url: '/api/project/signin',
         });
-        setTimeout(() => {
-            result.text().then((text) => {
+
+        result.text().then((text) => {
             if (text == 'sign first') {
                 localStorage.clear()
                 dispatch({
@@ -33,7 +33,6 @@ export function cheakIfLogin() {
                 return true
             }
         })
-        }, 10000);
 
     }
 }
