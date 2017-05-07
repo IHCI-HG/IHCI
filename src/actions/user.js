@@ -25,7 +25,6 @@ export function cheakIfLogin() {
                 })
                 return false
             } else {
-                console.log(text)
                 dispatch({
                     type: IS_LOGINED,
                     user: text,

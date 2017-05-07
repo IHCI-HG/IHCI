@@ -151,7 +151,7 @@ export class Nav extends Component {
     }
 
     componentDidMount() {
-      
+
     }
 
     // 异步接口请求事件
@@ -179,7 +179,7 @@ export class Nav extends Component {
         if (this.props.isLogin) {
             return (
                 <div>
-                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div> 
+                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
                     <button onClick={this.btnSignOut.bind(this)}>sign out</button>
                 </div>
             )
@@ -247,8 +247,8 @@ export class Nav extends Component {
                     <div className="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul className="nav navbar-nav">
                             <li className="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Demo <b class="caret"></b>
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                                    Demo <b className="caret"></b>
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><a onClick = {() => {browserHistory.push("/aaa")}} >Action</a></li>
@@ -310,7 +310,7 @@ export class Nav extends Component {
                         </ul>
                     </div>
                 </div>
-            </nav>    */        
+            </nav>    */
         );
     }
 }
