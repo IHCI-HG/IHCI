@@ -7,7 +7,7 @@ const fs = require('fs')
 const hskey = fs.readFileSync('./ssl/ihci-key.pem');
 const hscert = fs.readFileSync('./ssl/ihci-cert.pem');
 
-console.log(hskey)
+
 
 const credentials = {key: hskey, cert: hscert};
 var httpsServer = https.createServer(credentials, app);

@@ -17,7 +17,7 @@ mongoose.createConnection(dbURI) // 连接数据库
 const app = express()
 
 
-app.disable('x-powered-by')
+// app.disable('x-powered-by')
 app.use(logger('dev'))
 
 app.use(bodyParser.json())
