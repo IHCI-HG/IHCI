@@ -260,6 +260,7 @@ export class Nav extends Component {
                                     <li><a onClick = {() => {browserHistory.push("/")}}  >Another action</a></li>
                                     <li className="divider"></li>
                                     <li><a onClick = {() => {browserHistory.push("/demoCompoant/counter")}} >counter</a></li>
+                                    <li><a onClick = {() => {browserHistory.push("/TodoList")}}>todolist</a></li>
                                     <li><a onClick = {() => {browserHistory.push("/demoCompoant/about")}} >about</a></li>
                                 </ul>
                             </li>

@@ -7,9 +7,12 @@ import Home from '../containers/Home'
 import {
     counter,
     about,
+    todolist
     // demo1,
     // demo2
 } from './demoCompoant'
+
+
 import signUp from '../containers/SignUp/newIndex'
 // import CounterRoute from './Counter'
 // import demoCompoant from '.demoCompoant'
@@ -29,6 +32,7 @@ export const createRoutes = (store) => ({
         counter(store),
         //about为师兄的野鸡错误示范组件
         about(store),
+        todolist(store),
         user(store),
         {
             path: '/signUp',
