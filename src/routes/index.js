@@ -7,11 +7,11 @@ import Home from '../containers/Home'
 import {
     counter,
     about,
-    todolist
     // demo1,
     // demo2
 } from './demoCompoant'
 
+import { todolist } from './todolist'
 
 import signUp from '../containers/SignUp/newIndex'
 // import CounterRoute from './Counter'
