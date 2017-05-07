@@ -247,8 +247,8 @@ export class Nav extends Component {
                     <div className="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul className="nav navbar-nav">
                             <li className="dropdown">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                    Demo <b className="caret"></b>
+                                <a className="dropdown-toggle" data-toggle="dropdown">
+                                    Demo <div className='caret'> </div>
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><a onClick = {() => {browserHistory.push("/aaa")}} >Action</a></li>
