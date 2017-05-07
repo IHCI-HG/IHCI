@@ -140,7 +140,7 @@ export class Nav extends Component {
 
     }
 
-    componentWillMount() {
+       componentWillMount() {
         this.props.cheakIfLogin();
         if(this.props.isLogin) {
             this.props.login({
@@ -148,6 +148,10 @@ export class Nav extends Component {
                 password: localStorage.getItem('password')
             })
         }
+    }
+
+    componentDidMount() {
+      
     }
 
     // 异步接口请求事件
@@ -175,7 +179,7 @@ export class Nav extends Component {
         if (this.props.isLogin) {
             return (
                 <div>
-                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
+                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div> 
                     <button onClick={this.btnSignOut.bind(this)}>sign out</button>
                 </div>
             )
@@ -227,7 +231,6 @@ export class Nav extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
             <nav className="navbar navbar-default" role="navigation">
 	<div className="container-fluid"> 
 	<div className="navbar-header">
@@ -263,9 +266,7 @@ export class Nav extends Component {
 	</div>
 	</div>
 </nav>
-            
-=======
-            <nav className='navbar navbar-default'>
+            /*<nav className='navbar navbar-default'>
                 <div className='container-fluid'>
                     <div className='navbar-header'>
                         <button type='button'
@@ -308,8 +309,7 @@ export class Nav extends Component {
                         </ul>
                     </div>
                 </div>
-            </nav>
->>>>>>> origin
+            </nav>            */
         );
     }
 }
