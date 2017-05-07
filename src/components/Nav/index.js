@@ -140,7 +140,7 @@ export class Nav extends Component {
 
     }
 
-    componentWillMount() {
+       componentWillMount() {
         this.props.cheakIfLogin();
         if(this.props.isLogin) {
             this.props.login({
@@ -148,6 +148,10 @@ export class Nav extends Component {
                 password: localStorage.getItem('password')
             })
         }
+    }
+
+    componentDidMount() {
+      
     }
 
     // 异步接口请求事件
@@ -175,7 +179,7 @@ export class Nav extends Component {
         if (this.props.isLogin) {
             return (
                 <div>
-                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
+                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div> 
                     <button onClick={this.btnSignOut.bind(this)}>sign out</button>
                 </div>
             )
@@ -227,22 +231,58 @@ export class Nav extends Component {
 
     render() {
         return (
-            <nav className='navbar navbar-default'>
-                <div className='container-fluid'>
-                    <div className='navbar-header'>
+            <nav className="navbar navbar-default" role="navigation">
+                <div className="container-fluid">
+                    <div className="navbar-header">
+                        <button type="button" className="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+                        <a className="navbar-brand" onClick={() => browserHistory.push('/')}>Main</a>
+                        <a className="navbar-brand" onClick={this.test}>test</a>
+                    </div>
+                    <div className="collapse navbar-collapse" id="example-navbar-collapse">
+                        <ul className="nav navbar-nav">
+                            <li className="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Demo <b class="caret"></b>
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><a onClick = {() => {browserHistory.push("/aaa")}} >Action</a></li>
+                                    <li><a onClick = {() => {browserHistory.push("/")}}  >Another action</a></li>
+                                    <li className="divider"></li>
+                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/counter")}} >counter</a></li>
+                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/about")}} >about</a></li>
+                                     <li><a onClick = {() => {browserHistory.push("/TodoList")}} >todolist</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul className='nav navbar-nav navbar-right'>
+                            {this.user()}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            /*<nav className='navbar navbar-default'>
+                <lidiv className='container-fluid'>
+                    <li className='navbar-header'>
                         <button type='button'
                             className='navbar-toggle collapsed'
                             data-toggle='collapse'
                             data-target='#bs-example-navbar-collapse-1'
                             aria-expanded='false'>
-                            <div className='sr-only'>Toggle navigation</div>
-                            <div className='icon-bar'> </div>
-                            <div className='icon-bar'> </div>
-                            <div className='icon-bar'> </div>
+                            <span className='sr-only'>Toggle navigation</span>
+                            <span className='icon-bar'> </span>
+                            <span className='icon-bar'> </span>
+                            <span className='icon-bar'> </span>
                         </button>
-                        <div className='navbar-brand' onClick={() => browserHistory.push('/')}>Main</div>
-                        <div className='navbar-brand btn' onClick={this.test}>test</div>
-                    </div>
+                        <li className='navbar-brand' onClick={() => browserHistory.push('/')}>Main</li>
+                        <li className='navbar-brand btn' onClick={this.test}>test</li>
+                    </li>
 
                     <div className='collapse navbar-collapse'>
                         <ul className='nav navbar-nav'>
@@ -270,7 +310,7 @@ export class Nav extends Component {
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav>    */        
         );
     }
 }
