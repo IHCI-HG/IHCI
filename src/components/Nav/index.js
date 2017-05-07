@@ -136,25 +136,27 @@ export class Nav extends Component {
     constructor(props) {
         super(props);
 
-        if(cheakIfLogin) {
+        // console.log(this.props.cheakIfLogin())
+
+    }
+
+    componentWillMount() {
+        this.props.cheakIfLogin();
+        if(this.props.isLogin) {
             this.props.login({
                 username: localStorage.getItem('username'),
                 password: localStorage.getItem('password')
             })
-        } 
-    }
-
-    componentDidMount() {
-      
+        }
     }
 
     // 异步接口请求事件
-    async getLoginState() {
+    // async getLoginState() {
 
-        const result = await this.props.cheakIfLogin();
-        return (result === "sign first") ? false : true
+    //     const result = await this.props.cheakIfLogin();
+    //     return (result === "sign first") ? false : true
 
-    }
+    // }
 
     btnLogin(e) {
         this.props.login({
@@ -173,7 +175,7 @@ export class Nav extends Component {
         if (this.props.isLogin) {
             return (
                 <div>
-                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div> 
+                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
                     <button onClick={this.btnSignOut.bind(this)}>sign out</button>
                 </div>
             )
@@ -213,9 +215,7 @@ export class Nav extends Component {
 
 
     componentDidMount() {
-        if (this.getLoginState()) {
 
-        }
     }
 
     test() {
@@ -264,7 +264,7 @@ export class Nav extends Component {
                                 </ul>
                             </li>
                         </ul>
-                        
+
                         <ul className='nav navbar-nav navbar-right'>
                             {this.user()}
                         </ul>

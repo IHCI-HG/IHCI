@@ -1,30 +1,40 @@
 import { api, setLocalStorage, clearLocalStorage } from './common.js'
 export const LOGIN = 'LOGIN'
 export const SINGOUT = 'SIGNOUT'
-export const CHEAK_IF_LOGIN = "CHEAK_IF_LOGIN"
-
+export const CHEAKING_IF_LOGIN = "CHEAKING_IF_LOGIN"
+export const IS_LOGINED = "IS_LOGINED"
+export const NO_LOGINED = "NO_LOGINED"
 // actions
 
 export function cheakIfLogin() {
     return async (dispatch, getStore) => {
+        dispatch({
+            type: CHEAKING_IF_LOGIN,
+        })
         const result = await api({
             dispatch,
             getStore,
             url: '/api/project/signin',
         });
-
-        result.text().then((text)=>{
-            if(text == 'sign first') {
+        setTimeout(() => {
+            result.text().then((text) => {
+            if (text == 'sign first') {
                 localStorage.clear()
-                return false 
+                dispatch({
+                    type: NO_LOGINED,
+                })
+                return false
             } else {
+                console.log(text)
+                dispatch({
+                    type: IS_LOGINED,
+                    user: text,
+                })
                 return true
             }
         })
+        }, 10000);
 
-        // dispatch({
-        //     type: CHEAK_IF_LOGIN,
-        // })
     }
 }
 
@@ -42,7 +52,10 @@ export function login(arg) {
         });
 
         result.text().then((text) => {
-            if(text == "sign failed, name or password error") {
+            if (text == "sign failed, name or password error") {
+                dispatch({
+                    type: LOGIN_FAIL,
+                })
                 alert("账号或密码错误")
                 return false
             } else {
@@ -54,7 +67,7 @@ export function login(arg) {
                 setLocalStorage(JSON.parse(text)[0])
             }
         })
- 
+
         // if (result.text() === 'sign failed, name or password error') {
         // } else {
         //     dispatch({
