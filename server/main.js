@@ -14,8 +14,9 @@ const MongoStore = require('connect-mongo')(session)
 const cookieParser = require('cookie-parser')
 const dbURI = require('./config/db_connection').dbURI
 mongoose.createConnection(dbURI) // 连接数据库
-
 const app = express()
+
+
 app.disable('x-powered-by')
 app.use(logger('dev'))
 
