@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
-import './signup.scss'
+import './signup.css'
 
 
 //状态编码定义
@@ -323,9 +323,9 @@ class SignUp extends Component {
 
                 </div>
 
-                <div className = 'lable'>   
-                    <input type='checkbox' checked={this.state.accessState} onChange={this.changeAccess.bind(this)} />  <span>接受</span>                 
-                    {this.signUpButton()}     
+                <div className = 'lable'>
+                    <input type='checkbox' checked={this.state.accessState} onChange={this.changeAccess.bind(this)} />  <span>接受</span>
+                    {this.signUpButton()}
                 </div>
 
             </div>
