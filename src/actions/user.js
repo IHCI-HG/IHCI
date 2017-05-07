@@ -93,8 +93,6 @@ export function signOut(arg) {
         })
 
         clearLocalStorage()
-
-
     };
 }
 

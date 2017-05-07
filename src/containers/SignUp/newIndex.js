@@ -86,7 +86,7 @@ class SignUp extends Component {
             that.setState({ usernameState: USERNAME_EMPTY })
         } else if (this.refs.username.value.length < 4) {
             that.setState({ usernameState: USERNAME_INVALID_TOO_SHORT })
-        } else if (this.refs.username.value.length > 20) {
+        } else if (this.refs.username.value.length > 100) {
             that.setState({ usernameState: USERNAME_INVALID_TOO_LONG })
         } else if (!emailPatterns.test(this.refs.username.value)) {
             that.setState({ usernameState: USERNAME_INVALID_ERROR_FORMAT })
@@ -283,7 +283,7 @@ class SignUp extends Component {
             return <button disabled='true' className='btn btn-primary pull-right'> 注册</button>
         }
     }
-
+/*
     signUpPopUp() {
         if (
             this.state.usernameState === USERNAME_VALID
@@ -297,7 +297,7 @@ class SignUp extends Component {
         } else {
             return <PopUp disable> 注册 </PopUp>
         }
-    }
+    }*/
 
     render() {
         return (
