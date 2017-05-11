@@ -239,6 +239,7 @@ if (project.env === 'development') {
         })
     })
 } else {
+    console.log("这是生产环境")
     app.use(express.static(project.paths.dist()))
 }
 
