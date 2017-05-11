@@ -25,12 +25,12 @@
             "prefer-single"
         ],
         "max-len": [
-            4,
+            1,
             999,
             4
         ],
         "object-curly-spacing": [
-            4,
+            1,
             "always"
         ]
     }
