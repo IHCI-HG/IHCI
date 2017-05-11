@@ -18,6 +18,7 @@ let User = require('./user_controllers');
 let UserSchema = require('./user_models').UserSchema
 UserSchema.plugin(mongoosePaginate)
 let UserModel = mongoose.model('UserModel', UserSchema)
+const session = require('express-session')
 
 exports.wechatLogin = function (req, res) {
   console.log(req.query);
@@ -35,7 +36,7 @@ exports.wechatLogin = function (req, res) {
             req.session.username = req.body.username
             req.session.password = req.body.password
             console.log(req.session.name)
-            res.send(user);
+            res.redirect('http://120.25.207.237/');
           } else {
             req.body = { wechat: userinfo.unionid };
             User.create(req, res);

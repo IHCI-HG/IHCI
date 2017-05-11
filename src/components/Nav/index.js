@@ -140,7 +140,7 @@ export class Nav extends Component {
 
     }
 
-       componentWillMount() {
+    componentWillMount() {
         this.props.cheakIfLogin();
         if(this.props.isLogin) {
             this.props.login({
@@ -174,6 +174,20 @@ export class Nav extends Component {
     btnSignOut() {
         this.props.signOut()
     }
+    btnWechat() {
+        !function (a, b) { function d(a) { var e, c = b.createElement("iframe"), d = "https://open.weixin.qq.com/connect/qrconnect?appid=" + a.appid + "&scope=" + a.scope + "&redirect_uri=" + a.redirect_uri + "&state=" + a.state + "&login_type=jssdk"; d += a.style ? "&style=" + a.style : "", d += a.href ? "&href=" + a.href : "", c.src = d, c.frameBorder = "0", c.allowTransparency = "true", c.scrolling = "no", c.width = "300px", c.height = "400px", e = b.getElementById(a.id), e.innerHTML = " ", e.appendChild(c) } a.WxLogin = d }(window, document);
+        setTimeout(function () {
+            var obj = new WxLogin({
+                id: "wechat-login",
+                appid: "wx50a231aefaff3222",
+                scope: "snsapi_login",
+                redirect_uri: "http%3A%2F%2F120.25.207.237%2Fapi%2Fproject%2Fuser%2Fwechat%2FLogin",
+                state: "",
+                style: "",
+                href: ""
+            }, 1000);
+        })
+    }
 
     user() {
         if (this.props.isLogin) {
@@ -201,6 +215,11 @@ export class Nav extends Component {
                             <input ref='password' type='text' placeholder='password' />
                             <button onClick={this.btnLogin.bind(this)}>login</button>
                             <button onClick={this.btnSignUp}>sign up</button>
+                            <button type="button" onClick={this.btnWechat}  data-toggle="modal" data-target="#myModal">
+                                微信登录
+                            </button>
+                            {/*<button onClick={this.btnWechat}>微信登录</button>*/}
+                            <div id="login_container"> </div>
                         </div>
                     </div>
                 </ul>

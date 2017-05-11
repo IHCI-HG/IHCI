@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
 
+
+
+
+
 class AppContainer extends Component {
 
     shouldComponentUpdate() {
@@ -20,5 +24,4 @@ class AppContainer extends Component {
         )
     }
 }
-
 export default AppContainer

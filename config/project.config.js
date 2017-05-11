@@ -20,12 +20,14 @@ const config = {
   dir_public : 'public',
   dir_server : 'server',
   dir_test   : 'tests',
+  dir_ssl    : 'ssl',
 
   // ----------------------------------
   // Server Configuration
   // ----------------------------------
   server_host : ip.address(), // use string 'localhost' to prevent exposure on local network
   server_port : process.env.PORT || 80,
+  https_port  : process.env.PORT || 443,
 
   // ----------------------------------
   // Compiler Configuration
