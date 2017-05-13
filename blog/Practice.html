@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博客系统</title>
+</head>
+
+<body>
+
+    <!--<div id="beforeHeader">-->
+        <!--<h1>博客系统</h1>-->
+    <!--</div>-->
+
+    <div id="header">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2 id="headerH2">上海高级工程师的人生困境：更好的生活在墙外？</h2>
+        <br/>
+        <a id="headerA" href="PracticeBlog0.html">阅读全文 ></a>
+        <br/>
+        <br/>
+        <div id="headerButtons">
+            <input id="headerButton0" type="image" src="按钮蓝.jpg" width="7" height="7" onclick="setIntervalNum=this.id.charAt(12);numChangeFunction();">
+            <input id="headerButton1" type="image" src="按钮白.jpg" width="7" height="7" onclick="setIntervalNum=this.id.charAt(12);numChangeFunction();">
+            <input id="headerButton2" type="image" src="按钮白.jpg" width="7" height="7" onclick="setIntervalNum=this.id.charAt(12);numChangeFunction();">
+            <input id="headerButton3" type="image" src="按钮白.jpg" width="7" height="7" onclick="setIntervalNum=this.id.charAt(12);numChangeFunction();">
+            <input id="headerButton4" type="image" src="按钮白.jpg" width="7" height="7" onclick="setIntervalNum=this.id.charAt(12);numChangeFunction();">
+        </div>
+        <br/>
+        <br/>
+    </div><br/><br/>
+
+            <!--<div id="nav">-->
+                <!--<ul>-->
+                    <!--<li><a>全部文章</a></li>-->
+                    <!--<li><a>探索与发现</a></li>-->
+                    <!--<li><a>工作与生活</a></li>-->
+                    <!--<li><a>规划与机会</a></li>-->
+                    <!--<li><a>用户故事</a></li>-->
+                    <!--<li><a>报告下载</a></li>-->
+                    <!--<li><form>-->
+                        <!--<input type="text" value="默认搜索内容"/>-->
+                        <!--<input type="button" value="搜索" onclick="showMessage()"/>-->
+                    <!--</form></li>-->
+                <!--</ul><br/><br/>-->
+            <!--</div>-->
+
+ <!--<div id="footerBackground">-->
+        <!--<div id="footer">-->
+            <!--<h2>博客系统</h2>-->
+            <!--<br>-->
+            <!--<input type="image" src="微信图标0.jpg" width="35" height="35"/>-->
+            <!--<p>-->
+                <!--____________________________________________________________________________________________________________________-->
+            <!--</p>-->
+            <!--<table>-->
+                    <!--<tr>-->
+                        <!--<th colspan="2">看机会</th>-->
+                        <!--<th colspan="2">招人才</th>-->
+                        <!--<th colspan="2">职业发展</th>-->
+                        <!--<th>博客系统</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>看机会</td>-->
+                        <!--<td>常见问题</td>-->
+                        <!--<td>招人才</td>-->
+                        <!--<td>使用攻略</td>-->
+                        <!--<td>博客</td>-->
+                        <!--<td></td>-->
+                        <!--<td>关于我们</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>注册</td>-->
+                        <!--<td>邀请朋友</td>-->
+                        <!--<td>注册</td>-->
+                        <!--<td></td>-->
+                        <!--<td>活动</td>-->
+                        <!--<td></td>-->
+                        <!--<td>加入我们</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>登陆</td>-->
+                        <!--<td></td>-->
+                        <!--<td>登陆</td>-->
+                        <!--<td></td>-->
+                        <!--<td></td>-->
+                        <!--<td></td>-->
+                        <!--<td>法律条款</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>使用攻略</td>-->
+                        <!--<td></td>-->
+                        <!--<td>常见问题</td>-->
+                        <!--<td></td>-->
+                        <!--<td></td>-->
+                        <!--<td></td>-->
+                        <!--<td></td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--<a><img src="返回页顶1.jpg"></a>-->
+            <!--<p>-->
+                <!--____________________________________________________________________________________________________________________-->
+            <!--</p>-->
+            <!--<p id="footerPartThree">-->
+                <!--博客系统-2017-->
+            <!--</p>-->
+            <!--<br>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <script type="text/javascript" src="PracticeJS.js"></script>
+
+    <script type="text/javascript">
+        pageStyleInit();
+        headerStyleInit(0);
+        sectionStyle();
+
+        beforeHeaderConstruct();
+
+        setInterval(setIntervalFunction,10000);
+
+        for(sectionNum=0;sectionNum<5;sectionNum++){
+            sectionConstruct();
+        }
+
+        footerConstruct();
+    </script>
+</body>
+</html>
