@@ -13,7 +13,7 @@ import {
 
 import { todolist } from './todolist'
 
-import signUp from '../containers/SignUp/newIndex'
+import { signUp } from './user'
 // import CounterRoute from './Counter'
 // import demoCompoant from '.demoCompoant'
 // import SignUpRoute from './SignUp'
@@ -35,7 +35,8 @@ export const createRoutes = (store) => ({
         about(store),
         todolist(store),
         user(store),
-        { path: '/signUp', component: signUp },
+        signUp(store),
+        // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
         //   CounterRoute(store),
         //   demoCompoant(store),

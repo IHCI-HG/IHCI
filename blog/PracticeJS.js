@@ -339,7 +339,7 @@ function newPageNormalFunction(i){
     pageStyleInit();
     headerStyleInit(i);
 
-    beforeHeaderConstruct();
+    // beforeHeaderConstruct();
     headerConstruct(i);
 
     blogConstruct();

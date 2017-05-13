@@ -16,15 +16,16 @@ const dbURI = require('./config/db_connection').dbURI
 mongoose.createConnection(dbURI) // 连接数据库
 const app = express()
 const ip = require('ip')
+const path = require('path')
 
-// app.disable('x-powered-by')
+app.disable('x-powered-by')
 app.use(logger('dev'))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    // res.header('Access-Control-Allow-Origin', '*')
+    // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
     next()
 })
 
