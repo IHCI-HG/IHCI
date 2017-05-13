@@ -168,12 +168,7 @@ export class Nav extends Component {
             password: this.refs.password.value
         })
     }
-    btnSignUp() {
-        browserHistory.push('/signUp')
-    }
-    btnSignOut() {
-        this.props.signOut()
-    }
+
     btnWechat() {
         !function (a, b) { function d(a) { var e, c = b.createElement("iframe"), d = "https://open.weixin.qq.com/connect/qrconnect?appid=" + a.appid + "&scope=" + a.scope + "&redirect_uri=" + a.redirect_uri + "&state=" + a.state + "&login_type=jssdk"; d += a.style ? "&style=" + a.style : "", d += a.href ? "&href=" + a.href : "", c.src = d, c.frameBorder = "0", c.allowTransparency = "true", c.scrolling = "no", c.width = "300px", c.height = "400px", e = b.getElementById(a.id), e.innerHTML = " ", e.appendChild(c) } a.WxLogin = d }(window, document);
         setTimeout(function () {
@@ -194,37 +189,37 @@ export class Nav extends Component {
             return (
                 <div>
                     <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
-                    <button onClick={this.btnSignOut.bind(this)}>sign out</button>
+                    <button onClick={this.props.signOut}>登出</button>
                 </div>
             )
         }
         return (
-            <li className='dropdown'>
-                <a href='#'
-                    className='dropdown-toggle'
-                    data-toggle='dropdown' role='button'
-                    aria-haspopup='true'
-                    aria-expanded='false'>
-                    Login
-          <div className='caret'> </div>
-                </a>
-                <ul className='dropdown-menu'>
-                    <div>
+            <div className="nav navbar-nav">
+                <li className='dropdown'>
+                    <a href='#'
+                        className='dropdown-toggle'
+                        data-toggle='dropdown' role='button'
+                        aria-haspopup='true'
+                        aria-expanded='false'>
+                        登录
+                        <div className='caret'> </div>
+                    </a>
+                    <ul className='dropdown-menu'>
                         <div>
-                            <input ref='username' type='text' placeholder='user' />
-                            <input ref='password' type='text' placeholder='password' />
-                            <button onClick={this.btnLogin.bind(this)}>login</button>
-                            <button onClick={this.btnSignUp}>sign up</button>
-                            <button type="button" onClick={this.btnWechat}  data-toggle="modal" data-target="#myModal">
-                                微信登录
-                            </button>
-                            {/*<button onClick={this.btnWechat}>微信登录</button>*/}
-                            <div id="login_container"> </div>
+                            <div>
+                                <input ref='username' type='text' placeholder='user' />
+                                <input ref='password' type='text' placeholder='password' />
+                                <button onClick={this.btnLogin.bind(this)}>登录</button>
+                                <button type="button" onClick={this.btnWechat}  data-toggle="modal" data-target="#myModal">
+                                    微信登录
+                                </button>
+                                <div id="login_container"> </div>
+                            </div>
                         </div>
-                    </div>
-                </ul>
-            </li>
-
+                    </ul>
+                </li>
+                <li onClick={() => browserHistory.push('/SignUp')}><a href="javascript:void(0)">注册</a></li>
+            </div>
         )
     }
 
@@ -241,12 +236,6 @@ export class Nav extends Component {
 
     }
 
-    test() {
-        // clearLocalStorage()
-        // setLocalStorage({
-        //     aaa : "aaaa"
-        // })
-    }
 
     render() {
         return (
@@ -261,10 +250,11 @@ export class Nav extends Component {
                             <span className="icon-bar"></span>
                         </button>
                         <a className="navbar-brand" onClick={() => browserHistory.push('/')}>Main</a>
-                        <a className="navbar-brand" onClick={this.test}>test</a>
+                        {/*<a className="navbar-brand" onClick={() => browserHistory.push('/blog')}>博客</a>*/}
                     </div>
                     <div className="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul className="nav navbar-nav">
+                            <li onClick={() => browserHistory.push('/blog')}><a href="javascript:void(0)">博客</a></li>
                             <li className="dropdown">
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                                     Demo <b className="caret"></b>

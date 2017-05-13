@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
 import './signup.css'
-
+import {
+    login,
+} from '../../actions/user';
 
 //状态编码定义
 
@@ -45,7 +47,7 @@ class SignUp extends Component {
             usernameState: USERNAME_EMPTY,
             passwordState: PASSWORD_EMPTY,
             checkPasswordState: CHECK_PASSWORD_EMPTY,
-            accessState: ACCESS_INVALID
+            accessState: ACCESS_VALID
         })
     }
 
@@ -255,17 +257,22 @@ class SignUp extends Component {
     }
 
     signUp() {
+        const that = this
         $.ajax({
             method: 'POST',
             // url: 'signUp.json',
             url: 'api/project/user/createUser',
             data: {
-                username: this.refs.username.value,
-                password: this.refs.password.value
+                username: that.refs.username.value,
+                password: that.refs.password.value
             }
         }).done(function (data) {
             alert("注册成功")
-            browserHistory.goBack();
+            that.props.login({
+                username: that.refs.username.value,
+                password: that.refs.password.value
+            })
+            // browserHistory.goBack();
         })
     }
 
@@ -324,7 +331,7 @@ class SignUp extends Component {
                 </div>
 
                 <div className = 'lable'>
-                    <input type='checkbox' checked={this.state.accessState} onChange={this.changeAccess.bind(this)} />  <span>接受</span>
+                    {/*<input type='checkbox' checked={this.state.accessState} onChange={this.changeAccess.bind(this)} />  <span>接受</span>*/}
                     {this.signUpButton()}
                 </div>
 
@@ -335,4 +342,18 @@ class SignUp extends Component {
 
 
 
-export default SignUp;
+function mapStateToProps(state) {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = {
+    login: (arg) => login(arg),
+}
+
+export default SignUp = connect(mapStateToProps, mapDispatchToProps)(SignUp)
+
+
+
+// export default SignUp;

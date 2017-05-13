@@ -1,0 +1,150 @@
+/*body*/
+body{
+    background-color: #e2e2e2;
+}
+
+
+
+/*beforeHeader*/
+#beforeHeader{
+    background-color: #363636;
+}
+#beforeHeader h1{
+    color: white;
+}
+
+
+
+/*header*/
+#header h2{
+    text-align: center;
+    color: white;
+}
+#header a:link,a:visited{
+    display: block;
+
+    text-decoration:none;
+    text-align: center;
+    font-size: 13px;
+
+    background-color: #7e7b80;
+    color: white;
+
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-style: solid;
+    border-color:white;
+    border-width: 1px;
+    padding: 6px;
+}
+#header a:hover,a:active{
+    background-color: white;
+    color: black;
+}
+#headerButtons{
+    width: 51px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/*section*/
+#section a{
+    display: block;
+
+    font-size: 16px;
+    color: black;
+    line-height: 200%;
+
+    text-decoration: none;
+}
+#section{
+    background-color:#eeeeee;
+
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+}
+#section span{
+    color: #7f7f7f;
+    font-size: 11px;
+}
+
+
+
+/*blog*/
+#blog{
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+
+    font-size: 13px;
+}
+#blog p span{
+    font-weight: bold;
+}
+#blogBold{
+    font-weight: bold;
+}
+
+
+
+/*footer*/
+#footerBackground{
+    background-color:#363636;
+}
+#footer{
+    margin-left:auto;
+    margin-right:auto;
+    width:85%;
+}
+#footer h2{
+    width:30%;
+
+    float: left;
+
+    color: white;
+}
+#footer input{
+    float: left;
+}
+#footer p{
+    color: #7e7b80;
+}
+#footer a{
+    float: right;
+}
+#footer table{
+    width: 80%;
+
+    float: left;
+
+    color: #e2e2e2;
+
+    font-size: 13px;
+}
+#footer th{
+    height: 40px;
+
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+
+    color: #7e7b80;
+}
+#footer img{
+    width: 50px;
+    height: 50px;
+}
+#footerPartThree{
+    font-size: 11px;
+    text-align: right;
+}
+
+
+
+
+
