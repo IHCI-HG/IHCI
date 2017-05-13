@@ -10,7 +10,7 @@ import { login, signOut } from '../../actions/user'
 
 const WechatLogin = () => {
     return (
-        <div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     {/*<div className="modal-header">

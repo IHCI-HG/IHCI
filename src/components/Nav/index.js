@@ -261,7 +261,7 @@ export class Nav extends Component {
                             <span className="icon-bar"></span>
                         </button>
                         <a className="navbar-brand" onClick={() => browserHistory.push('/')}>Main</a>
-                        <a className="navbar-brand" onClick={this.test}>test</a>
+                        <a className="navbar-brand" onClick={() => browserHistory.push('/blog')}>博客</a>
                     </div>
                     <div className="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul className="nav navbar-nav">
