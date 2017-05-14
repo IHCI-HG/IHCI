@@ -187,10 +187,19 @@ export class Nav extends Component {
     user() {
         if (this.props.isLogin) {
             return (
-                <div>
+                <li className="dropdown">
+                    <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                        用户
+                    </a>
+                    <ul className="dropdown-menu">
+                        <li onClick={() => browserHistory.push("/user")}> <a>个人设置</a> </li>
+                        <li onClick={this.props.signOut}><a>登出</a></li>
+                    </ul>
+                </li>
+                /*<div>
                     <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
                     <button onClick={this.props.signOut}>登出</button>
-                </div>
+                </div>*/
             )
         }
         return (
