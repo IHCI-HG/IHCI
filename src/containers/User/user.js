@@ -2,10 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 class User extends Component {
+
+    state = {
+        isBindWechat : true,
+    }
+
+    componentDidMount() {
+          !function (a, b) { function d(a) { var e, c = b.createElement("iframe"), d = "https://open.weixin.qq.com/connect/qrconnect?appid=" + a.appid + "&scope=" + a.scope + "&redirect_uri=" + a.redirect_uri + "&state=" + a.state + "&login_type=jssdk"; d += a.style ? "&style=" + a.style : "", d += a.href ? "&href=" + a.href : "", c.src = d, c.frameBorder = "0", c.allowTransparency = "true", c.scrolling = "no", c.width = "300px", c.height = "400px", e = b.getElementById(a.id), e.innerHTML = " ", e.appendChild(c) } a.WxLogin = d }(window, document);
+
+    }
+
+
+    bindWechat() {
+        // this.setState({isBindWechat : true})
+        setTimeout(function () {
+            var obj = new WxLogin({
+                id: "wechat-login",
+                appid: "wx50a231aefaff3222",
+                scope: "snsapi_login",
+                redirect_uri: "http%3A%2F%2F120.25.207.237%2Fapi%2Fproject%2Fuser%2Fwechat%2FLogin",
+                state: "",
+                style: "",
+                href: ""
+            }, 1000);
+        })
+    }
+
+    unbindWechat() {
+        this.setState({isBindWechat : false})
+    }
+
     loginJudge() {
         if (this.props.isLogin) {
             return (
-                <div className="form-horizontal">
+                <div>
                     <div className="page-header">
                         <h1> 个人设置 </h1>
                     </div>
@@ -19,15 +49,29 @@ class User extends Component {
                         <div className="input-group">
                             <input type="password" className="form-control" placeholder='请确认新密码'/>
                             <span className="input-group-btn">
-                                 <button type="submit" className="btn btn-default pull-right">确认</button>
+                                 <button  className="btn btn-default pull-right">确认</button>
                             </span>
                         </div>
                     </div>
                     <div className="form-group">
                         <label>第三方账号关联</label>
-                        <input type="password" className="form-control" placeholder='请输入新密码'/>
-                        <input type="password" className="form-control" placeholder='请确认新密码'/>
-                        <button type="submit" className="btn btn-primary pull-right col-md-4">确认</button>
+                        {
+                            this.state.isBindWechat ?
+                            <div className="input-group">
+                                <input type="password" disabled="true" className="form-control" placeholder='微信 (已绑定)'/>
+                                <span className="input-group-btn">
+                                    <div  onClick={this.unbindWechat.bind(this)} className="btn btn-default pull-right">解除绑定</div>
+                                </span>
+                            </div>
+                            :
+                            <div className="input-group">
+                                <input type="password" disabled="true" className="form-control" placeholder='微信 (未绑定)'/>
+                                <span className="input-group-btn">
+                                    <div onClick={this.bindWechat.bind(this)} data-toggle="modal" data-target="#myModal" className="btn btn-default pull-right">点击绑定</div>
+                                </span>
+                            </div>
+                        }
+
                     </div>
                 </div>
             )
