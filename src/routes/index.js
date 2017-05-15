@@ -12,7 +12,11 @@ import {
 } from './demoCompoant'
 import { user, signUp } from './user'
 import Blog from '../containers/Blog'
+<<<<<<< Updated upstream
 import { resume } from './resume'
+=======
+import counter1 from '../containers/demoCompoant/demo1/index.js'
+>>>>>>> Stashed changes
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -33,6 +37,13 @@ export const createRoutes = (store) => ({
         resume(store),
         // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
+        {
+            path: 'demo',
+            component: counter1,
+            childRoutes: [
+                { path: 'blog', component: counter1 },
+            ]
+        },
         //   CounterRoute(store),
         //   demoCompoant(store),
         //   {
