@@ -52,7 +52,6 @@ export function login(arg) {
         });
 
         result.text().then((text) => {
-            console.log(text)
             if (text == "sign failed, name or password error") {
                 dispatch({
                     type: LOGIN_FAIL,
