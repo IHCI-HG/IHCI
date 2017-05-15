@@ -12,11 +12,7 @@ import {
 } from './demoCompoant'
 import { user, signUp } from './user'
 import Blog from '../containers/Blog'
-<<<<<<< Updated upstream
 import { resume } from './resume'
-=======
-import counter1 from '../containers/demoCompoant/demo1/index.js'
->>>>>>> Stashed changes
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
