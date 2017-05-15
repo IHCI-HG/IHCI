@@ -38,7 +38,6 @@
       }
     },
     "deploy": {
-
       "command": "npm run clean && npm run compile",
       "env": {
         "DEBUG": "app:*"
@@ -109,6 +108,7 @@
     "jsonwebtoken": "^7.2.1",
     "karma-phantomjs-launcher": "^1.0.2",
     "kraken-js": "^2.1.0",
+    "md5": "^2.2.1",
     "mongoose": "^4.7.5",
     "mongoose-paginate": "^5.0.3",
     "morgan": "^1.7.0",
