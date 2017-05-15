@@ -4,6 +4,8 @@ export const SINGOUT = 'SIGNOUT'
 export const CHEAKING_IF_LOGIN = "CHEAKING_IF_LOGIN"
 export const IS_LOGINED = "IS_LOGINED"
 export const NO_LOGINED = "NO_LOGINED"
+export const LOGIN_FAIL = 'LOGIN_FAIL'
+
 // actions
 
 export function cheakIfLogin() {
@@ -50,6 +52,7 @@ export function login(arg) {
         });
 
         result.text().then((text) => {
+            console.log(text)
             if (text == "sign failed, name or password error") {
                 dispatch({
                     type: LOGIN_FAIL,
@@ -60,9 +63,8 @@ export function login(arg) {
                 dispatch({
                     type: LOGIN,
                     user: arg.username,
-                    password: arg.password,
                 })
-                setLocalStorage(JSON.parse(text)[0])
+                // setLocalStorage(JSON.parse(text)[0])
             }
         })
 

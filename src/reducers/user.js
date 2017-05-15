@@ -4,30 +4,32 @@ const initeState = {
     userId: null,
     isLogin: false,
     user: null,
-    password: null
 }
 
-export default function headerReducer(state = initeState, action) {
+export default function userReducer(state = initeState, action) {
     switch (action.type) {
         case LOGIN:
             return {
+                ...state,
                 isLogin: true,
                 user: action.user,
                 password: action.password
             }
         case SINGOUT:
             return {
+                ...state,
                 isLogin: false,
                 user: null,
-                password: null
             }
         case IS_LOGINED:
             return {
+                ...state,
                 isLogin: true,
                 user: action.user,
             }
         case NO_LOGINED:
             return {
+                ...state,
                 isLogin: false,
             }
         default:
