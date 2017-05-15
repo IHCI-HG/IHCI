@@ -3,22 +3,16 @@
 import CoreLayout from '../components/CoreLayout'
 import NotFind from '../components/404-not-find'
 import Home from '../containers/Home'
-
 import {
     counter,
     about,
+    todolist,
     // demo1,
     // demo2
 } from './demoCompoant'
-
-import { todolist } from './todolist'
-
-import { signUp } from './user'
-// import CounterRoute from './Counter'
-// import demoCompoant from '.demoCompoant'
-// import SignUpRoute from './SignUp'
-import { user } from './user'
+import { user, signUp } from './user'
 import Blog from '../containers/Blog'
+import { resume } from './resume'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -31,13 +25,21 @@ export const createRoutes = (store) => ({
         //demoCompoant
         //couter为原生的，Facebook官方脚手架的组件
         counter(store),
-        //about为师兄的野鸡错误示范组件
         about(store),
         todolist(store),
         user(store),
         signUp(store),
+
+        resume(store),
         // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
+        {
+            path: 'demo',
+            component: counter1,
+            childRoutes: [
+                { path: 'blog', component: counter1 },
+            ]
+        },
         //   CounterRoute(store),
         //   demoCompoant(store),
         //   {

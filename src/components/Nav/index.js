@@ -192,6 +192,7 @@ export class Nav extends Component {
                         用户
                     </a>
                     <ul className="dropdown-menu">
+                        <li onClick={() => browserHistory.push("/resume")}><a>简历</a></li>
                         <li onClick={() => browserHistory.push("/user")}> <a>个人设置</a> </li>
                         <li onClick={this.props.signOut}><a>登出</a></li>
                     </ul>

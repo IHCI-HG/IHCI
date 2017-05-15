@@ -1,9 +1,19 @@
-import { LOGIN, SINGOUT, CHEAK_IF_LOGIN, IS_LOGINED, NO_LOGINED } from '../actions/user';
+import {
+    LOGIN,
+    SINGOUT,
+    CHEAK_IF_LOGIN,
+    IS_LOGINED,
+    NO_LOGINED,
+
+} from '../actions/user';
 
 const initeState = {
     userId: null,
     isLogin: false,
     user: null,
+
+    wechat: null,
+    hasResume: false,
 }
 
 export default function userReducer(state = initeState, action) {
@@ -13,7 +23,7 @@ export default function userReducer(state = initeState, action) {
                 ...state,
                 isLogin: true,
                 user: action.user,
-                password: action.password
+                password: action.password,
             }
         case SINGOUT:
             return {
