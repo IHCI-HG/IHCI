@@ -1,48 +1,58 @@
 /**
  * Created by root on 17-1-4.
  */
-var path = require('path')
-var mongoose = require('mongoose')
-var mongoosePaginate = require('mongoose-paginate')
-var url = require('url')
+var path = require('path');
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
+var url = require("url");
 // var multer = require('multer');
-var fs = require('fs')
+var fs = require('fs');
+let _ = require('lodash');
 
-// 引入user_model
-// var UserSchema = require('./user_models').UserSchema;
-// UserSchema.plugin(mongoosePaginate);
-// var User = mongoose.model('UserModel', UserSchema);
 
 // 引入user_data_model
-var UserDataSchema = require('./user_data_model').UserDataSchema
-UserDataSchema.plugin(mongoosePaginate)
-var UserData = mongoose.model('UserDataModel', UserDataSchema)
+var UserDataSchema = require('./user_data_model').UserDataSchema;
+UserDataSchema.plugin(mongoosePaginate);
+var UserData = mongoose.model('UserDataModel', UserDataSchema);
+
+
 
 exports.getUserDataInformationById = function (req, res) {
-  console.log(req.query.id)
-  var id = req.query.id
-  UserData.find({ _id: id }).exec(function (err, user) {
-    if (err) {
-      return res.status(400).send({
-        message: 'getUserErro'
-      })
-    } else {
-      res.jsonp(user)
-    }
-  })
-}
+    console.log(req.query._id);
+    var _id = req.query._id;
+    UserData.find({_id: Object(_id)}).exec(function (err, userdata) {
+        if(err) {
+            return res.status(400).send({
+                message: 'getUserErro'
+            });
+        } else {
+            res.jsonp(userdata);
+        }
+    })
+};
 
 exports.updateUserDataInformationById = function (req, res) {
-    // console.log(req.query.id);
-    // var id = req.query.id;
-    // UserData.find({_id: id}).exec(function (err, user) {
-    //     if(err) {
-    //         return res.status(400).send({
-    //             message: 'getUserErro'
-    //         });
-    //     } else {
-    //         res.jsonp(user);
-    //     }
-    // })
-}
+    console.log(req.body._id);
+    var _id = req.body._id;
+    UserData.find({_id: Object(_id)}).exec(function (err, userdata) {
+        if(err) {
+            return res.status(400).send({
+                message: 'getUserErro'
+            });
+        } else {
+            // res.jsonp(user);
+            let newUserData = userdata[0];
+            newUserData = _.extend(newUserData, req.body);
+            newUserData.save(function(err) {
+              if (err) {
+                return res.status(400).send({
+                  message: ''
+                });
+              } else {
+                res.send({message: 'update success'});
+              }
+            });
+        }
+    });
+};
 
