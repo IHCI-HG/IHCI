@@ -11,12 +11,12 @@ const initeState = {
     userId: null,
     isLogin: false,
     user: null,
-    password: null,
+
     wechat: null,
     hasResume: false,
 }
 
-export default function headerReducer(state = initeState, action) {
+export default function userReducer(state = initeState, action) {
     switch (action.type) {
         case LOGIN:
             return {
@@ -30,7 +30,6 @@ export default function headerReducer(state = initeState, action) {
                 ...state,
                 isLogin: false,
                 user: null,
-                password: null,
             }
         case IS_LOGINED:
             return {
