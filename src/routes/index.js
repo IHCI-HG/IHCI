@@ -33,13 +33,6 @@ export const createRoutes = (store) => ({
         resume(store),
         // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
-        {
-            path: 'demo',
-            component: counter1,
-            childRoutes: [
-                { path: 'blog', component: counter1 },
-            ]
-        },
         //   CounterRoute(store),
         //   demoCompoant(store),
         //   {
