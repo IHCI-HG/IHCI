@@ -6,6 +6,17 @@ function encode(obj) {
     return new Buffer(str).toString('base64');
 }
 
+export function getApi(url) {
+    fetch(url, {
+        'Content-Type': 'application/json;charset=UTF-8',
+        credentials: 'include',
+    }).then((res) => {
+        return res
+    }).catch((err) => {
+        console.error(err);
+    })
+}
+
 //用fetch对ajax请求进行封装，便于对接口进行统一管理
 export function api({
     dispatch,
@@ -23,19 +34,17 @@ export function api({
             },
             credentials: 'include',
             body: method === 'POST' ? JSON.stringify(body) : null,
-        })  
+        })
             .then((json) => {
                 resolve(json)
             })
             .then((res) => {
                 return res
             })
-  
             .catch((err) => {
                 console.error(err);
             })
     });
-
 }
 
 //localStorage 操作

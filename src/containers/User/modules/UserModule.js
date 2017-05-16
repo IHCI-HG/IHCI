@@ -24,12 +24,6 @@ export const actions = {
   unbindWechat
 }
 
-function judgeIsLogin() {
-  if(localStorage.userName=="" || undefined){
-    return false
-  }
-  else return true
-}
 
 const initialState = {
   // wechat: localStorage.wechat,

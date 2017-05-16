@@ -1,0 +1,52 @@
+.sign-up-container {
+    background-color: #fff;
+    width: 400px;
+    margin: 0px auto;
+    top: 0;
+
+
+    h1 {
+        margin: auto;
+        // padding: .67em 0;
+        text-align: center;
+    }
+
+    .up-container {
+        margin: 40px 40px 0px 40px;
+        padding: 40px 40px 20px 40px;
+        border-bottom: 1px #ddd solid
+    }
+    // .ant-form-item-control {
+    //     margin: 40px 40px 0px 40px;
+    //     padding: 40px 40px 20px 40px;
+    //     border-bottom: 1px #ddd solid
+    // }
+
+    // .login-form-forgot {
+    //     float: right;
+    // }
+
+    .login-wrap {
+        padding-top:10px;
+        .login-form-button {
+            width: 50%;
+        }
+        .right {
+            float: right;
+            line-height: 28px;
+            vertical-align: middle;
+        }
+    }
+
+    .third-auth {
+        margin-top: 24px;
+        padding: 0 0 40px 80px;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .sign-up-container {
+        width: 100%;
+    }
+}

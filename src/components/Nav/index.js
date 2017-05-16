@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
-// import WechatLogin from './components/Login-wechat'
 import { browserHistory } from 'react-router'
 
 import {
@@ -9,134 +8,10 @@ import {
     signOut
 } from '../../actions/user';
 
-//  旧的不规范的导航条，
-// const oldNav = React.createClass({
-//     componentDidMount() {
-//         const that = this
-//         // 初始化的时候向服务器检查session,判断是否已经登录
-//         $.ajax({
-//             url: '/api/project/signin',
-//             method: 'GET'
-//         }).done(function (data) {
-//             console.log(data)
-//             if (data !== 'sign first') {
-//                 that.props.login(data)
-//             } else {
-//                 localStorage.clear()
-//             }
-//         })
-//     },
-//     btnSignUp() {
-//         browserHistory.push('/signUp')
-//     },
-//     btnLogin(e) {
-//         const that = this
-//         e.preventDefault()
-//         $.ajax({
-//             url: '/api/project/signin',
-//             method: 'POST',
-//             data: {
-//                 username: that.refs.username.value,
-//                 password: that.refs.password.value
-//             }
-//         }).done(function (data) {
-//             if (data === 'sign failed, name or password error') {
-//                 alert('账号或者密码错误')
-//             } else {
-//                 //that.props.login(that.refs.username.value)
-//                 localStorage.userId = data[0].dataId
-//                 localStorage.userName = data[0].username;
-//                 localStorage.wechat = data[0].wechat;
-//                 localStorage.phone = data[0].phone;
-//                 localStorage.isActive = data[0].isActive;
-//                 that.props.login(data[0].username)
-//             }
-//         })
-//     },
-//     btnSignOut(e) {
-//         this.props.signOut()
-//     },
-//     user(isLogin) {
-//         if (isLogin) {
-//             return (
-//                 <div>
-//                     <div> user: <Link to='/user'> {this.props.user} </Link> </div>
-//                     <button onClick={this.btnSignOut}>sign out</button>
-//                 </div>
-//             )
-//         }
-//         return (
-//             <li className='dropdown'>
-//                 <a href='#'
-//                     className='dropdown-toggle'
-//                     data-toggle='dropdown' role='button'
-//                     aria-haspopup='true'
-//                     aria-expanded='false'>
-//                     Login
-//           <span className='caret'> </span>
-//                 </a>
-//                 <ul className='dropdown-menu'>
-//                     <div>
-//                         <div>
-//                             <input ref='username' type='text' placeholder='user' />
-//                             <input ref='password' type='text' placeholder='password' />
-//                             <button onClick={this.btnLogin}>login</button>
-//                             <button onClick={this.btnSignUp}>sign up</button>
-//                             <WechatLogin> </WechatLogin>
-//                         </div>
-//                     </div>
-//                 </ul>
-//             </li>
-
-//         )
-//     },
-//     active(navName) {
-//         if (navName === this.props.location.pathname) {
-//             return "active"
-//         } else return ""
-//     },
-//     render() {
-//         return (
-//             <nav className='navbar navbar-default'>
-//                 <div className='container-fluid'>
-//                     <div className='navbar-header'>
-//                         <button type='button'
-//                             className='navbar-toggle collapsed'
-//                             data-toggle='collapse'
-//                             data-target='#bs-example-navbar-collapse-1'
-//                             aria-expanded='false'>
-//                             <span className='sr-only'>Toggle navigation</span>
-//                             <span className='icon-bar'> </span>
-//                             <span className='icon-bar'> </span>
-//                             <span className='icon-bar'> </span>
-//                         </button>
-//                         <Link className='navbar-brand' to='/'>Main</Link>
-//                     </div>
-
-//                     <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-//                         <ul className='nav navbar-nav'>
-//                             <li className={this.active("/about")}><Link to='/about'>ABOUT</Link></li>
-//                             <li className={this.active("/counter")}><Link to='/counter'>counter</Link></li>
-//                             <li className={this.active("/user")}><Link to='/user'>user</Link></li>
-//                         </ul>
-//                         <ul className='nav navbar-nav navbar-right'>
-//                             {this.user(this.props.isLogin)}
-//                         </ul>
-//                     </div>
-//                 </div>
-//             </nav>
-//         )
-//     }
-// })
-
-
-
 export class Nav extends Component {
 
     constructor(props) {
         super(props);
-
-        // console.log(this.props.cheakIfLogin())
 
     }
 
@@ -149,18 +24,6 @@ export class Nav extends Component {
             })
         }
     }
-
-    componentDidMount() {
-
-    }
-
-    // 异步接口请求事件
-    // async getLoginState() {
-
-    //     const result = await this.props.cheakIfLogin();
-    //     return (result === "sign first") ? false : true
-
-    // }
 
     btnLogin(e) {
         this.props.login({
@@ -192,14 +55,11 @@ export class Nav extends Component {
                         用户
                     </a>
                     <ul className="dropdown-menu">
+                        <li onClick={() => browserHistory.push("/resume")}><a>简历</a></li>
                         <li onClick={() => browserHistory.push("/user")}> <a>个人设置</a> </li>
                         <li onClick={this.props.signOut}><a>登出</a></li>
                     </ul>
                 </li>
-                /*<div>
-                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
-                    <button onClick={this.props.signOut}>登出</button>
-                </div>*/
             )
         }
         return (
@@ -217,7 +77,7 @@ export class Nav extends Component {
                         <div>
                             <div>
                                 <input ref='username' type='text' placeholder='user' />
-                                <input ref='password' type='text' placeholder='password' />
+                                <input ref='password' type='password' placeholder='password' />
                                 <button onClick={this.btnLogin.bind(this)}>登录</button>
                                 <button type="button" onClick={this.btnWechat}  data-toggle="modal" data-target="#myModal">
                                     微信登录
@@ -231,20 +91,6 @@ export class Nav extends Component {
             </div>
         )
     }
-
-    //用来判断当前目录是否被激活，来调整相应导航条样式的
-    active(navName) {
-        if (navName === this.props.location.pathname) {
-            return "active"
-        } else return ""
-    }
-
-
-
-    componentDidMount() {
-
-    }
-
 
     render() {
         return (
@@ -285,50 +131,6 @@ export class Nav extends Component {
                     </div>
                 </div>
             </nav>
-            /*<nav className='navbar navbar-default'>
-                <lidiv className='container-fluid'>
-                    <li className='navbar-header'>
-                        <button type='button'
-                            className='navbar-toggle collapsed'
-                            data-toggle='collapse'
-                            data-target='#bs-example-navbar-collapse-1'
-                            aria-expanded='false'>
-                            <span className='sr-only'>Toggle navigation</span>
-                            <span className='icon-bar'> </span>
-                            <span className='icon-bar'> </span>
-                            <span className='icon-bar'> </span>
-                        </button>
-                        <li className='navbar-brand' onClick={() => browserHistory.push('/')}>Main</li>
-                        <li className='navbar-brand btn' onClick={this.test}>test</li>
-                    </li>
-
-                    <div className='collapse navbar-collapse'>
-                        <ul className='nav navbar-nav'>
-                            <li className='dropdown'>
-                                <a href='#'
-                                    className='dropdown-toggle'
-                                    data-toggle='dropdown' role='button'
-                                    aria-haspopup='true'
-                                    aria-expanded='false'>
-                                    demo
-                                <div className='caret'> </div>
-                                </a>
-                                <ul className='dropdown-menu'>
-                                    <li><a onClick = {() => {browserHistory.push("/aaa")}} >Action</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/")}}  >Another action</a></li>
-                                    <li className="divider"></li>
-                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/counter")}} >counter</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/about")}} >about</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <ul className='nav navbar-nav navbar-right'>
-                            {this.user()}
-                        </ul>
-                    </div>
-                </div>
-            </nav>    */
         );
     }
 }
@@ -348,4 +150,5 @@ const mapDispatchToProps = {
 }
 
 export default Nav = connect(mapStateToProps, mapDispatchToProps)(Nav)
+
 

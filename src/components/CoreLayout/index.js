@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Nav from '../Nav'
+import NewNav from '../Nav/newNav'
 import './CoreLayout.scss'
 import '../../styles/core.css'
 
 import { connect } from 'react-redux'
 import { login, signOut } from '../../actions/user'
 
-
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+const { SubMenu, ItemGroup } = Menu;
+const { Header, Content, Sider, Footer } = Layout;
 
 const WechatLogin = () => {
     return (
@@ -24,24 +27,36 @@ const WechatLogin = () => {
 
 
 
-class Layout extends Component {
+class myLayout extends Component {
 
     componentDidMount() {
 
     }
 
-
     render() {
         return (
-            <div className='container'>
+            <Layout>
+                <NewNav/>
+                <Layout className="main-container">
+                    <Content>{this.props.children}</Content>
+                </Layout>
+                <Footer>Footer</Footer>
+            </Layout>
+        )
+    }
+    /*render() {
+        return (
+            <Layout className='container'>
                 <Nav {...this.props} />
+                <Header className="header">
+                </Header>
                 <div className='core-layout__viewport'>
                     {this.props.children}
                 </div>
                 <WechatLogin/>
-            </div>
+            </Layout>
         )
-    }
+    }*/
 }
-export default Layout;
+export default myLayout;
 
