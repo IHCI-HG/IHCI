@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-<<<<<<< HEAD
-=======
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
->>>>>>> origin
 import { browserHistory } from 'react-router'
 import SelfIntro from './self-intro'
 import Skill from './skill'
@@ -38,14 +35,6 @@ class Resume extends Component {
     render() {
         return (
             <div>
-<<<<<<< HEAD
-                <div onClick={()=>{browserHistory.push("/resume/skill")}}>
-                    skill   nav
-                </div>
-                <div onClick={()=>{browserHistory.push("/resume/self-intro")}}>
-                    self-intro   nav
-                </div>
-=======
 
                 <Menu
                     onClick={this.handleClick}
@@ -80,7 +69,6 @@ class Resume extends Component {
                     </SubMenu>
                 </Menu>
 
->>>>>>> origin
                 <div>
                     {this.props.children}
                 </div>

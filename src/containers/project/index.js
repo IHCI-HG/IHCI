@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 import { browserHistory } from 'react-router'
 

@@ -1,5 +1,6 @@
 import { injectReducer } from '../reducers'
 
+
 export const resume = (store) => ({
     path: 'resume',
     getComponent(nextState, cb) {
@@ -18,6 +19,7 @@ export const resume = (store) => ({
     ]
 
 })
+
 
 
 export const resumeBase = (store) =>  ({

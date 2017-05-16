@@ -2,7 +2,6 @@ const projectInitialState = {
     name: "",
     publisher: "",
     
-
 }
 
 const project = (state = projectInitialState, action) => {
