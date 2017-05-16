@@ -1,18 +1,12 @@
-/**
- * Created by luqianyu on 2017/1/4.
- * TO DO
- * 1.用户名合法性判断尚未进行,只做了长短判断,正则表达部分后面再加
- * 2.验证码模块的引入  当前验证码默认为OK的
- * 3.密码强度检测
- */
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router'
+import './signup.css'
+import {
+    login,
+} from '../../actions/user';
 
-//这是个需要重构的模块
-
-import React from 'react'
-import $ from 'jquery'
-import TermsOfService from './TermsOfService'
-// import PopUp from './SignUp-popUp/SignUp-popUp-component'
-import PopUp from './SignUp-popUp/SignUp-popUp-container'
+//状态编码定义
 
 const USERNAME_EMPTY = 0
 const USERNAME_INVALID_EXIST = 1
@@ -40,15 +34,53 @@ const CAPTCHA_VALID = 2
 const ACCESS_VALID = true
 const ACCESS_INVALID = false
 
-const SignUp = React.createClass({
-    getInitialState() {
-        return {
+
+class SignUp extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    //componentWillMount会在组件render之前执行，并且永远都只执行一次。
+    componentWillMount() {
+        this.setState({
             usernameState: USERNAME_EMPTY,
             passwordState: PASSWORD_EMPTY,
             checkPasswordState: CHECK_PASSWORD_EMPTY,
-            accessState: ACCESS_INVALID
-        }
-    },
+            accessState: ACCESS_VALID
+        })
+    }
+
+    //这个方法会在组件加载完毕之后立即执行。
+    componentDidMount() {
+
+    }
+
+    //在组件接收到一个新的prop时被执行。这个方法在初始化render时不会被调用。
+    componentWillReceiveProps(nextProps) {
+        //旧的props可以通过this.props来获取。在这个函数内调用this.setState()方法不会增加一次新的render.
+    }
+
+    //返回一个布尔值。在组件接收到新的props或者state时被执行。在初始化时或者使用forceUpdate时不被执行。  可以在你确认不需要更新组件时使用
+    // shouldComponentUpdate(nextProps, nextState) {
+
+    // }
+
+    //在组件接收到新的props或者state但还没有render时被执行。在初始化时不会被执行。
+    componentWillUpdate(nextProps, nextState) {
+
+    }
+
+    //在组件完成更新后立即执行。在初始化时不会被执行。一般会在组件完成更新后被使用。例如清除notification文字等操作。
+    componentDidUpdate(prevProps, prevState) {
+
+    }
+
+    //在组件从DOM unmount后立即执行.
+    componentWillUnmount() {
+
+    }
+
     usernameCheck() {
         const that = this
         const emailPatterns = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
@@ -77,7 +109,8 @@ const SignUp = React.createClass({
                 }
             })
         }
-    },
+    }
+
     usernameExistSpan(usernameState) {
         switch (usernameState) {
             case USERNAME_INVALID_EXIST:
@@ -89,7 +122,8 @@ const SignUp = React.createClass({
             default:
                 return <div> X </div>
         }
-    },
+    }
+
     usernameExistState() {
         switch (this.state.usernameState) {
             case USERNAME_INVALID_EXIST:
@@ -104,7 +138,8 @@ const SignUp = React.createClass({
             default:
                 return 'has-error'
         }
-    },
+    }
+
     usernameVerificationSpan() {
         switch (this.state.usernameState) {
             case USERNAME_INVALID_EXIST:
@@ -120,7 +155,8 @@ const SignUp = React.createClass({
             default:
                 return <div className='help-block'> 请输入您的邮箱 </div>
         }
-    },
+    }
+
     passwordCheck() {
         const that = this
         if (!this.refs.password.value) {
@@ -133,7 +169,8 @@ const SignUp = React.createClass({
             // 密码强度检测
             that.setState({ passwordState: PASSWORD_VALID_MIDDLE })
         }
-    },
+    }
+
     passwordState() {
         switch (this.state.passwordState) {
             case PASSWORD_EMPTY:
@@ -149,7 +186,8 @@ const SignUp = React.createClass({
             default:
                 return ' '
         }
-    },
+    }
+
     passwordCheckSpan(passwordState) {
         // if (this.state.checkPasswordState != CHECK_PASSWORD_EMPTY) {
         //   this.checkPasswordCheck()
@@ -170,7 +208,7 @@ const SignUp = React.createClass({
             default:
                 return ''
         }
-    },
+    }
     checkPasswordCheck() {
         const that = this
         if (!this.refs.checkPassword.value) {
@@ -180,7 +218,8 @@ const SignUp = React.createClass({
         } else if (this.refs.checkPassword.value === this.refs.password.value) {
             that.setState({ checkPasswordState: CHECK_PASSWORD_VALID })
         }
-    },
+    }
+
     checkPasswordState() {
         switch (this.state.checkPasswordState) {
             case CHECK_PASSWORD_EMPTY:
@@ -190,7 +229,8 @@ const SignUp = React.createClass({
             case CHECK_PASSWORD_INCONFORMITY:
                 return 'has-error'
         }
-    },
+    }
+
     checkPasswordSpan(checkPasswordState) {
         switch (checkPasswordState) {
             case CHECK_PASSWORD_EMPTY:
@@ -200,32 +240,42 @@ const SignUp = React.createClass({
             case CHECK_PASSWORD_VALID:
                 return <div className='help-block'>两次密码输入一致</div>
         }
-    },
+    }
+
     getCaptcha() {
         // const that = this.arguments;
         $.ajax({
             method: 'GET',
             url: 'getCaptcha.json'
         }).done(function (data) {
-            console.log(data)
+
         })
-    },
+    }
+
     changeAccess() {
         this.setState({ accessState: (this.state.accessState ? ACCESS_INVALID : ACCESS_VALID) })
-    },
+    }
+
     signUp() {
+        const that = this
         $.ajax({
             method: 'POST',
             // url: 'signUp.json',
             url: 'api/project/user/createUser',
             data: {
-                username: this.refs.username.value,
-                password: this.refs.password.value
+                username: that.refs.username.value,
+                password: that.refs.password.value
             }
         }).done(function (data) {
-
+            alert("注册成功")
+            that.props.login({
+                username: that.refs.username.value,
+                password: that.refs.password.value
+            })
+            // browserHistory.goBack();
         })
-    },
+    }
+
     signUpButton() {
         if (
             this.state.usernameState === USERNAME_VALID
@@ -235,11 +285,12 @@ const SignUp = React.createClass({
             && this.state.checkPasswordState === CHECK_PASSWORD_VALID
             && this.state.accessState === ACCESS_VALID
         ) {
-            return <button onClick={this.signUp} className='btn btn-primary pull-right'> 注册 </button>
+            return <button onClick={this.signUp.bind(this)} className='btn btn-primary pull-right'> 注册 </button>
         } else {
             return <button disabled='true' className='btn btn-primary pull-right'> 注册</button>
         }
-    },
+    }
+
     signUpPopUp() {
         if (
             this.state.usernameState === USERNAME_VALID
@@ -251,19 +302,20 @@ const SignUp = React.createClass({
         ) {
             return <PopUp disable={false} email={this.refs.username.value} password={this.refs.password.value}> 注册 </PopUp>
         } else {
-            return <PopUp disable> 注册</PopUp>
+            return <PopUp disable> 注册 </PopUp>
         }
-    },
+    }
+
     render() {
         return (
             <div>
                 <div className={'form-group ' + this.usernameExistState()}>
-                    <input type='text' className='form-control' ref='username' placeholder='邮箱' onBlur={this.usernameCheck} />
+                    <input type='text' className='form-control' ref='username' placeholder='邮箱' onChange={this.usernameCheck.bind(this)} />
                     {this.usernameVerificationSpan()}
                 </div>
 
                 <div className={'form-group ' + this.passwordState()}>
-                    <input type='password' className='form-control' ref='password' placeholder='密码' onBlur={this.passwordCheck} />
+                    <input type='password' className='form-control' ref='password' placeholder='密码' onChange={this.passwordCheck.bind(this)} />
                     {this.passwordCheckSpan(this.state.passwordState)}
                 </div>
 
@@ -272,21 +324,36 @@ const SignUp = React.createClass({
                         className='form-control'
                         ref='checkPassword'
                         placeholder='确认密码'
-                        onBlur={this.checkPasswordCheck}
+                        onChange={this.checkPasswordCheck.bind(this)}
                     />
                     {this.checkPasswordSpan(this.state.checkPasswordState)}
 
                 </div>
 
-                <input type='checkbox' checked={this.state.accessState} onChange={this.changeAccess} />
-                <label>
-                    <div> 接受 <TermsOfService /> {'  '} </div>
-                </label>
-                {this.signUpPopUp()}
+                <div className = 'lable'>
+                    {/*<input type='checkbox' checked={this.state.accessState} onChange={this.changeAccess.bind(this)} />  <span>接受</span>*/}
+                    {this.signUpButton()}
+                </div>
 
             </div>
-        )
+        );
     }
-})
+}
 
-export default SignUp
+
+
+function mapStateToProps(state) {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = {
+    login: (arg) => login(arg),
+}
+
+export default SignUp = connect(mapStateToProps, mapDispatchToProps)(SignUp)
+
+
+
+// export default SignUp;

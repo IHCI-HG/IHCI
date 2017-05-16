@@ -1,10 +1,12 @@
-import { api, setLocalStorage, clearLocalStorage } from './common.js'
+import { api, getApi, setLocalStorage, clearLocalStorage } from './common.js'
 export const LOGIN = 'LOGIN'
 export const SINGOUT = 'SIGNOUT'
 export const CHEAKING_IF_LOGIN = "CHEAKING_IF_LOGIN"
 export const IS_LOGINED = "IS_LOGINED"
 export const NO_LOGINED = "NO_LOGINED"
 export const LOGIN_FAIL = 'LOGIN_FAIL'
+
+import { message } from 'antd';
 
 // actions
 
@@ -56,27 +58,16 @@ export function login(arg) {
                 dispatch({
                     type: LOGIN_FAIL,
                 })
-                alert("账号或密码错误")
+                message.error("账号或密码错误")
                 return false
             } else {
                 dispatch({
                     type: LOGIN,
                     user: arg.username,
                 })
-                // setLocalStorage(JSON.parse(text)[0])
             }
         })
 
-        // if (result.text() === 'sign failed, name or password error') {
-        // } else {
-        //     dispatch({
-        //         type: LOGIN,
-        //         user: arg.username,
-        //         password: arg.password,
-        //     })
-
-        //     saveLocalStorage(result.json()[0])
-        // }
     };
 }
 
@@ -93,27 +84,19 @@ export function signOut(arg) {
             type: SINGOUT,
         })
 
-        clearLocalStorage()
-
 
     };
 }
 
-// export function login(user, password) {
-//     return {
-//         type: LOGIN,
-//         user: user,
-//         password: password
-//     }
-// }
+export function emailValid(email) {
 
-// export function signOut() {
-//     return {
-//         type: SINGOUT
-//     }
-// }
+    const promiseObj = new Promise()
+
+}
+
 
 export const actions = {
+    emailValid,
     cheakIfLogin,
     login,
     signOut

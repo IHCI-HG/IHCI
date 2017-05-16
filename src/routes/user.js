@@ -26,3 +26,12 @@ export const signUp = (store) => ({
 })
 
 
+export const login = (store) => ({
+    path: 'login',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            const component = require('../containers/User/login').default
+            cb(null, component)
+        }, 'login')
+    }
+})
