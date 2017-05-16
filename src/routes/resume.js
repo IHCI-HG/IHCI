@@ -1,9 +1,5 @@
 import { injectReducer } from '../reducers'
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
 export const resume = (store) => ({
     path: 'resume',
     getComponent(nextState, cb) {
@@ -15,10 +11,6 @@ export const resume = (store) => ({
         }, 'resume')
     },
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin
   childRoutes: [
         resumeBase(store),
         // { path: 'skill', component: Skill },
@@ -28,10 +20,6 @@ export const resume = (store) => ({
 })
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
 export const resumeBase = (store) =>  ({
     path: 'base-info',
     getComponent(nextState, cb) {
