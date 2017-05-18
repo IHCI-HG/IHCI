@@ -1,4 +1,5 @@
 import { injectReducer } from '../reducers'
+import ProjectList from '../containers/project/project-list'
 
 export const project = (store) => ({
     path: 'project',
@@ -12,9 +13,11 @@ export const project = (store) => ({
         }, 'project')
     },
 
+    indexRoute: { component: ProjectList },
     childRoutes: [
         projectList(store),
         myProject(store),
+        createProject(store),
     ]
 });
 
@@ -23,7 +26,7 @@ export const projectList = (store) => ({
     path: 'project-list',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            const component = require('../containers/project/project_list').default
+            const component = require('../containers/project/project-list').default
             cb(null, component) 
         }, 'project')
     }
@@ -33,7 +36,18 @@ export const myProject = (store) => ({
     path: 'my-project',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
+            const component = require('../containers/project/my-project').default
+            cb(null, component)
+        }, 'project')
+    }
+})
 
+export const createProject = (store) => ({
+    path: 'create-project',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            const component = require('../containers/project/create-project').default
+            cb(null, component) 
         }, 'project')
     }
 })

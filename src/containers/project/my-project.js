@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Table, Icon } from 'antd';
 
-import { api } from '../../actions/common'
+import $ from 'jquery'
 
 const columns = [{
     title: '项目名称',
@@ -30,53 +30,51 @@ const columns = [{
 }];
 
 
-class ProjectList extends Component {
+class MyProject extends Component {
 
     constructor(props) {
 
         super(props);
-        // console.log(props);
         
+        this.state = {
+            projects: [{}]
+        }
         this.getProjectList();
+
     }
 
-    // getProjectList() {
-    //     console.log(11111);
+    getProjectList() {
         
-    //     const result =  api({
-    //         url: '/api/project/project/queryProject',
-    //         method: 'GET',
-    //     });
-
-    //     result.text().then((text) => {
-    //         console.log(22222);
-    //         console.log(text)
-            
-    //     })
+        $.get('http://' + window.location.host + '/api/project/project/queryProject', function(projects) {
+            console.log(projects)
+            this.setState ({
+                projects: projects
+            })
+        }.bind(this))
+    }
         
         
 
     render() {
         return (
             <div>
-                aaaa
-                {/*<Table columns={columns} dataSource={this.state.data} />*/}
+                <div>{this.props.user.user}</div>
+                <Table columns={columns} dataSource={this.state.projects} />
             </div>
         );
     }
 }
 
 function mapStateToProps(state){
-    // console.log(11111);
-    // console.log(state);
-    // console.log(11111);
+   
     return{
-        project: state.project
+        project: state.project,
+        user: state.user
     }
 }
 
 const mapDispatchToProps ={
-    getProjectList: getProjectList
+  
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectList)
+export default connect(mapStateToProps, mapDispatchToProps)(MyProject)
 
