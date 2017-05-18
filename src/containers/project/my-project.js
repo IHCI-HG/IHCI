@@ -4,6 +4,8 @@ import { Table, Icon } from 'antd';
 
 import $ from 'jquery'
 
+import './project.scss'
+
 const columns = [{
     title: '项目名称',
     dataIndex: 'name',
@@ -57,7 +59,7 @@ class MyProject extends Component {
 
     render() {
         return (
-            <div>
+            <div className="project-container">
                 <div>{this.props.user.user}</div>
                 <Table columns={columns} dataSource={this.state.projects} />
             </div>

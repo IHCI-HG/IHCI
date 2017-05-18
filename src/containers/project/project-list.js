@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Table, Icon } from 'antd';
+import { Table, Icon } from 'antd'
 
 import $ from 'jquery'
+
+import './project.scss'
 
 const columns = [{
     title: '项目名称',
@@ -57,7 +59,7 @@ class ProjectList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="project-container">
                 <Table columns={columns} dataSource={this.state.projects} />
             </div>
         );

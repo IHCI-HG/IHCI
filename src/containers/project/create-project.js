@@ -4,6 +4,8 @@ import { Table, Icon } from 'antd';
 
 import $ from 'jquery'
 
+import './project.scss'
+
 class CreateProject extends Component {
 
     constructor(props) {
@@ -31,7 +33,7 @@ class CreateProject extends Component {
 
     render() {
         return (
-            <div>
+            <div className="project-container">
                 <div>{this.props.user.user}</div>
                 <div>aaaaa</div>
             </div>
