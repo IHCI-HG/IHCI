@@ -13,6 +13,28 @@ export const project = (store) => ({
     },
 
     childRoutes: [
-        
+        projectList(store),
+        myProject(store),
     ]
 });
+
+
+export const projectList = (store) => ({
+    path: 'project-list',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            const component = require('../containers/project/project_list').default
+            cb(null, component) 
+        }, 'project')
+    }
+});
+
+export const myProject = (store) => ({
+    path: 'my-project',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+
+        }, 'project')
+    }
+})
+
