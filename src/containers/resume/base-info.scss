@@ -1,9 +1,24 @@
 .base-info-container {
-    width: 100%;
+    margin: 20px 20px;
     padding: 0 40px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
 
     h1 {
         text-align: center
     }
 
+
+    .btn-wrap {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .base-info-container {
+        min-width: 300px;
+    }
 }
