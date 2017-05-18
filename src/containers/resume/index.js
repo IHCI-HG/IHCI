@@ -28,6 +28,9 @@ class ResumeSidebar extends Component {
 }
 
 
+
+
+
 class Resume extends Component {
     state = {
         collapsed: true,
@@ -41,6 +44,16 @@ class Resume extends Component {
             production : false,
         }
     };
+
+    componentDidMount() {
+        if (window) {
+            if (window.document.body.clientWidth > 600) {
+                this.setState({collapsed: false})
+            }
+        }
+
+    }
+
 
     onCollapse = (collapsed) => {
         this.setState({
@@ -101,23 +114,23 @@ class Resume extends Component {
                         onClick={this.menuHandel}
                     >
                         <Menu.Item key="1">
-                            <Icon type={this.state.finished.baseInfo ? "check-circle" : "check-circle-o"} />
+                            <Icon type={this.props.finished.baseInfo ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">基本信息 <span style={{ color: "red" }}>*</span></span>
                         </Menu.Item>
                         <Menu.Item key="2">
-                            <Icon type={this.state.finished.selfIntro ? "check-circle" : "check-circle-o"} />
+                            <Icon type={this.props.finished.selfIntro ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">个人介绍 <span style={{ color: "red" }}>*</span></span>
                         </Menu.Item>
                         <Menu.Item key="3">
-                            <Icon type={this.state.finished.project ? "check-circle" : "check-circle-o"} />
+                            <Icon type={this.props.finished.project ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">项目经历</span>
                         </Menu.Item>
                         <Menu.Item key="4">
-                            <Icon type={this.state.finished.social ? "check-circle" : "check-circle-o"} />
+                            <Icon type={this.props.finished.social ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">社团经历</span>
                         </Menu.Item>
                         <Menu.Item key="5">
-                            <Icon type={this.state.finished.production ? "check-circle" : "check-circle-o"} />
+                            <Icon type={this.props.finished.production ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">个人作品</span>
                         </Menu.Item>
                     </Menu>
@@ -134,13 +147,7 @@ class Resume extends Component {
 
 function mapStateToProps(state) {
     return {
-        resume: state.user.resume,
-        sex: state.user.sex,
-        eduStartDate: state.user.eduStartDate,
-        academy: state.user.academy,
-        GPA: state.user.GPA,
-        phone: state.user.phone,
-        email: state.user.email,
+        finished: state.resume.finished
     }
 }
 
