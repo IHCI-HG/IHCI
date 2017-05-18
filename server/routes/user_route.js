@@ -60,7 +60,6 @@ module.exports = function(app) {
     if (req.session.sign) {
       req.session.sign = false;
     }
-
     res.send('signout success');
   });
 };
