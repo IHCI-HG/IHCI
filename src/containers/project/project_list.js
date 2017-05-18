@@ -40,22 +40,21 @@ class ProjectList extends Component {
         this.getProjectList();
     }
 
-    getProjectList() {
-        console.log(11111);
+    // getProjectList() {
+    //     console.log(11111);
         
-        const result =  api({
-            url: '/api/project/project/queryProject',
-            method: 'GET',
-        });
+    //     const result =  api({
+    //         url: '/api/project/project/queryProject',
+    //         method: 'GET',
+    //     });
 
-        result.text().then((text) => {
-            console.log(22222);
-            console.log(text)
+    //     result.text().then((text) => {
+    //         console.log(22222);
+    //         console.log(text)
             
-        })
+    //     })
         
         
-    }
 
     render() {
         return (
@@ -77,7 +76,7 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps ={
-
+    getProjectList: getProjectList
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectList)
 

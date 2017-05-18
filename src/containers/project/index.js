@@ -15,7 +15,6 @@ class Project extends Component {
 
     render() {
         const {selectedItem} = this.props.project
-        const {changeTheSelectedItem} = this.props
         return (
             <div>
                 <Layout style={{ padding: '24px 0', background: '#fff' }}>
@@ -48,10 +47,9 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        changeTheSelectedItem: ()=> dispatch({type: 'test'})
-    }
+const mapDispatchToProps = {
+    
+    
 }
 
 export default Project = connect(mapStateToProps, mapDispatchToProps)(Project)
