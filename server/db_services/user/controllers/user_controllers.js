@@ -49,12 +49,10 @@ exports.create = function (req, res) {
 
 
 exports.isLogin = function (req, res) {
-  console.log(req.session.id);
+  
   if (req.session.sign) {
-    console.log(req.session);
     res.send(req.session.username);
   } else {
-    console.log(req.session);
     res.send('sign first');
   }
 };
@@ -73,7 +71,6 @@ exports.login = function (req, res) {
         req.session.sign = true;
         req.session.username = req.body.username;
         req.session.password = md5(req.body.password);
-        console.log(req.session.name);
         res.send('sign success');
       } else {
         res.send('sign failed, name or password error');
@@ -84,7 +81,6 @@ exports.login = function (req, res) {
 
 exports.isNameExit = function (req, res) {
 
-   console.log('yes');
     User.find(req.query).count(function (err, exit) {
         if(err) {
             return res.status(400).send ({
@@ -155,9 +151,7 @@ exports.activateOrInvalidUser = function (req, res) {
         if (err) {
             return 'query failed';
         } else {
-            console.log(user);
             user[0].isActive = isActiveNum;
-            console.log(user);
             let newUser = user[0];
             newUser.save( function(err) {
                 if (err) {
@@ -177,12 +171,10 @@ exports.activateOrInvalidUser = function (req, res) {
 // 根据ID或username找到对应用户
 exports.findUser = function (field, value) {
     let query = {_id: value};
-    console.log(query);
     User.find(query).exec( function (err, user) {
         if (err) {
             return 'query failed';
         } else {
-            console.log(user);
             return user;
         }
     });

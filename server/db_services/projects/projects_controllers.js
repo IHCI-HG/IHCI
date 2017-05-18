@@ -52,7 +52,7 @@ exports.queryProject = function (req, res) {
  * 更新项目
  */
 exports.updateProject = function (req, res) {
-    // console.log(req.body);
+
     let id = req.body._id;
     Project.find({_id: Object(id) }).exec( function (erro, project) {
         if (erro) {
