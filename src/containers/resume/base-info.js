@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './base-info.scss'
 
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message, Radio } from 'antd';
 const FormItem = Form.Item;
-
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 class ResumeBaseInfo extends Component {
     state = {
         name: this.props.name,
+        sex: this.props.sex,
+        eduStartDate: this.props.eduStartDate,
+        school: this.props.school,
+        academy: this.props.academy,
+        GPA: this.props.GPA,
+        phone: this.props.phone,
+        email: this.props.email,
+    }
 
+    sexHandel(e) {
+        console.log(e.target);
     }
 
     render() {
@@ -18,23 +29,28 @@ class ResumeBaseInfo extends Component {
                 <h1>基本信息</h1>
                 <Form>
                     <FormItem>
-                        <div className="prefix"> 姓名 <span style={{ color: "red" }}>*</span></div>
-                        <Input  placeholder="请输入中文姓名" value={this.state.name} onChange={(e)=>{this.setState({name: e.target.value})}}/>
-                        <div className="prefix"> 密码 </div>
-                        <Input  placeholder="请输入密码" type="password"  />
-                        <Checkbox>记住账号</Checkbox>
-                        <a className="login-form-forgot" href="javascript:;">忘记密码</a>
+                        <span className="prefix"> 姓名 <span style={{ color: "red" }}>*</span></span>
+                        <Input placeholder="请输入中文姓名" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                    </FormItem>
 
-                        <div className="login-wrap">
-                            <Button type="primary"  className="login-form-button" >
-                                登录
+                    <FormItem>
+                        <span className="prefix"> 性别 <span style={{ color: "red" }}>*</span></span> <br/>
+                        <RadioGroup onChange={this.sexHandel} defaultValue="a">
+                            <RadioButton style={{width: "100px"}} value="male">男</RadioButton>
+                            <RadioButton style={{width: "100px"}} value="female">女</RadioButton>
+                        </RadioGroup>
+                    </FormItem>
+
+                    <FormItem>
+                        <div className="btn-wrap">
+                            <Button type="primary" className="login-form-button" >
+                                保存
                             </Button>
-                            <span className="right"> 或 <a href="javascript:;" >现在注册</a> </span>
+                            <Button type="primary" className="login-form-button" >
+                                下一页
+                            </Button>
                         </div>
                     </FormItem>
-                    <div className="third-auth">
-                        第三方登录：   <a href="">微信登录</a>
-                    </div>
                 </Form>
             </div>
         );
@@ -43,10 +59,16 @@ class ResumeBaseInfo extends Component {
 
 function mapStateToProps(state){
     return{
-        name: state.resume.name
+        name: state.resume.name,
+        sex: state.resume.sex,
+        eduStartDate: state.resume.eduStartDate,
+        school: state.resume.school,
+        academy: state.resume.academy,
+        GPA: state.resume.GPA,
+        phone: state.resume.phone,
+        email: state.resume.email,
     }
 }
-
 
 
 const mapDispatchToProps ={

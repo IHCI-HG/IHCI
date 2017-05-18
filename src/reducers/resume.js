@@ -1,7 +1,16 @@
 const resumeInitialState = {
+    finished: {
+        baseInfo: false,
+        selfIntro: false,
+        project: false,
+        social: false,
+        production: false,
+    },
+
     name: "",
     sex: "",
     eduStartDate: "",
+    school: "",
     academy: "",
     GPA: "",
     phone: "",
