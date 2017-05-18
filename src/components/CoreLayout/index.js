@@ -35,10 +35,19 @@ class myLayout extends Component {
 
     render() {
         return (
-            <Layout>
+            <Layout
+                style={{height: "100%"}}
+            >
                 <NewNav/>
-                <Layout className="main-container">
-                    <Content>{this.props.children}</Content>
+                <Layout
+                    className="main-container"
+                    style={{height: "100%"}}
+                >
+                    <Content
+                        style={{height: "100%"}}
+                    >
+                    {this.props.children}
+                    </Content>
                 </Layout>
                 <Footer>Footer</Footer>
             </Layout>
