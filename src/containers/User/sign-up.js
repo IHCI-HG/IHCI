@@ -6,6 +6,8 @@ import { login, emailExist } from '../../actions/user';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 //状态编码定义
+
+//不推荐直接在代码中用ajax请求耦合
 import $ from 'jquery'
 
 
@@ -32,6 +34,8 @@ class SignUp extends Component {
         agreeAgreement: false
     }
 
+
+    //采用async写法的对promise对象返回值的取回，写法和同步类似，推荐使用
     async usernameCheck(e) {
         const text = e.target.value
         const emailPatterns = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
@@ -54,10 +58,7 @@ class SignUp extends Component {
                 emailState: "validating",
             })
 
-            // emailExist(e.target.value).then((data)=>{
-            //     console.log(data)
-            // })
-
+            //注意这个await是异步的
             if(!await emailExist(text)) {
                 this.setState({
                     emailHelp: "邮箱可用",
@@ -72,6 +73,48 @@ class SignUp extends Component {
 
         }
     }
+
+    //直接采用.then的方法，通过回调的形式来对返回值进行处理
+    usernameCheck2(e) {
+        const text = e.target.value
+        const emailPatterns = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+        this.setState({email: text})
+
+
+        if(text == "") {
+            this.setState({
+                emailHelp: "",
+                emailState: "",
+            })
+        } else if(!emailPatterns.test(text)) {
+            this.setState({
+                emailHelp: "请输入正确的邮箱",
+                emailState: "warning",
+            })
+        } else {
+            this.setState({
+                emailHelp: "",
+                emailState: "validating",
+            })
+
+            emailExist(text).then((emailExistState)=> {
+                if (!emailExistState) {
+                    this.setState({
+                        emailHelp: "邮箱可用",
+                        emailState: "success",
+                    })
+                } else {
+                    this.setState({
+                        emailHelp: "邮箱已经被占用",
+                        emailState: "error",
+                    })
+                }
+            })
+
+        }
+    }
+
+
 
     passwordCheck(e) {
         const text = e.target.value
@@ -131,7 +174,6 @@ class SignUp extends Component {
         const that = this
         $.ajax({
             method: 'POST',
-            // url: 'signUp.json',
             url: 'api/project/user/createUser',
             data: {
                 username: that.state.email,

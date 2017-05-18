@@ -18,12 +18,6 @@ class newNav extends Component {
 
     componentWillMount() {
         this.props.cheakIfLogin();
-        if(this.props.isLogin) {
-            this.props.login({
-                username: localStorage.getItem('username'),
-                password: localStorage.getItem('password')
-            })
-        }
     }
 
     handleClick(e) {
