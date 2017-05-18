@@ -1,9 +1,14 @@
 .base-info-container {
-    width: 100%;
+    margin: 0 auto;
     padding: 0 40px;
 
     h1 {
         text-align: center
     }
 
+}
+@media screen and (max-width: 500px) {
+    .base-info-container {
+        min-width: 300px;
+    }
 }
