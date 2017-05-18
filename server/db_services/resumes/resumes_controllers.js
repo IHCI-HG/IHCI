@@ -28,11 +28,3 @@ exports.createResume = function (req, res) {
     }
   });
 };
-
-
-/**
- * 更新简历
- */
-exports.updateResume = function (req, res) {
-
-};

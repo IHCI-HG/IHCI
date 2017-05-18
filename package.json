@@ -38,7 +38,7 @@
       }
     },
     "deploy": {
-      "command": "npm run lint && npm run test && npm run clean && npm run compile",
+      "command": "npm run clean && npm run compile",
       "env": {
         "DEBUG": "app:*"
       }
@@ -78,8 +78,10 @@
   "author": "arluber aferica",
   "license": "MIT",
   "dependencies": {
+    "antd": "^2.10.1",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-import": "^1.1.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
@@ -108,6 +110,7 @@
     "jsonwebtoken": "^7.2.1",
     "karma-phantomjs-launcher": "^1.0.2",
     "kraken-js": "^2.1.0",
+    "md5": "^2.2.1",
     "mongoose": "^4.7.5",
     "mongoose-paginate": "^5.0.3",
     "morgan": "^1.7.0",
@@ -117,6 +120,7 @@
     "oauth": "^0.9.14",
     "phantomjs-prebuilt": "^2.1.14",
     "postcss-loader": "^1.1.0",
+    "prop-types": "^15.5.10",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^5.0.1",

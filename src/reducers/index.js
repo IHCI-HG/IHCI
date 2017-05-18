@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
-import userReducer from '../reducers/user'
+import userReducer from './user.js'
 
 //初始化的时候的公用reducer
 export const makeRootReducer = (asyncReducers) => {
