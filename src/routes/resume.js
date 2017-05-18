@@ -1,5 +1,5 @@
 import { injectReducer } from '../reducers'
-
+import baseInfo from '../containers/resume/base-info.js'
 
 export const resume = (store) => ({
     path: 'resume',
@@ -12,7 +12,8 @@ export const resume = (store) => ({
         }, 'resume')
     },
 
-  childRoutes: [
+    indexRoute: { component: baseInfo },
+    childRoutes: [
         resumeBase(store),
         // { path: 'skill', component: Skill },
         // { path: 'self-intro', component: SelfIntro},

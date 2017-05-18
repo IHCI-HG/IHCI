@@ -13,7 +13,7 @@ const resumeInitialState = {
     socialExp: [],
 }
 
-const resume = (state = resumeInitialState, action) => {
+const resumeReducer = (state = resumeInitialState, action) => {
     switch (action.type) {
         case "aaa":
             return state
@@ -22,4 +22,4 @@ const resume = (state = resumeInitialState, action) => {
     }
 }
 
-export default resume
+export default resumeReducer

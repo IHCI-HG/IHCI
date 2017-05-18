@@ -35,7 +35,11 @@ class Login extends Component {
     render() {
         return (
             <div className="login-container">
+<<<<<<< HEAD
                 <Form onSubmit={this.handleSubmit}>
+=======
+                <Form>
+>>>>>>> origin
                     <FormItem>
                         <h1>登录</h1>
                         <div className="prefix"> 账号 </div>
