@@ -4,8 +4,6 @@ import { Provider } from 'react-redux'
 
 
 
-
-
 class AppContainer extends Component {
 
     shouldComponentUpdate() {

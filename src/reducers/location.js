@@ -23,7 +23,12 @@ export const updateLocation = ({ dispatch }) => {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = null
+const initialState = {
+    pathname: window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    action: "open"
+}
 export default function locationReducer (state = initialState, action) {
   return action.type === LOCATION_CHANGE
     ? action.payload

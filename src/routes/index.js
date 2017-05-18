@@ -10,7 +10,7 @@ import {
     // demo1,
     // demo2
 } from './demoCompoant'
-import { user, signUp } from './user'
+import { user, signUp, login } from './user'
 import Blog from '../containers/Blog'
 import { resume } from './resume'
 import { project } from './project'
@@ -29,6 +29,7 @@ export const createRoutes = (store) => ({
         about(store),
         todolist(store),
         user(store),
+        login(store),
         signUp(store),
 
         resume(store),

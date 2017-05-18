@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Layout } from 'antd';
+const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -27,52 +28,56 @@ class ResumeSidebar extends Component {
 
 class Resume extends Component {
     state = {
+        collapsed: false,
+        mode: 'inline',
 
+        finished : {
+            baseInfo : false,
+            selfIntro : false,
+            project : false,
+            social : false,
+            production : false,
+        }
+    };
 
-
+    onCollapse = (collapsed) => {
+        this.setState({
+            collapsed,
+            mode: collapsed ? 'vertical' : 'inline',
+        });
     }
 
     render() {
         return (
-            <div>
-
-                <Menu
-                    onClick={this.handleClick}
-                    style={{ width: 240 }}
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                >
-                    <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-                        <MenuItemGroup key="g1" title="Item 1">
-                            <Menu.Item key="1">Option 1</Menu.Item>
-                            <Menu.Item key="2">Option 2</Menu.Item>
-                        </MenuItemGroup>
-                        <MenuItemGroup key="g2" title="Item 2">
-                            <Menu.Item key="3">Option 3</Menu.Item>
-                            <Menu.Item key="4">Option 4</Menu.Item>
-                        </MenuItemGroup>
-                    </SubMenu>
-                    <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
-                        <Menu.Item key="5">Option 5</Menu.Item>
-                        <Menu.Item key="6">Option 6</Menu.Item>
-                        <SubMenu key="sub3" title="Submenu">
-                            <Menu.Item key="7">Option 7</Menu.Item>
-                            <Menu.Item key="8">Option 8</Menu.Item>
-                        </SubMenu>
-                    </SubMenu>
-                    <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
-                        <Menu.Item key="9">Option 9</Menu.Item>
-                        <Menu.Item key="10">Option 10</Menu.Item>
-                        <Menu.Item key="11">Option 11</Menu.Item>
-                        <Menu.Item key="12">Option 12</Menu.Item>
-                    </SubMenu>
+            <Sider
+                breakpoint="xs"
+                collapsedWidth="0"
+                style={{height: "100%"}}
+            >
+                <div className="logo" />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu.Item key="1">
+                        <Icon type={this.state.finished.baseInfo ? "check-circle" : "check-circle-o"} />
+                        <span className="nav-text">基本信息 <span style={{ color: "red" }}>*</span></span>
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                        <Icon type={this.state.finished.selfIntro ? "check-circle" : "check-circle-o"} />
+                        <span className="nav-text">个人介绍 <span style={{ color: "red" }}>*</span></span>
+                    </Menu.Item>
+                    <Menu.Item key="3">
+                        <Icon type={this.state.finished.project ? "check-circle" : "check-circle-o"} />
+                        <span className="nav-text">项目经历</span>
+                    </Menu.Item>
+                    <Menu.Item key="4">
+                        <Icon type={this.state.finished.social ? "check-circle" : "check-circle-o"} />
+                        <span className="nav-text">社团经历</span>
+                    </Menu.Item>
+                    <Menu.Item key="5">
+                        <Icon type={this.state.finished.production ? "check-circle" : "check-circle-o"} />
+                        <span className="nav-text">个人作品</span>
+                    </Menu.Item>
                 </Menu>
-
-                <div>
-                    {this.props.children}
-                </div>
-            </div>
+            </Sider>
         );
     }
 }

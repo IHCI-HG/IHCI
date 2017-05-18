@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
-// import WechatLogin from './components/Login-wechat'
 import { browserHistory } from 'react-router'
 
 import {
@@ -14,31 +13,11 @@ export class Nav extends Component {
     constructor(props) {
         super(props);
 
-        // console.log(this.props.cheakIfLogin())
-
     }
 
     componentWillMount() {
         this.props.cheakIfLogin();
-        if(this.props.isLogin) {
-            this.props.login({
-                username: localStorage.getItem('username'),
-                password: localStorage.getItem('password')
-            })
-        }
     }
-
-    componentDidMount() {
-
-    }
-
-    // 异步接口请求事件
-    // async getLoginState() {
-
-    //     const result = await this.props.cheakIfLogin();
-    //     return (result === "sign first") ? false : true
-
-    // }
 
     btnLogin(e) {
         this.props.login({
@@ -75,10 +54,6 @@ export class Nav extends Component {
                         <li onClick={this.props.signOut}><a>登出</a></li>
                     </ul>
                 </li>
-                /*<div>
-                    <div onClick={() => browserHistory.push("/user")}>user: {this.props.user} </div>
-                    <button onClick={this.props.signOut}>登出</button>
-                </div>*/
             )
         }
         return (
@@ -110,20 +85,6 @@ export class Nav extends Component {
             </div>
         )
     }
-
-    //用来判断当前目录是否被激活，来调整相应导航条样式的
-    active(navName) {
-        if (navName === this.props.location.pathname) {
-            return "active"
-        } else return ""
-    }
-
-
-
-    componentDidMount() {
-
-    }
-
 
     render() {
         return (
@@ -164,50 +125,6 @@ export class Nav extends Component {
                     </div>
                 </div>
             </nav>
-            /*<nav className='navbar navbar-default'>
-                <lidiv className='container-fluid'>
-                    <li className='navbar-header'>
-                        <button type='button'
-                            className='navbar-toggle collapsed'
-                            data-toggle='collapse'
-                            data-target='#bs-example-navbar-collapse-1'
-                            aria-expanded='false'>
-                            <span className='sr-only'>Toggle navigation</span>
-                            <span className='icon-bar'> </span>
-                            <span className='icon-bar'> </span>
-                            <span className='icon-bar'> </span>
-                        </button>
-                        <li className='navbar-brand' onClick={() => browserHistory.push('/')}>Main</li>
-                        <li className='navbar-brand btn' onClick={this.test}>test</li>
-                    </li>
-
-                    <div className='collapse navbar-collapse'>
-                        <ul className='nav navbar-nav'>
-                            <li className='dropdown'>
-                                <a href='#'
-                                    className='dropdown-toggle'
-                                    data-toggle='dropdown' role='button'
-                                    aria-haspopup='true'
-                                    aria-expanded='false'>
-                                    demo
-                                <div className='caret'> </div>
-                                </a>
-                                <ul className='dropdown-menu'>
-                                    <li><a onClick = {() => {browserHistory.push("/aaa")}} >Action</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/")}}  >Another action</a></li>
-                                    <li className="divider"></li>
-                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/counter")}} >counter</a></li>
-                                    <li><a onClick = {() => {browserHistory.push("/demoCompoant/about")}} >about</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <ul className='nav navbar-nav navbar-right'>
-                            {this.user()}
-                        </ul>
-                    </div>
-                </div>
-            </nav>    */
         );
     }
 }
@@ -227,4 +144,5 @@ const mapDispatchToProps = {
 }
 
 export default Nav = connect(mapStateToProps, mapDispatchToProps)(Nav)
+
 
