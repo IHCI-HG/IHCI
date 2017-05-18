@@ -23,19 +23,11 @@ class newNav extends Component {
     handleClick(e) {
         switch (e.key) {
             case "login":
-<<<<<<< HEAD
-                browserHistory.push("login"); break;
-            case "resume":
-                browserHistory.push("resume"); break;
-            case "setting":
-                browserHistory.push("user"); break;
-=======
                 browserHistory.push("/login"); break;
             case "resume":
                 browserHistory.push("/resume"); break;
             case "setting":
                 browserHistory.push("/user"); break;
->>>>>>> origin
             case "logout":
                 this.props.signOut(); break;
             case "main":
@@ -45,15 +37,9 @@ class newNav extends Component {
             case "todolist":
                 browserHistory.push("/TodoList"); break;
             case "blog":
-<<<<<<< HEAD
-                browserHistory.push("blog"); break;
-            case "project":
-                browserHistory.push("project"); break;
-=======
                 browserHistory.push("/blog"); break;
             case "project":
                 browserHistory.push("/project"); break;
->>>>>>> origin
         }
     }
 
