@@ -1,5 +1,5 @@
 const resumeInitialState = {
-    name: "aaa",
+    name: "",
     sex: "",
     eduStartDate: "",
     academy: "",

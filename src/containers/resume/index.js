@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import './index.scss'
+
 import { Menu, Icon, Layout } from 'antd';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -28,7 +30,7 @@ class ResumeSidebar extends Component {
 
 class Resume extends Component {
     state = {
-        collapsed: false,
+        collapsed: true,
         mode: 'inline',
 
         finished : {
@@ -74,15 +76,13 @@ class Resume extends Component {
             <Layout
                 style={{height: "100%"}}
             >
-                <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                    onClick={this.toggle}
-                    style={{
-                        height: "24px",
-                        width: "24px",
-                    }}
-                />
+                <div className="icon-container">
+                    <Icon
+                        className="trigger"
+                        type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                        onClick={this.toggle}
+                    />
+                </div>
                 <Sider
                     trigger={null}
                     collapsible
@@ -135,6 +135,12 @@ class Resume extends Component {
 function mapStateToProps(state) {
     return {
         resume: state.user.resume,
+        sex: state.user.sex,
+        eduStartDate: state.user.eduStartDate,
+        academy: state.user.academy,
+        GPA: state.user.GPA,
+        phone: state.user.phone,
+        email: state.user.email,
     }
 }
 
