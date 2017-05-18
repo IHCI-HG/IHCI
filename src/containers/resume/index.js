@@ -47,37 +47,86 @@ class Resume extends Component {
         });
     }
 
+    menuHandel(e) {
+        console.log(e.key)
+        switch(e.key) {
+            case "1" :
+                browserHistory.push("/resume/base-info"); break;
+            case "2" :
+                browserHistory.push("/resume/self-intro"); break;
+            case "3" :
+                browserHistory.push("/resume/project"); break;
+            case "4" :
+                browserHistory.push("/resume/social"); break;
+            case "5" :
+                browserHistory.push("/resume/production"); break;
+        }
+    }
+
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    }
+
     render() {
         return (
-            <Sider
-                breakpoint="xs"
-                collapsedWidth="0"
+            <Layout
                 style={{height: "100%"}}
             >
-                <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1">
-                        <Icon type={this.state.finished.baseInfo ? "check-circle" : "check-circle-o"} />
-                        <span className="nav-text">基本信息 <span style={{ color: "red" }}>*</span></span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Icon type={this.state.finished.selfIntro ? "check-circle" : "check-circle-o"} />
-                        <span className="nav-text">个人介绍 <span style={{ color: "red" }}>*</span></span>
-                    </Menu.Item>
-                    <Menu.Item key="3">
-                        <Icon type={this.state.finished.project ? "check-circle" : "check-circle-o"} />
-                        <span className="nav-text">项目经历</span>
-                    </Menu.Item>
-                    <Menu.Item key="4">
-                        <Icon type={this.state.finished.social ? "check-circle" : "check-circle-o"} />
-                        <span className="nav-text">社团经历</span>
-                    </Menu.Item>
-                    <Menu.Item key="5">
-                        <Icon type={this.state.finished.production ? "check-circle" : "check-circle-o"} />
-                        <span className="nav-text">个人作品</span>
-                    </Menu.Item>
-                </Menu>
-            </Sider>
+                <Icon
+                    className="trigger"
+                    type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                    onClick={this.toggle}
+                    style={{
+                        height: "24px",
+                        width: "24px",
+                    }}
+                />
+                <Sider
+                    trigger={null}
+                    collapsible
+                    collapsed={this.state.collapsed}
+                    breakpoint="xs"
+                    collapsedWidth="0"
+                    style={{
+                        height: "100%"
+                    }}
+                >
+                    <div className="logo" />
+                    <Menu
+                        theme="dark"
+                        mode="inline"
+                        defaultSelectedKeys={['1']}
+                        onClick={this.menuHandel}
+                    >
+                        <Menu.Item key="1">
+                            <Icon type={this.state.finished.baseInfo ? "check-circle" : "check-circle-o"} />
+                            <span className="nav-text">基本信息 <span style={{ color: "red" }}>*</span></span>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <Icon type={this.state.finished.selfIntro ? "check-circle" : "check-circle-o"} />
+                            <span className="nav-text">个人介绍 <span style={{ color: "red" }}>*</span></span>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <Icon type={this.state.finished.project ? "check-circle" : "check-circle-o"} />
+                            <span className="nav-text">项目经历</span>
+                        </Menu.Item>
+                        <Menu.Item key="4">
+                            <Icon type={this.state.finished.social ? "check-circle" : "check-circle-o"} />
+                            <span className="nav-text">社团经历</span>
+                        </Menu.Item>
+                        <Menu.Item key="5">
+                            <Icon type={this.state.finished.production ? "check-circle" : "check-circle-o"} />
+                            <span className="nav-text">个人作品</span>
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+
+
+                {this.props.children}
+
+            </Layout>
         );
     }
 }
