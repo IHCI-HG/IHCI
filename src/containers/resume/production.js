@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-class ResumeProjectExp extends Component {
+
+class ResumeProduction extends Component {
     render() {
         return (
-            <div>ResumeProjectExp</div>
+            <div>
+                ResumeProduction
+            </div>
         );
     }
 }
@@ -17,4 +20,4 @@ function mapStateToProps(state){
 const mapDispatchToProps ={
 
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ResumeProjectExp)
+export default connect(mapStateToProps, mapDispatchToProps)(ResumeProduction)
