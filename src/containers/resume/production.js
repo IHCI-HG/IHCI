@@ -2,24 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 
-class ResumeSelfIntro extends Component {
-    componentDidMount() {
-
-    }
-
+class ResumeProduction extends Component {
     render() {
         return (
             <div>
-                <div id="editor-container">   </div>
+                ResumeProduction
             </div>
         );
     }
 }
+
 function mapStateToProps(state){
     return{
     }
 }
+
 const mapDispatchToProps ={
 
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ResumeSelfIntro)
+export default connect(mapStateToProps, mapDispatchToProps)(ResumeProduction)

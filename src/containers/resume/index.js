@@ -10,7 +10,6 @@ const MenuItemGroup = Menu.ItemGroup;
 
 import { browserHistory } from 'react-router'
 import SelfIntro from './self-intro'
-import Skill from './skill'
 
 
 class ResumeSidebar extends Component {
