@@ -17,6 +17,7 @@ export const project = (store) => ({
         projectList(store),
         myProject(store),
         createProject(store),
+        projectDetail(store),
     ]
 });
 
@@ -51,3 +52,12 @@ export const createProject = (store) => ({
     }
 })
 
+export const projectDetail = (store) => ({
+    path: 'project-detail',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            const component = require('../containers/project/project-detail').default
+            cb(null, component)
+        }, 'project')
+    }
+})

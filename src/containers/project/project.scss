@@ -22,3 +22,33 @@
         min-width: 300px;
     }
 }
+
+.project-detail-container {
+    margin: 0px 0px;
+    padding: 100 50px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+
+    h1 {
+        text-align: center
+    }
+
+
+    .btn-wrap {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.title-and-user {
+    margin: 10px 10px;
+    padding: 50 50px;
+    
+    .title {
+        font-size: 25px;
+        font-family:  "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    }
+}
+

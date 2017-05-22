@@ -11,19 +11,15 @@ const columns = [{
     dataIndex: 'name',
     key: 'name',
     }, {
-    title: '发布人',
-    dataIndex: 'publisherName',
-    key: 'publisherName',
-    }, {
-    title: '发布时间',
-    dataIndex: 'startProjectDate',
-    key: 'startProjectDate',
+    title: '类型',
+    dataIndex: 'type',
+    key: 'type',
     }, {
     title: '操作',
     key: 'action',
     render: (text, record) => (
         <span>
-      <a href={'projectsDetail?id='+ record._id}>查看详情</a>
+      <a href={'project-detail?id='+ record._id}>查看详情</a>
       <span className="ant-divider" />
       <a href="#">申请</a>
       <span className="ant-divider" />

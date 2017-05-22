@@ -19,6 +19,15 @@ class Project extends Component {
         mode: 'inline',
     };
 
+    componentDidMount() {
+    if (window) {
+        if (window.document.body.clientWidth > 600) {
+            this.setState({collapsed: false})
+        }
+    }
+
+    }
+
     onCollapse = (collapsed) => {
         this.setState({
             collapsed,
