@@ -62,7 +62,6 @@ class Resume extends Component {
     }
 
     menuHandel(e) {
-        console.log(e.key)
         switch(e.key) {
             case "1" :
                 browserHistory.push("/resume/base-info"); break;
@@ -85,9 +84,7 @@ class Resume extends Component {
 
     render() {
         return (
-            <Layout
-                style={{height: "100%"}}
-            >
+            <Layout>
                 <div className="icon-container">
                     <Icon
                         className="trigger"
@@ -102,7 +99,7 @@ class Resume extends Component {
                     breakpoint="xs"
                     collapsedWidth="0"
                     style={{
-                        height: "100%"
+                        height: "300px"
                     }}
                 >
                     <div className="logo" />

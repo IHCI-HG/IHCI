@@ -109,8 +109,7 @@ class ResumeBaseInfo extends Component {
 
                     <FormItem
                         style={{
-                            "margin-top": "20px",
-                            position: "relative",
+                            marginTop: "20px",
                         }}
                     >
                         <Button type="primary" className="save-button" >
