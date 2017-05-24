@@ -6,19 +6,24 @@
     background-color: #fff;
     border-radius: 4px;
     position: relative;
+
     h1 {
         text-align: center
+    }
+
+    .project-list-item {
+        margin-bottom: 20px;
     }
 
     .ant-form-item {
         margin-bottom: 0px;
     }
 
-
-
     .new-project-btn {
         width: 100%;
     }
+
+
 
 }
 

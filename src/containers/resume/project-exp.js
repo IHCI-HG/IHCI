@@ -84,6 +84,9 @@ class ResumeProjectExp extends Component {
         return (
             <div className="project-container">
                 <h1>项目经历</h1>
+                <div>
+                    我们希望您已经具有项目经历，同时我们也知道并不是每个同学都有机会参与项目，所以项目经历不是必须的，我们想从您的项目经历中看到您对参与项目与提升自己的热情。
+                </div>
                 {
                     this.state.projectList.map((item,index)=>{
                         if(item.editable) {
@@ -126,12 +129,12 @@ class ResumeProjectExp extends Component {
                             )
                         }
                         return (
-                            <div key={index}>
+                            <div key={index} className="project-list-item">
                                     <div>项目名称：{item.name}</div>
                                     <div>承担职责：{item.role}</div>
                                     <div>项目描述：{item.duty}</div>
                                 <Button data-id={index} onClick={this.editProjectItem.bind(this, index)}>编辑</Button>
-                                <Button data-id={index} onClick={this.delProjectItem.bind(this, index)}>删除</Button>
+                                <Button data-id={index} type="danger" style={{float: "right"}} onClick={this.delProjectItem.bind(this, index)}>删除</Button>
                             </div>
                         )
                     })
@@ -174,7 +177,7 @@ class ResumeProjectExp extends Component {
                             </FormItem>
 
                             <FormItem>
-                                <Button onClick={this.addToProjectList} style={{ marginLeft: "20px", marginTop: "20px" }}> 保存 </Button>
+                                    <Button onClick={this.addToProjectList} type="primary" style={{ marginLeft: "20px", marginTop: "20px" }}> 保存 </Button>
                                 <Button onClick={this.delNewProject} style={{ float: "right", marginRight: "20px", marginTop: "20px"}}> 取消 </Button>
                             </FormItem>
                         </div>
@@ -184,9 +187,10 @@ class ResumeProjectExp extends Component {
                                 marginTop: "20px",
                                 position: "relative",
                                 textAlign: "center"
+
                             }}
                         >
-                            <Button  className="new-project-btn"  onClick={this.editNewProject}> 新增 </Button>
+                            <Button className="new-project-btn" type="primary"  onClick={this.editNewProject}> 新增 </Button>
                         </FormItem>
                 }
 
@@ -195,13 +199,11 @@ class ResumeProjectExp extends Component {
                 <FormItem
                     style={{
                         marginTop: "20px",
+                        marginBottom: "20px",
                         position: "relative",
                         textAlign: "center"
                     }}
                 >
-                    <Button type="primary">
-                        下一页
-                    </Button>
                 </FormItem>
 
             </div>
