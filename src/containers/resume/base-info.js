@@ -20,8 +20,8 @@ class ResumeBaseInfo extends Component {
         email: this.props.email,
     }
 
-    sexHandel(e) {
-        console.log(e.target);
+    saveHandel = ()=> {
+
     }
 
     render() {
@@ -37,7 +37,6 @@ class ResumeBaseInfo extends Component {
                     <FormItem>
                         <span className="prefix"> 性别 <span style={{ color: "red" }}>*</span></span> <br/>
                         <RadioGroup
-                            onChange={this.sexHandel}
                             defaultValue="male"
                             onChange={(e)=>{this.setState({sex: e})}}
                         >
@@ -70,7 +69,7 @@ class ResumeBaseInfo extends Component {
                             filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                             onChange={(e)=>{this.setState({school: e})}}
                         >
-                            <Option value="华南理工大学">计算机相关专业</Option>
+                            <Option value="华南理工大学">华南理工大学</Option>
                             <Option value="中山大学">中山大学</Option>
                             <Option value="广州工业大学">广州工业大学</Option>
                             <Option value="广州大学">广州大学</Option>
@@ -109,8 +108,7 @@ class ResumeBaseInfo extends Component {
 
                     <FormItem
                         style={{
-                            "margin-top": "20px",
-                            position: "relative",
+                            marginTop: "20px",
                         }}
                     >
                         <Button type="primary" className="save-button" >

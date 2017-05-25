@@ -29,7 +29,6 @@ class ResumeSidebar extends Component {
 
 
 
-
 class Resume extends Component {
     state = {
         collapsed: true,
@@ -62,7 +61,6 @@ class Resume extends Component {
     }
 
     menuHandel(e) {
-        console.log(e.key)
         switch(e.key) {
             case "1" :
                 browserHistory.push("/resume/base-info"); break;
@@ -85,9 +83,7 @@ class Resume extends Component {
 
     render() {
         return (
-            <Layout
-                style={{height: "100%"}}
-            >
+            <Layout>
                 <div className="icon-container">
                     <Icon
                         className="trigger"
@@ -102,7 +98,7 @@ class Resume extends Component {
                     breakpoint="xs"
                     collapsedWidth="0"
                     style={{
-                        height: "100%"
+                        height: "300px"
                     }}
                 >
                     <div className="logo" />
@@ -124,14 +120,14 @@ class Resume extends Component {
                             <Icon type={this.props.finished.project ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">项目经历</span>
                         </Menu.Item>
-                        <Menu.Item key="4">
+                        {/*<Menu.Item key="4">
                             <Icon type={this.props.finished.social ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">社团经历</span>
                         </Menu.Item>
                         <Menu.Item key="5">
                             <Icon type={this.props.finished.production ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">个人作品</span>
-                        </Menu.Item>
+                        </Menu.Item>*/}
                     </Menu>
                 </Sider>
 
