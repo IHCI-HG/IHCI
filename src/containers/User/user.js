@@ -14,98 +14,6 @@ const CHECK_NEW_PASSWORD_VALID = 2
 
 class User extends Component {
 
-<<<<<<< HEAD
-componentWillMount() {
-        this.setState({
-            newPasswordState: NEW_PASSWORD_EMPTY,
-            checkNewPasswordState: CHECK_NEW_PASSWORD_EMPTY,
-        })
-    }
-
-passwordCheck() {
-        const that = this
-        if (!this.refs.password.value) {
-            that.setState({ passwordState: NEW_PASSWORD_EMPTY })
-        } else if (this.refs.password.value.length < 4) {
-            that.setState({ passwordState: NEW_PASSWORD_TOO_SHORT })
-        } else if (this.refs.password.value.length > 20) {
-            that.setState({ passwordState: NEW_PASSWORD_TOO_LONG })
-        } else {
-            // 密码强度检测
-            that.setState({ passwordState: NEW_PASSWORD_VALID_MIDDLE })
-        }
-    }
-
-    passwordState() {
-        switch (this.state.passwordState) {
-            case NEW_PASSWORD_EMPTY:
-                return ' '
-            case NEW_PASSWORD_VALID_WEAK:
-                return 'has-warning'
-            case NEW_PASSWORD_VALID_MIDDLE:
-            case NEW_PASSWORD_VALID_STRONG:
-                return 'has-success'
-            case NEW_PASSWORD_TOO_LONG:
-            case NEW_PASSWORD_TOO_SHORT:
-                return 'has-error'
-            default:
-                return ' '
-        }
-    }
-
-    passwordCheckSpan(newPasswordState) {
-        // if (this.state.checkPasswordState != CHECK_PASSWORD_EMPTY) {
-        //   this.checkPasswordCheck()
-        // }
-        switch (newPasswordState) {
-            case NEW_PASSWORD_EMPTY:
-                return <div className='help-block'>请输入新密码</div>
-            case NEW_PASSWORD_TOO_LONG:
-                return <div className='help-block'>密码超过二十位</div>
-            case NEW_PASSWORD_TOO_SHORT:
-                return <div className='help-block'>密码长度短于四位</div>
-            case NEW_PASSWORD_VALID_MIDDLE:
-                return <div className='help-block'>密码强度一般</div>
-            case NEW_PASSWORD_VALID_STRONG:
-                return <div className='help-block'>密码强度强</div>
-            case NEW_PASSWORD_VALID_WEAK:
-                return <div className='help-block'>密码强度弱</div>
-            default:
-                return ''
-        }
-    }
-    checkNewPasswordCheck() {
-        const that = this
-        if (!this.refs.checkPassword.value) {
-            that.setState({ checkPasswordState: CHECK_NEW_PASSWORD_EMPTY })
-        } else if (this.refs.checkPassword.value != this.refs.password.value) {
-            that.setState({ checkPasswordState: CHECK_NEW_PASSWORD_INCONFORMITY })
-        } else if (this.refs.checkPassword.value === this.refs.password.value) {
-            that.setState({ checkPasswordState: CHECK_NEW_PASSWORD_VALID })
-        }
-    }
-
-    checkNewPasswordState() {
-        switch (this.state.checkPasswordState) {
-            case CHECK_NEW_PASSWORD_EMPTY:
-                return ' '
-            case CHECK_NEW_PASSWORD_VALID:
-                return 'has-success'
-            case CHECK_NEW_PASSWORD_INCONFORMITY:
-                return 'has-error'
-        }
-    }
-
-    checkPasswordSpan(checkNewPasswordState) {
-        switch (checkNewPasswordState) {
-            case CHECK_NEW_PASSWORD_EMPTY:
-                return <div className='help-block'>再次输入密码</div>
-            case CHECK_NEW_PASSWORD_INCONFORMITY:
-                return <div className='help-block'>两次密码输入不一致</div>
-            case CHECK_NEW_PASSWORD_VALID:
-                return <div className='help-block'>两次密码输入一致</div>
-        }
-=======
     state = {
         isBindWechat : true,
     }
@@ -133,7 +41,6 @@ passwordCheck() {
 
     unbindWechat() {
         this.setState({isBindWechat : false})
->>>>>>> origin
     }
 
     loginJudge() {
