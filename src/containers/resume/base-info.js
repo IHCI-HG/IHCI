@@ -20,7 +20,6 @@ class ResumeBaseInfo extends Component {
         email: this.props.email,
     }
 
-
     saveHandel = ()=> {
 
     }
