@@ -1,25 +1,22 @@
-.base-info-container {
+.self-intro-container {
     margin: 20px 20px;
     padding: 0 40px 0 40px;
-    height: 700px;
     width: 100%;
     background-color: #fff;
     border-radius: 4px;
+
+    .description {
+        padding-bottom: 40px;
+    }
 
     h1 {
         text-align: center
     }
 
-    .ant-form-item {
-        margin-bottom: 5px;
-    }
-
-    .save-button {
-
-    }
     .next-page-button {
         float: right;
     }
+
 }
 
 @media screen and (max-width: 500px) {

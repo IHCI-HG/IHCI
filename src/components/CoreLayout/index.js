@@ -49,7 +49,6 @@ class myLayout extends Component {
                     {this.props.children}
                     </Content>
                 </Layout>
-                <Footer>Footer</Footer>
             </Layout>
         )
     }

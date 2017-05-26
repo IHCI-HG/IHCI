@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-class ResumeSkill extends Component {
+class ResumeSocialExp extends Component {
     render() {
         return (
-            <div></div>
+            <div>ResumeSocialExp</div>
         );
     }
 }
@@ -17,4 +17,4 @@ function mapStateToProps(state){
 const mapDispatchToProps ={
 
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ResumeSkill)
+export default connect(mapStateToProps, mapDispatchToProps)(ResumeSocialExp)
