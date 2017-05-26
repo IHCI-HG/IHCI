@@ -22,7 +22,6 @@ const columns = [{
       <a href={'project-detail?id='+ record._id}>查看详情</a>
       <span className="ant-divider" />
       <a href="#">申请</a>
-      <span className="ant-divider" />
     </span>
     ),
 }];
@@ -44,7 +43,7 @@ class ProjectList extends Component {
     getProjectList() {
         
         $.get('http://' + window.location.host + '/api/project/project/queryProject', function(projects) {
-            console.log(projects)
+            // console.log(projects)
             this.setState ({
                 projects: projects
             })

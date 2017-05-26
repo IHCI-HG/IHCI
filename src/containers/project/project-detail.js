@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Icon } from 'antd'
+import { Icon, Button } from 'antd'
 
 import $ from 'jquery' 
 
@@ -32,8 +32,11 @@ class ProjectDetail extends Component {
         console.log( this.state.project._id )
         $.ajax({
             method: 'GET',
-            url: 'http://' + window.location.host + '/api/project/project/queryProject?id=' + this.state.project._id,
+            url: 'http://' + window.location.host + '/api/project/project/queryProject?_id=' + this.state.project._id,
         }).done(function (projectDetail) {
+            // console.log(projectDetail)
+            // projectDetail[0].demand = projectDetail[0].demand[0].split('↵');
+            // projectDetail[0].detail = projectDetail[0].detail[0].split('↵');
             console.log(projectDetail)
             this.setState({
                 project: projectDetail[0]
@@ -43,20 +46,38 @@ class ProjectDetail extends Component {
 
     render() {
         return (
-            <div className="project-detail-container">
+            <div className="project-container">
                 <div className="title-and-user">
                     <span className="title">{this.state.project.name}</span><br/>
                     <Icon type="user" />{this.state.project.publisherName}<br/><br/>
                 </div>
                 <div className="detail">
-                    <span>项目详情： </span>
-                    <span>{this.state.project.detail}</span>
+                    <span>项目详情： </span><br/>
+                    <ul>
+                        {  
+                            this.state.project.detail.split('\r\n').map(function(detail){  
+                                return <li key={detail}>{detail}</li>  
+                            })  
+                        }  
+                    </ul>
+                    {/*<span>{this.state.project.detail}</span>*/}
                 </div>
                 <div className="demand">
-                    <span>项目要求： </span>
-                    <span>{this.state.project.demand}</span>
+                    <span>项目要求： </span><br/>
+                    <ul>
+                        {  
+                            this.state.project.demand.split('\r\n').map(function(demand){  
+                                return <li key={demand}>{demand}</li>  
+                            })  
+                        } 
+                    </ul>
+                    {/*<span>{this.state.project.demand}</span>*/}
                 </div>
-
+                <div>
+                    <Button type="primary" htmlType="submit">
+                            申请
+                    </Button>
+                </div>
             </div>
         )
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Table, Icon } from 'antd';
+import { Table, Icon, Tabs  } from 'antd';
 
 import $ from 'jquery'
 
@@ -23,14 +23,14 @@ const columns = [{
     key: 'action',
     render: (text, record) => (
         <span>
-      <a href={'projectsDetail?id='+ record._id}>查看详情</a>
+      <a href={'project-detail?id='+ record._id}>查看详情</a>
       <span className="ant-divider" />
       <a href="#">申请</a>
-      <span className="ant-divider" />
     </span>
     ),
 }];
 
+const TabPane = Tabs.TabPane;
 
 class MyProject extends Component {
 
@@ -47,8 +47,8 @@ class MyProject extends Component {
 
     getProjectList() {
         
-        $.get('http://' + window.location.host + '/api/project/project/queryProject', function(projects) {
-            console.log(projects)
+        $.get('http://' + window.location.host + '/api/project/project/queryProject?publisherName=' + this.props.user.user, function(projects) {
+           
             this.setState ({
                 projects: projects
             })
@@ -60,8 +60,14 @@ class MyProject extends Component {
     render() {
         return (
             <div className="project-container">
-                <div>{this.props.user.user}</div>
-                <Table columns={columns} dataSource={this.state.projects} />
+                <Tabs defaultActiveKey="1">
+                    <TabPane tab="我创建的项目" key="1">
+                        <Table columns={columns} dataSource={this.state.projects} />
+                    </TabPane>
+                    <TabPane tab="我申请的项目" key="2">
+                        <Table columns={columns} dataSource={this.state.projects} />
+                    </TabPane>
+                </Tabs>
             </div>
         );
     }

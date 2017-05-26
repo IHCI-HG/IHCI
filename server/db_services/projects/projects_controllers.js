@@ -32,11 +32,11 @@ exports.createProject = function (req, res) {
  */
 exports.queryProject = function (req, res) {
 
-    let id = req.query.id;
-    let query = {'_id': id};
-    if (id == undefined) {
-        query = {};
-    }
+    let query = req.query
+    // let id = req.query.id;
+    // if (id !== undefined) {
+    //     query = {'_id': id};
+    // }
     Project.find (query).exec (function (err, project) {
         if (err) {
             return res.status(400).send ({
