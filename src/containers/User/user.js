@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-const NEW_PASSWORD_EMPTY = 0
-const NEW_PASSWORD_TOO_SHORT = 1
-const NEW_PASSWORD_TOO_LONG = 2
-const NEW_PASSWORD_VALID_WEAK = 3
-const NEW_PASSWORD_VALID_MIDDLE = 4
-const NEW_PASSWORD_VALID_STRONG = 5
-
-const CHECK_NEW_PASSWORD_EMPTY = 0
-const CHECK_NEW_PASSWORD_INCONFORMITY = 1
-const CHECK_NEW_PASSWORD_VALID = 2
-
 class User extends Component {
 
     state = {
@@ -112,6 +101,16 @@ class User extends Component {
         return (
             <div>
                 {this.loginJudge()}
+                {
+                    this.props.ifLogin ?
+                     <div>
+                         sssss
+                     </div>
+                    :
+                    <div>
+                        ssssss
+                    </div>
+                }
             </div>
         );
     }

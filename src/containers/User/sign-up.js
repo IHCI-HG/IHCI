@@ -5,7 +5,6 @@ import './sign-up.scss'
 import { login, emailExist } from '../../actions/user';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
-//状态编码定义
 
 //不推荐直接在代码中用ajax请求耦合
 import $ from 'jquery'
@@ -97,14 +96,15 @@ class SignUp extends Component {
                 emailState: "validating",
             })
 
+            const that = this
             emailExist(text).then((emailExistState)=> {
                 if (!emailExistState) {
-                    this.setState({
+                    that.setState({
                         emailHelp: "邮箱可用",
                         emailState: "success",
                     })
                 } else {
-                    this.setState({
+                    that.setState({
                         emailHelp: "邮箱已经被占用",
                         emailState: "error",
                     })
@@ -191,7 +191,7 @@ class SignUp extends Component {
     render() {
         return (
             <div className="sign-up-container">
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                     <div className="up-container">
                         <h1>注册</h1>
 
