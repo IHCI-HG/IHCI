@@ -42,13 +42,13 @@ class CreateProject extends Component {
     }
 
     handleSubmit () {
-        console.log(this.state)
+        // console.log(this.state)
         $.ajax({
             method: 'POST',
             url: 'http://' + window.location.host + '/api/project/project/create',
             data: this.state
         }).done(function (data) {
-            console.log(data)
+            // console.log(data)
             if (data != {}) {
                 notification.open({
                     message: '创建成功',

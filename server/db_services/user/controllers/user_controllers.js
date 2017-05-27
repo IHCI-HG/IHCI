@@ -96,6 +96,43 @@ exports.isNameExit = function (req, res) {
     })
 };
 
+exports.changePassword = function (req, res) {
+    // console.log(req.body)
+    let _id = req.body._id
+    let query = {_id: _id}
+    console.log(query)
+    User.find(query).exec(function (err, user) {
+        // console.log(user)
+        if(err) {
+            return res.status(400).send ({
+                message: 'getUserError'
+            })
+        } else {
+            if ( user.length > 0) {
+                let oldPassword = md5(req.body.oldPassword)
+                let newPassword = md5(req.body.newPassword)
+                if ( user[0].password == oldPassword) {
+                    let newUser = new User(user[0])
+                    newUser.password = newPassword
+                    newUser.save (function (err, user) {
+                        if (err) {
+                            return res.status(400).send ({
+                                message: 'update password failed'
+                            });
+                        } else {
+                            res.jsonp({message: 'update password success'});
+                        }
+                    })
+                } else {
+                        return res.status(400).send ({
+                            message: 'old password error'
+                        });
+                }
+            }
+        }
+    })
+}
+
 exports.getUserInformation = function (req, res) {
 
     User.find(req.query).exec(function (err, user) {
