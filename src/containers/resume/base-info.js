@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './base-info.scss'
 
-<<<<<<< HEAD
 import { Form, Icon, Input, Button, Checkbox, message, Radio, Select } from 'antd';
 const FormItem = Form.Item;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
-=======
-import { Form, Icon, Input, Button, Checkbox, message, Radio } from 'antd';
-const FormItem = Form.Item;
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
->>>>>>> origin/aferica
 
 class ResumeBaseInfo extends Component {
     state = {
@@ -21,20 +14,13 @@ class ResumeBaseInfo extends Component {
         sex: this.props.sex,
         eduStartDate: this.props.eduStartDate,
         school: this.props.school,
-<<<<<<< HEAD
         major: this.props.major,
-=======
-        academy: this.props.academy,
->>>>>>> origin/aferica
         GPA: this.props.GPA,
         phone: this.props.phone,
         email: this.props.email,
     }
-<<<<<<< HEAD
 
-    saveHandel = ()=> {
-=======
->>>>>>> origin/aferica
+    saveHandel = ()=> {}
 
     sexHandel(e) {
         console.log(e.target);
@@ -52,21 +38,16 @@ class ResumeBaseInfo extends Component {
 
                     <FormItem>
                         <span className="prefix"> 性别 <span style={{ color: "red" }}>*</span></span> <br/>
-<<<<<<< HEAD
                         <RadioGroup
                             defaultValue="male"
                             onChange={(e)=>{this.setState({sex: e})}}
                         >
-=======
-                        <RadioGroup onChange={this.sexHandel} defaultValue="a">
->>>>>>> origin/aferica
                             <RadioButton style={{width: "100px"}} value="male">男</RadioButton>
                             <RadioButton style={{width: "100px"}} value="female">女</RadioButton>
                         </RadioGroup>
                     </FormItem>
 
                     <FormItem>
-<<<<<<< HEAD
                         <span className="prefix"> 入学年份 <span style={{ color: "red" }}>*</span></span>
                         <Select
                             defaultValue="2014"
@@ -140,17 +121,6 @@ class ResumeBaseInfo extends Component {
                         </Button>
                     </FormItem>
 
-=======
-                        <div className="btn-wrap">
-                            <Button type="primary" className="login-form-button" >
-                                保存
-                            </Button>
-                            <Button type="primary" className="login-form-button" >
-                                下一页
-                            </Button>
-                        </div>
-                    </FormItem>
->>>>>>> origin/aferica
                 </Form>
             </div>
         );
