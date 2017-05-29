@@ -18,22 +18,16 @@ class newNav extends Component {
 
     componentWillMount() {
         this.props.cheakIfLogin();
-        if(this.props.isLogin) {
-            this.props.login({
-                username: localStorage.getItem('username'),
-                password: localStorage.getItem('password')
-            })
-        }
     }
 
     handleClick(e) {
         switch (e.key) {
             case "login":
-                browserHistory.push("login"); break;
+                browserHistory.push("/login"); break;
             case "resume":
-                browserHistory.push("resume"); break;
+                browserHistory.push("/resume"); break;
             case "setting":
-                browserHistory.push("user"); break;
+                browserHistory.push("/user"); break;
             case "logout":
                 this.props.signOut(); break;
             case "main":
@@ -43,9 +37,9 @@ class newNav extends Component {
             case "todolist":
                 browserHistory.push("/TodoList"); break;
             case "blog":
-                browserHistory.push("blog"); break;
+                browserHistory.push("/blog"); break;
             case "project":
-                browserHistory.push("project"); break;
+                browserHistory.push("/project"); break;
         }
     }
 

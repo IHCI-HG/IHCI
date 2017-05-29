@@ -1,7 +1,8 @@
 import { api } from './common.js'
+import $ from 'jquery'
+
+
 export const GET_RESUME = "GET_RESUME"
-
-
 
 export function getResume(arg) {
     return async (dispatch, getStore) => {

@@ -29,12 +29,13 @@ class Login extends Component {
 
     loginBtnHandel(e) {
         this.props.login(this.state)
+        browserHistory.push("/")
     }
 
     render() {
         return (
             <div className="login-container">
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                     <FormItem>
                         <h1>登录</h1>
                         <div className="prefix"> 账号 </div>

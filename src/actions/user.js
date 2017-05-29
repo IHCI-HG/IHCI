@@ -7,6 +7,7 @@ export const NO_LOGINED = "NO_LOGINED"
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 
 import { message } from 'antd';
+import $ from 'jquery'
 
 // actions
 
@@ -88,15 +89,27 @@ export function signOut(arg) {
     };
 }
 
-export function emailValid(email) {
 
-    const promiseObj = new Promise()
+//异步function
 
+export function emailExist(email) {
+    let getpromise = new Promise(
+        (resove, reject)=>{
+            $.ajax({
+                method: 'get',
+                // url: '/accountCheak.json?username=' + this.refs.username.value,
+                url: '/api/project/user/isNameExit?username=' + email,
+                // url: 'http://192.168.1.62:3000/api/project/user/isNameExit?name=' + this.refs.username.value
+            }).then(function (data) {
+                resove(data.exist)
+            })
+        }
+    )
+    return getpromise
 }
 
 
 export const actions = {
-    emailValid,
     cheakIfLogin,
     login,
     signOut
