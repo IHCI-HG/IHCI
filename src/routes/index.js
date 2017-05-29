@@ -13,6 +13,7 @@ import {
 import { user, signUp, login } from './user'
 import Blog from '../containers/Blog'
 import { resume } from './resume'
+import { project } from './project'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -32,6 +33,7 @@ export const createRoutes = (store) => ({
         signUp(store),
 
         resume(store),
+        project(store),
         // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
         //   CounterRoute(store),

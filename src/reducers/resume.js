@@ -11,7 +11,11 @@ const resumeInitialState = {
     sex: "",
     eduStartDate: "",
     school: "",
+<<<<<<< HEAD
     major: "",
+=======
+    academy: "",
+>>>>>>> origin/aferica
     GPA: "",
     phone: "",
     email: "",

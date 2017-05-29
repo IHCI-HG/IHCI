@@ -29,6 +29,10 @@ class ResumeSidebar extends Component {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/aferica
 class Resume extends Component {
     state = {
         collapsed: true,
@@ -120,7 +124,11 @@ class Resume extends Component {
                             <Icon type={this.props.finished.project ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">项目经历</span>
                         </Menu.Item>
+<<<<<<< HEAD
                         {/*<Menu.Item key="4">
+=======
+                        <Menu.Item key="4">
+>>>>>>> origin/aferica
                             <Icon type={this.props.finished.social ? "check-circle" : "check-circle-o"} />
                             <span className="nav-text">社团经历</span>
                         </Menu.Item>

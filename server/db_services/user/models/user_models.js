@@ -12,7 +12,8 @@ let UserSchema = new Schema({
     email: {type: String, default: '', trim: true},
     dataId: {type: String, default: '', trim: true},
     isActive: {type: Number, default: 0, trim: true},
-    isTeacher: {type: Number, default: 0, trim: true}
+    isTeacher: {type: Number, default: 0, trim: true},
+    label: {type: String, default: '', trim: true},
 }, {collection: 'user'});
 
 exports.UserSchema = UserSchema;

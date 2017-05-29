@@ -1,0 +1,62 @@
+.project-container {
+    margin: 0px 0px;
+    padding: 0 5px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+
+    h1 {
+        text-align: center
+    }
+
+
+    .btn-wrap {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .project-container {
+        min-width: 300px;
+    }
+}
+
+.title-and-user {
+    margin: 10px 10px;
+    padding: 20px 50px;
+    
+    .title {
+        font-size: 25px;
+        font-family:  "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    }
+}
+
+.detail {
+    margin: 10px 10px;
+    padding: 20px 50px;
+
+    span {
+         font-size: 15px;
+    }
+
+    li {
+        list-style-type: none
+    }
+}
+
+.demand {
+    margin: 10px 10px;
+    padding: 20px 50px;
+
+    span {
+         font-size: 15px;
+         font-weight: bold;
+    }
+
+    li {
+        list-style-type: none
+    }
+}
+
