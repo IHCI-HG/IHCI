@@ -34,6 +34,7 @@ export const createRoutes = (store) => ({
         resume(store),
         // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
+     
         //   CounterRoute(store),
         //   demoCompoant(store),
         //   {
