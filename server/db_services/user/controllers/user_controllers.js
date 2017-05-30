@@ -124,9 +124,7 @@ exports.changePassword = function (req, res) {
                         }
                     })
                 } else {
-                        return res.status(400).send ({
-                            message: 'old password error'
-                        });
+                    res.jsonp({message: 'old password error'});   
                 }
             }
         }
