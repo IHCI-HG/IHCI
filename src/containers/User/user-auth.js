@@ -4,6 +4,7 @@ import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { login } from '../../actions/user';
 import './user-auth.scss'
 import $ from 'jquery'
+import { browserHistory } from 'react-router'
 const FormItem = Form.Item;
 
 class UserAuth extends Component{
@@ -93,7 +94,6 @@ class UserAuth extends Component{
 
     async changePasswordBtnHandel(){
         const that = this;
-        console.log(that.state.user)
         $.ajax({
             method:'POST',
             url:'api/project/user/updatePassword',
@@ -104,7 +104,17 @@ class UserAuth extends Component{
                 newPassword: that.state.newPassword,
             }
         }).done(function(data){
-            message.success("message received");
+            //console.log(data.message);
+            if(data.message == 'update password success'){
+                message.success("修改密码成功");
+                browserHistory.push("/");
+            }
+            else if (data.message == 'old password error'){
+                message.error("原密码错误");
+            }
+            else{
+                message.error("修改密码失败");
+            }
         })
     }
 
