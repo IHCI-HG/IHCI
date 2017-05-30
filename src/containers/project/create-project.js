@@ -77,7 +77,7 @@ class CreateProject extends Component {
                     <FormItem label="项目名称：" {...formItemLayout}>
                         
                         <Input placeholder="请输入项目名称" name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)}/>
-                      
+                       
                     </FormItem>
                     <FormItem label="项目类型：" {...formItemLayout}>
                         
