@@ -13,7 +13,6 @@ import $ from 'jquery'
 class SignUp extends Component {
     constructor(props) {
         super(props);
-
     }
 
     //componentWillMount会在组件render之前执行，并且永远都只执行一次。
@@ -188,6 +187,7 @@ class SignUp extends Component {
             browserHistory.push("/");
         })
     }
+
     render() {
         return (
             <div className="sign-up-container">

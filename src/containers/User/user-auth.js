@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { login } from '../../actions/user';
 import './user-auth.scss'
-
-const FormItem = Form.Item;
-
 import $ from 'jquery'
+const FormItem = Form.Item;
 
 class UserAuth extends Component{
 
@@ -15,10 +13,11 @@ class UserAuth extends Component{
         super(props);
 
         this.state = {
-            //user: this.props.user.user,
+            //username: this.props.user.user,
             //旧代码状态
             oldPasswordState: '',
             oldPasswordHelp: '',
+            oldPassword:'',
             //新代码状态
             newPasswordState: '',
             newPasswordHelp: '',
@@ -33,7 +32,10 @@ class UserAuth extends Component{
    
 
     checkOldPassword(e){
-        
+        const text = e.target.value;
+        this.setState({
+            oldPassword: text
+        })
     }
 
     newPasswordCheck(e){
@@ -91,17 +93,18 @@ class UserAuth extends Component{
 
     async changePasswordBtnHandel(){
         const that = this;
+        console.log(that.state.user)
         $.ajax({
             method:'POST',
             url:'api/project/user/updatePassword',
             data:{
-                //_id: this.state.user,
-                _id:'a@a.a',
+                //username:
+                username:'a@a.a',
                 oldPassword: that.state.oldPassword,
                 newPassword: that.state.newPassword,
             }
         }).done(function(data){
-            message.success('message received');
+            message.success("message received");
         })
     }
 
