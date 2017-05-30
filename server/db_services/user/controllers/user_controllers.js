@@ -98,9 +98,9 @@ exports.isNameExit = function (req, res) {
 
 exports.changePassword = function (req, res) {
     // console.log(req.body)
-    let _id = req.body._id
-    let query = {_id: _id}
-    console.log(query)
+    let username = req.body.username
+    let query = {username: username}
+    // console.log(query)
     User.find(query).exec(function (err, user) {
         // console.log(user)
         if(err) {

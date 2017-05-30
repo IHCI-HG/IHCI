@@ -19,7 +19,7 @@ const columns = [{
     key: 'action',
     render: (text, record) => (
         <span>
-      <a href="" onClick={browserHistory.push('/project/project-detail?id='+ record._id)}>查看详情</a>
+      <a href={'project-detail?id='+ record._id}>查看详情</a>
       <span className="ant-divider" />
       <a href="#">申请</a>
     </span>
