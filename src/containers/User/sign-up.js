@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
 import './sign-up.scss'
-import { login, emailExist } from '../../actions/user';
+import { login, emailExist ,passwordStrengthDetection} from '../../actions/user';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 
@@ -140,7 +140,7 @@ class SignUp extends Component {
         } else {
             this.setState({
                 passwordState: "success",
-                passwordHlep: "密码可用",
+                passwordHlep: passwordStrengthDetection(text),
             })
         }
 

@@ -6,25 +6,31 @@ import './user-auth.scss'
 
 const FormItem = Form.Item;
 
+import $ from 'jquery'
+
 class UserAuth extends Component{
 
-    constructor(props){
+    constructor(props) {
+
         super(props);
+
+        this.state = {
+            //user: this.props.user.user,
+            //旧代码状态
+            oldPasswordState: '',
+            oldPasswordHelp: '',
+            //新代码状态
+            newPasswordState: '',
+            newPasswordHelp: '',
+            newPassword: '',
+            //确认新代码状态
+            reNewPasswordState: '',
+            reNewPasswordHelp: '',
+            rePassword: '',
+        }
     }
 
-    state = {
-        //旧代码状态
-        oldPasswordState : '',
-        oldPasswordHelp : '',
-        //新代码状态
-        newPasswordState : '',
-        newPasswordHelp : '',
-        newPassword : '',
-        //确认新代码状态
-        reNewPasswordState : '',
-        reNewPasswordHelp : '',
-        rePassword : '',
-    }
+   
 
     checkOldPassword(e){
         
@@ -83,8 +89,20 @@ class UserAuth extends Component{
         }
     }
 
-    changePasswordBtnHandel(e){
-
+    async changePasswordBtnHandel(){
+        const that = this;
+        $.ajax({
+            method:'POST',
+            url:'api/project/user/updatePassword',
+            data:{
+                //_id: this.state.user,
+                _id:'a@a.a',
+                oldPassword: that.state.oldPassword,
+                newPassword: that.state.newPassword,
+            }
+        }).done(function(data){
+            message.success('message received');
+        })
     }
 
     render() {

@@ -108,6 +108,11 @@ export function emailExist(email) {
     return getpromise
 }
 
+export function passwordStrengthDetection(password){
+    var strongRegularExpression = new RegExp('(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}');
+    return "test";
+}
+
 
 export const actions = {
     cheakIfLogin,
