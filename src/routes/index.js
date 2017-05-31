@@ -30,6 +30,11 @@ export const createRoutes = (store) => ({
         login(store),
         signUp(store),
         resume(store),
+<<<<<<< HEAD
+=======
+        project(store),
+
+>>>>>>> origin/master
         { path: '/blog', component: Blog },
 
         {

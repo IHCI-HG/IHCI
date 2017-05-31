@@ -29,7 +29,7 @@ const Home = () => (
     <div className="main">
         <div className="cover" id="top">
             <h1>iHCI</h1>
-            <p className="description">iHCI助力成长iHCI助力成长iHCI助力成长iHCI助力成长iHCI助力成长iHCI助力成长iHCI助力成长</p>
+            <p className="description">我们提供创新、创造、就业和创业等多层次的机会平台</p>
             <a href="#jump"><img src={arrow1} alt=""/></a>
         </div>
         <div className="chance" id="jump">
@@ -106,7 +106,7 @@ const Home = () => (
                  <li>
                      <img src={h6} alt=""/>
                      <p>我们不收取任何费用，相反，入职后，你还会收到我们的一份贺礼</p>
-                 </li> 
+                 </li>
             </ul>
         </div>
         <footer>
@@ -137,7 +137,7 @@ const Home = () => (
             <p>iHCI@2017</p>
         </footer>
     </div>
-    
+
 )
 
 
