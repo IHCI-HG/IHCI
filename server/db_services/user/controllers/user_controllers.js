@@ -42,7 +42,7 @@ exports.create = function (req, res) {
                         message: 'create failed'
                     });
                 } else {
-                    res.jsonp(user);
+                    res.redirect('http://120.25.207.237')
                 }
             })
         }
@@ -51,7 +51,7 @@ exports.create = function (req, res) {
 
 
 exports.isLogin = function (req, res) {
-  
+
   if (req.session.sign) {
     res.send(req.session.username);
   } else {
@@ -126,7 +126,7 @@ exports.changePassword = function (req, res) {
                         }
                     })
                 } else {
-                    res.jsonp({message: 'old password error'});   
+                    res.jsonp({message: 'old password error'});
                 }
             }
         }
