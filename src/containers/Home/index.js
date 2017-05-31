@@ -35,41 +35,29 @@ const Home = () => (
         <div className="chance" id="jump">
             <h2>机会</h2>
             <h3>iHCI给你提升自我的机会</h3>
-            <ul>
+            <ul className="smalltitle">
                 <li><a href="">项目</a></li>
                 <li><a href="">实习</a></li>
                 <li><a href="">比赛</a></li>
             </ul>
-            <table>
-                <tr>
-                    <td><img src={c1} className="chance-pic" /></td>
-                    <td><img src={c2} className="chance-pic" /></td>
-                    <td><img src={c3} className="chance-pic" /></td>
-                </tr>
-                <tr>
-                    <td><img src={c4} className="chance-pic" /></td>
-                    <td><img src={c5} className="chance-pic" /></td>
-                    <td><img src={c6} className="chance-pic" /></td>
-                </tr>
-            </table>
+            <ul className="pic">
+                <li><img src={c1} className="chance-pic" /></li>
+                <li><img src={c2} className="chance-pic" /></li>
+                <li><img src={c3} className="chance-pic" /></li>
+                <li><img src={c4} className="chance-pic" /></li>
+                <li><img src={c5} className="chance-pic" /></li>
+                <li><img src={c6} className="chance-pic" /></li>
+            </ul>
         </div>
         <div className="model">
             <h2>榜样</h2>
             <h3>看看他们的故事</h3>
-            <table>
-                <tr>
-                    <td><img src={m1} alt=""/></td>
-                    <td><p>Tom William</p></td>
-                    <td><img src={m2} alt="" /></td>
-                    <td><p>Sarah Green</p></td>
-                </tr>
-                <tr>
-                    <td><p>John Doe</p></td>
-                    <td><img src={m3} alt=""/></td>
-                    <td><p>Jenny White</p></td>
-                    <td><img src={m4} alt="" /></td>
-                </tr>
-            </table>
+            <ul>
+                <li><img src={m1} alt=""/><p>Tom William</p></li>
+                <li><img src={m2} alt="" /><p>Sarah Green</p></li>
+                <li><img src={m3} alt=""/><p>John Doe</p></li>
+                <li><img src={m4} alt="" /><p>Jenny White</p></li>
+            </ul>
         </div>
         <div className="blog">
             <h2>博客</h2>
@@ -132,7 +120,7 @@ const Home = () => (
                         <td>登录</td><td></td><td>登录</td>
                     </tr>
                 </table>
-                <a href="#top"><img src={arrow2} alt=""/></a>
+                <a href="#top"><img src={arrow2} id="arrowup"/></a>
             </div>
             <p>iHCI@2017</p>
         </footer>
