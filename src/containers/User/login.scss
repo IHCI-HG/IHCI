@@ -1,14 +1,10 @@
-
 .login-container {
     background-color: #fff;
     width: 400px;
     margin: 0px auto;
     top: 0;
-
-
     h1 {
-        margin: auto;
-        // padding: .67em 0;
+        margin: auto; // padding: .67em 0;
         text-align: center;
     }
     .ant-form-item-control {
@@ -16,11 +12,9 @@
         padding: 40px 40px 20px 40px;
         border-bottom: 1px #ddd solid
     }
-
     .login-form-forgot {
         float: right;
     }
-
     .login-wrap {
         .login-form-button {
             width: 50%;
@@ -29,15 +23,18 @@
             float: right;
         }
     }
-
     .third-auth {
-        padding:0 0 40px 80px;
+        padding: 0 0 40px 80px;
     }
-
 }
 
 @media screen and (max-width: 500px) {
     .login-container {
         width: 100%;
     }
+}
+
+#wechat-login-modol {
+    margin: auto;
+    width: 300px;
 }
