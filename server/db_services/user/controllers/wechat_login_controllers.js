@@ -39,6 +39,7 @@ exports.wechatLogin = function (req, res) {
           } else {
             req.body = { wechat: userinfo.unionid };
             User.create(req, res);
+            res.redirect(200, '/')
           }
         }
       });
