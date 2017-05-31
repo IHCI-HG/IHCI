@@ -34,7 +34,8 @@ exports.wechatLogin = function (req, res) {
             req.session.username = req.body.username
             req.session.password = req.body.password
             console.log(req.session.name)
-            res.send(user);
+            res.redirect(200,'/')
+            // res.send(user);
           } else {
             req.body = { wechat: userinfo.unionid };
             User.create(req, res);
