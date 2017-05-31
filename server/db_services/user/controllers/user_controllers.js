@@ -22,7 +22,9 @@ let UserData = mongoose.model('UserDataModel', UserDataSchema);
 
 exports.create = function (req, res) {
 
-    req.body.password = md5(req.body.password);
+    if(req.body.password != undefined) {
+        req.body.password = md5(req.body.password);
+    }
     let user = new User(req.body);
     let userData = new UserData();
 

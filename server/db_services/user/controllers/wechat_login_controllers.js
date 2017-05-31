@@ -19,7 +19,7 @@ UserSchema.plugin(mongoosePaginate)
 let UserModel = mongoose.model('UserModel', UserSchema)
 
 exports.wechatLogin = function (req, res) {
-  console.log(req.query);
+  // console.log(req.query);
   getTokenByCode(req, function (token) {
     // console.log(token);
     getUserinfoByToken(token, function (userinfo) {
