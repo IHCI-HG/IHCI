@@ -1,23 +1,30 @@
-.base-info-container {
+.project-container {
     margin: 20px 20px;
     padding: 0 40px 0 40px;
-    height: 700px;
+    height: auto;
     width: 100%;
     background-color: #fff;
     border-radius: 4px;
+    position: relative;
 
     h1 {
         text-align: center
     }
 
+    .project-list-item {
+        margin-bottom: 20px;
+    }
+
     .ant-form-item {
-        margin-bottom: 5px;
+        margin-bottom: 0px;
+    }
+
+    .new-project-btn {
+        width: 100%;
     }
 
 
-    .next-page-button {
-        float: right;
-    }
+
 }
 
 @media screen and (max-width: 500px) {
