@@ -58,16 +58,16 @@ table {
     background-repeat: no-repeat;
 }
 
-.chance li:first-child {
+.chance .smalltitle li:first-child {
     background-image: url("images/xiangmu.png");
 }
 
-.chance li:nth-child(2) {
+.chance .smalltitle li:nth-child(2) {
     background-image: url("images/shixi.png");
     padding-left: 32px;
 }
 
-.chance li:last-child {
+.chance .smalltitle li:last-child {
     background-image: url("images/bisai.png");
 }
 
@@ -80,35 +80,63 @@ table {
     color: #c4c420;
 }
 
+.chance .pic {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.chacne .pic li {
+    width: 250px;
+    height: 150px;
+}
+
 .chance-pic {
     margin:10px 40px 10px 40px;
     width: 250px;
     height: 150px;
+    overflow: hidden;
 }
 
 .chance-pic:hover {
     border:1px solid #808080;
 }
 
-
 .model {
     background-color: #fff;
+}
+
+.model ul {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 60rem;
+    padding-bottom: 50px;
 }
 
 .model p {
     text-align: center;
     font-size: 1.5rem;
+    padding-top: 80px;
 }
 
-.model td img {
-    width: 200px;
-    height: 200px;
+.model li {
+    display: inline-block;
+    width: 30rem;
+    vertical-align: top;
+}
+.model img {
+    float: left;
+    width: 15rem;
+    height: 15rem;
 }
 
-.model td img:hover {
+.model li:nth-child(3) img,
+.model li:last-child img {
+    float:right;
+}
+
+.model img:hover {
     opacity: 0.7;
     transition: opacity 1s;
-
 }
 
 .blog ul {
@@ -298,3 +326,29 @@ footer p:last-child {
         font-size: 9px;
     }
 }
+
+@media screen and (max-width: 310px) {
+   #arrowup{
+        display: none;
+   }
+}
+
+@media screen and (max-width: 974px) and (min-width: 800px){
+    .model li:nth-child(2) img {
+    float:right;
+    }
+    .model li:nth-child(3) img {
+    float:left;
+    }
+}
+
+@media screen and (max-width: 614px){
+    .model li:nth-child(2) img {
+    float:right;
+    }
+    .model li:nth-child(3) img {
+    float:left;
+    }
+}
+
+
