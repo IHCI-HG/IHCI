@@ -34,12 +34,12 @@ exports.wechatLogin = function (req, res) {
             req.session.username = req.body.username
             req.session.password = req.body.password
             console.log(req.session.name)
-            res.redirect('/')
+            res.redirect('http://120.25.207.237')
             // res.send(user);
           } else {
             req.body = { wechat: userinfo.unionid };
             User.create(req, res);
-            res.redirect('/')
+            res.redirect('http://120.25.207.237')
           }
         }
       });
