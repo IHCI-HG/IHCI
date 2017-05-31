@@ -31,7 +31,7 @@ export const createRoutes = (store) => ({
         signUp(store),
         resume(store),
         project(store),
-
+ 
         { path: '/blog', component: Blog },
 
         {
