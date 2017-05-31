@@ -85,7 +85,6 @@ export function signOut(arg) {
         dispatch({
             type: SINGOUT,
         })
-
     };
 }
 
