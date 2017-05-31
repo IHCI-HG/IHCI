@@ -16,6 +16,7 @@ let ResumeSchema = new Schema ({
   projectExperience: {type: String, default: '', trim: true},
   internshipExperience: {type: String, default: '', trim: true},
   selfEvaluation: {type: String, default: '', trim: true},
+  label: {type: String, default: '', trim: true},
 }, {collection: 'resume'});
 
 exports.ResumeSchema = ResumeSchema;

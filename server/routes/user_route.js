@@ -33,6 +33,10 @@ module.exports = function(app) {
     User.updateUser(req, res);
   });
 
+  app.post('/api/project/user/updatePassword', function (req, res) {
+    User.changePassword(req, res);
+  })
+
   // 激活或是冻结帐号
   app.get('/api/project/user/activateOrInvalidUser', function (req, res) {
     User.activateOrInvalidUser(req, res);
@@ -60,7 +64,6 @@ module.exports = function(app) {
     if (req.session.sign) {
       req.session.sign = false;
     }
-
     res.send('signout success');
   });
 };

@@ -4,7 +4,9 @@ export const user = (store) => ({
   path : 'user',
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const component = require('../containers/User/user.js').default
+
+      const component = require('../containers/User/user-auth').default
+
       cb(null, component)
     }, 'user')
   }

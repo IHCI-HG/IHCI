@@ -17,7 +17,8 @@ let ProjectSchema = new Schema({
   finishProjectDate: {type: Date, default: '', trim: true},
   detail: {type: String, default: '', trim: true},
   demand: {type: String, default: '', trim: true},
-  type: {type: String, default: '', trim: true}
+  type: {type: String, default: '', trim: true},
+  label: {type: String, default: '', trim: true},
 }, {collection: 'project'});
 
 exports.ProjectSchema = ProjectSchema;

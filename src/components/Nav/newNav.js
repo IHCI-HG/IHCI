@@ -70,7 +70,7 @@ class newNav extends Component {
                 >
                     <Menu.Item key="main">主页</Menu.Item>
                     <Menu.Item key="blog">博客</Menu.Item>
-                    <Menu.Item key="project">机会</Menu.Item>
+                    <Menu.Item key="project">项目</Menu.Item>
                     {/*<SubMenu title="demo" key="demo">
                         <Menu.Item>Action</Menu.Item>
                         <Menu.Item>Another action</Menu.Item>

@@ -20,8 +20,10 @@ class ResumeBaseInfo extends Component {
         email: this.props.email,
     }
 
-    saveHandel = ()=> {
+    saveHandel = ()=> {}
 
+    sexHandel(e) {
+        console.log(e.target);
     }
 
     render() {

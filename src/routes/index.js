@@ -13,6 +13,7 @@ import {
 import { user, signUp, login } from './user'
 import Blog from '../containers/Blog'
 import { resume } from './resume'
+import { project } from './project'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -28,9 +29,11 @@ export const createRoutes = (store) => ({
         user(store),
         login(store),
         signUp(store),
-
         resume(store),
+
+
         { path: '/blog', component: Blog },
+
         {
             path: '*',
             component: NotFind

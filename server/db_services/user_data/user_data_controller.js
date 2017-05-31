@@ -18,7 +18,6 @@ var UserData = mongoose.model('UserDataModel', UserDataSchema);
 
 
 exports.getUserDataInformationById = function (req, res) {
-    console.log(req.query._id);
     var _id = req.query._id;
     UserData.find({_id: Object(_id)}).exec(function (err, userdata) {
         if(err) {
@@ -32,7 +31,6 @@ exports.getUserDataInformationById = function (req, res) {
 };
 
 exports.updateUserDataInformationById = function (req, res) {
-    console.log(req.body._id);
     var _id = req.body._id;
     UserData.find({_id: Object(_id)}).exec(function (err, userdata) {
         if(err) {
