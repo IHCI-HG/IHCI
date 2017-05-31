@@ -22,8 +22,6 @@ export const createRoutes = (store) => ({
     component: CoreLayout,
     indexRoute: { component: Home },
     childRoutes: [
-        //demoCompoant
-        //couter为原生的，Facebook官方脚手架的组件
         counter(store),
         about(store),
         todolist(store),
@@ -32,15 +30,7 @@ export const createRoutes = (store) => ({
         signUp(store),
 
         resume(store),
-        // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
-        //   CounterRoute(store),
-        //   demoCompoant(store),
-        //   {
-        //     path        : '/signUp',
-        //     component   : SignUpRoute
-        //   },
-        //   UserRoute(store)
         {
             path: '*',
             component: NotFind
