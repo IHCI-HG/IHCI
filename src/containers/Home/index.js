@@ -94,7 +94,7 @@ const Home = () => (
                  <li>
                      <img src={h6} alt=""/>
                      <p>我们不收取任何费用，相反，入职后，你还会收到我们的一份贺礼</p>
-                 </li> 
+                 </li>
             </ul>
         </div>
         <footer>
@@ -125,7 +125,7 @@ const Home = () => (
             <p>iHCI@2017</p>
         </footer>
     </div>
-    
+
 )
 
 
