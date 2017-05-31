@@ -1,11 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
 import './sign-up.scss'
-import { login, emailExist } from '../../actions/user';
+import { login, emailExist ,passwordStrengthDetection} from '../../actions/user';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
-//状态编码定义
 
 //不推荐直接在代码中用ajax请求耦合
 import $ from 'jquery'
@@ -14,7 +13,6 @@ import $ from 'jquery'
 class SignUp extends Component {
     constructor(props) {
         super(props);
-
     }
 
     //componentWillMount会在组件render之前执行，并且永远都只执行一次。
@@ -97,14 +95,15 @@ class SignUp extends Component {
                 emailState: "validating",
             })
 
+            const that = this
             emailExist(text).then((emailExistState)=> {
                 if (!emailExistState) {
-                    this.setState({
+                    that.setState({
                         emailHelp: "邮箱可用",
                         emailState: "success",
                     })
                 } else {
-                    this.setState({
+                    that.setState({
                         emailHelp: "邮箱已经被占用",
                         emailState: "error",
                     })
@@ -140,7 +139,7 @@ class SignUp extends Component {
         } else {
             this.setState({
                 passwordState: "success",
-                passwordHlep: "密码可用",
+                passwordHlep: passwordStrengthDetection(text),
             })
         }
 
@@ -188,10 +187,11 @@ class SignUp extends Component {
             browserHistory.push("/");
         })
     }
+
     render() {
         return (
             <div className="sign-up-container">
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                     <div className="up-container">
                         <h1>注册</h1>
 

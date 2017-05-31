@@ -107,6 +107,20 @@ export function emailExist(email) {
     return getpromise
 }
 
+export function passwordStrengthDetection(password){
+    //包含数字、字母和特殊字符，且长度不小于10的密码为强度强密码
+    var strongRegularExpression = new RegExp('(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,20}');
+    //包含数字、字母，且长度不小于8的密码为强度强密码
+    var middleRegularExpression = new RegExp('(?=.*\d)(?=.*[a-zA-Z]).{8,30}');
+    if (strongRegularExpression.test(password)){
+        return "密码强度强";
+    } else if(middleRegularExpression.test(password)){
+        return "密码强度中";
+    } else{
+        return "密码强度弱";
+    }
+}
+
 
 export const actions = {
     cheakIfLogin,

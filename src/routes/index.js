@@ -29,11 +29,9 @@ export const createRoutes = (store) => ({
         user(store),
         login(store),
         signUp(store),
-
         resume(store),
-        project(store),
-        // { path: '/signUp', component: signUp },
         { path: '/blog', component: Blog },
+
         {
             path: '*',
             component: NotFind
