@@ -69,18 +69,19 @@ function sectionStyle(){
 
 
 //HeaderPart
-function beforeHeaderConstruct(){
-    var div = document.createElement("h1");
-    div.id = "beforeHeader";
-    div.appendChild(document.createTextNode("博客系统"));
-    document.body.insertBefore(div,document.body.childNodes[0]);
-}
+//function beforeHeaderConstruct(){
+//    var div = document.createElement("h1");
+//    div.id = "beforeHeader";
+//    div.appendChild(document.createTextNode("博客系统"));
+//    document.body.insertBefore(div,document.body.childNodes[0]);
+//}
 function headerConstruct(j){
     var i = 0;
 
     var div = document.createElement("div");
     div.id = "header";
-    document.body.insertBefore(div,document.body.childNodes[1]);
+    div.name = "header";
+    document.body.insertBefore(div,document.body.childNodes[0]);
 
     for(i=0;i<5;i++){
         div.appendChild(document.createElement("br"))
@@ -91,12 +92,6 @@ function headerConstruct(j){
     div.appendChild(h2);
 
     div.appendChild(document.createElement("br"));
-
-    //var a = document.createElement("a");
-    //a.id = "headerA";
-    //a.href = "PracticeBlog0.html";
-    //a.appendChild(document.createTextNode("阅读全文 >"));
-    //div.appendChild(a);
 
     for(i=0;i<6;i++){
         div.appendChild(document.createElement("br"))
@@ -151,21 +146,23 @@ function sectionConstruct(){
         sectionImg.appendChild(document.createElement("br"));
     }
 
-    section.appendChild(document.createElement("br"));
+    var sectionArticle = document.createElement("div");
+    sectionArticle.className = "sectionArticle";
+    section.appendChild(sectionArticle);
 
     var a = document.createElement("a");
     a.href = "PracticeBlog" +
         (sectionNum+5) +
         ".html";
     a.appendChild(document.createTextNode(headerNameArray[(sectionNum+5)]));
-    section.appendChild(a);
+    sectionArticle.appendChild(a);
 
     var span = document.createElement("span");
     span.appendChild(document.createTextNode(sectionSubtitleArray[sectionNum]));
-    section.appendChild(span);
+    sectionArticle.appendChild(span);
 
     for(i=0;i<3;i++){
-        section.appendChild(document.createElement("br"));
+        sectionArticle.appendChild(document.createElement("br"));
     }
 
     document.body.appendChild(document.createElement("br"));
@@ -298,13 +295,6 @@ function footerConstruct(){
         }
     }
 
-    var a = document.createElement("a");
-    a.href = "#beforeHeader";
-    footer.appendChild(a);
-
-    var img = document.createElement("img");
-    img.src = "返回页顶1.jpg";
-    a.appendChild(img);
 
     p = document.createElement("p");
     p.appendChild(document.createTextNode("____________________" +
@@ -339,14 +329,65 @@ function newPageNormalFunction(i){
     pageStyleInit();
     headerStyleInit(i);
 
-    beforeHeaderConstruct();
+    //beforeHeaderConstruct();
     headerConstruct(i);
 
     blogConstruct();
     blogBr();
     blogBr();
+
+    turnToTopButtonConstruct();
 }
 
 
 
+function turnToTopButtonConstruct(){
+    var a = document.createElement("a");
+    a.className = "turnToTop";
+    a.href = "#header";
+    document.body.appendChild(a);
+
+    var img = document.createElement("img");
+    img.src = "返回页顶1.jpg";
+    a.appendChild(img);
+
+    var style = document.createElement("style");
+    style.type = "text/css";
+    style.id = "turnToTopStyle";
+    style.appendChild(document.createTextNode(".turnToTop{" +
+        "top: 85%;" +
+        "position: fixed;" +
+        "}"));
+    head.appendChild(style);
+
+    window.addEventListener("wheel",function(){
+        var style = document.getElementById("turnToTopStyle");
+
+        if(document.body.clientHeight - document.body.scrollTop <= 1380){
+            style.replaceChild(document.createTextNode(".turnToTop{" +
+                "-webkit-animation:3s turnToTop forwards;" +
+                "position: absolute;" +
+                "}" +
+                "@-webkit-keyframes turnToTop {" +
+                    "from {" +
+                        "top: " +
+                        (900 + document.body.scrollTop) +
+                    "px}" +
+                    "to {" +
+                        "top: " +
+                        (document.body.clientHeight - 200) +
+                    "px}" +
+                "}"
+            ),style.lastChild);
+        }
+        else {
+            style.replaceChild(document.createTextNode(".turnToTop{" +
+                "top: " +
+                "85%;" +
+                "position: fixed;" +
+                "}"),style.lastChild);
+
+        }
+    },false);
+}
 
