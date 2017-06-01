@@ -14,6 +14,7 @@ let UserSchema = new Schema({
     isActive: {type: Number, default: 0, trim: true},
     isTeacher: {type: Number, default: 0, trim: true},
     label: {type: String, default: '', trim: true},
+    projects: {type: Array, default: [], trim: true},
 }, {collection: 'user'});
 
 exports.UserSchema = UserSchema;

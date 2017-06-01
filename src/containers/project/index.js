@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 import { browserHistory } from 'react-router'
-
+import $ from 'jquery'
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -12,12 +12,18 @@ import '../resume/index.scss'
 class Project extends Component {
     constructor(props) {
         super(props)
+        let path = this.props.location.pathname.split('/')
+        let defaultSelectedKeys = []
+        defaultSelectedKeys[0] = path[path.length - 1]
+        console.log(defaultSelectedKeys)
+        this.state = {
+            collapsed: true,
+            mode: 'inline',
+            defaultSelectedKeys: defaultSelectedKeys
+        };
+
     }
 
-    state = {
-        collapsed: true,
-        mode: 'inline',
-    };
 
     componentDidMount() {
     if (window) {
@@ -66,11 +72,21 @@ class Project extends Component {
                         height: "100%"
                     }}>
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['project-list']}  style={{ height: '100%' }}
-                            onClick={this.changeTheSelectedItem}>
-                        <Menu.Item key="project-list">项目中心</Menu.Item>
-                        <Menu.Item key="my-project">我的项目</Menu.Item>
-                        <Menu.Item key="create-project">创建项目</Menu.Item>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={this.state.defaultSelectedKeys}  style={{ height: '100%' }}
+                            onClick={this.changeTheSelectedItem} openKeys={['g1','g2']}>
+                        <SubMenu key="g1" title="用户" >
+                            <Menu.Item key="project-list">项目中心</Menu.Item>
+                            <Menu.Item key="my-project">我的项目</Menu.Item>
+                        {/*</SubMenu>
+                        <SubMenu title="教师">*/}
+                            {/*<Menu.Item key="project-list">项目中心</Menu.Item>
+                            <Menu.Item key="my-project">我的项目</Menu.Item>*/}
+                            <Menu.Item key="create-project">创建项目</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="g2" title="管理员">
+                            <Menu.Item key="label-list">标签管理</Menu.Item>
+                            <Menu.Item key="create-label">创建标签</Menu.Item>
+                        </SubMenu>
                     </Menu>
                 </Sider>
                 <Content width="60%" style={{ padding: '0 24px' }}>
@@ -84,6 +100,7 @@ class Project extends Component {
 function mapStateToProps(state) {
     return {
         project: state.project,
+        user: state.user
     }
 }
 

@@ -18,6 +18,8 @@ export const project = (store) => ({
         myProject(store),
         createProject(store),
         projectDetail(store),
+        labelList(store),
+        createLabel(store)
     ]
 });
 
@@ -58,6 +60,26 @@ export const projectDetail = (store) => ({
         require.ensure([], (require) => {
             const component = require('../containers/project/project-detail').default
             cb(null, component)
+        }, 'project')
+    }
+})
+
+export const labelList = (store) => ({
+    path: 'label-list',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            const component = require('../containers/project/label-list').default
+            cb(null, component)
+        }, 'project')
+    }
+})
+
+export const  createLabel = (store) => ({
+    path: 'create-label',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            const component = require('../containers/project/create-label').default
+            cb(null, component) 
         }, 'project')
     }
 })

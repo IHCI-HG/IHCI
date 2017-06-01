@@ -10,22 +10,21 @@ const columns = [{
     title: '项目名称',
     dataIndex: 'name',
     key: 'name',
+    width: '40%'
     }, {
-    title: '发布人',
-    dataIndex: 'publisherName',
-    key: 'publisherName',
-    }, {
-    title: '发布时间',
-    dataIndex: 'startProjectDate',
-    key: 'startProjectDate',
+    title: '标签',
+    dataIndex: 'label',
+    key: 'label',
+    width: '40%'
     }, {
     title: '操作',
     key: 'action',
+    width: '40%',
     render: (text, record) => (
         <span>
       <a href={'project-detail?id='+ record._id}>查看详情</a>
-      <span className="ant-divider" />
-      <a href="#">申请</a>
+      {/*<span className="ant-divider" />
+      <a href="#">申请</a>*/}
     </span>
     ),
 }];
@@ -46,13 +45,26 @@ class MyProject extends Component {
     }
 
     getProjectList() {
-        
-        $.get('http://' + window.location.host + '/api/project/project/queryProject?publisherName=' + this.props.user.user, function(projects) {
-           
-            this.setState ({
-                projects: projects
-            })
+
+         $.get('http://' + window.location.host + '/api/project/user/getUser?username=' + this.props.user.user, function(user) {
+       
+            let url = 'http://' + window.location.host + '/api/project'
+            if (user[0].isTeacher) {
+                url += '/project/queryProject?publisherName=' + this.props.user.user
+            } else {
+                
+                url += '/userAndProject/getUserAndProject?username=' + this.props.user.user
+            }
+
+            $.get(url , function(projects) {
+                
+                this.setState ({
+                    projects: projects
+                })
+            }.bind(this))
+            
         }.bind(this))
+       
     }
         
         
@@ -60,14 +72,7 @@ class MyProject extends Component {
     render() {
         return (
             <div className="project-container">
-                <Tabs defaultActiveKey="1">
-                    <TabPane tab="我创建的项目" key="1">
-                        <Table columns={columns} dataSource={this.state.projects} />
-                    </TabPane>
-                    <TabPane tab="我申请的项目" key="2">
-                        <Table columns={columns} dataSource={this.state.projects} />
-                    </TabPane>
-                </Tabs>
+                <Table columns={columns} dataSource={this.state.projects}  rowKey="_id"/>
             </div>
         );
     }
