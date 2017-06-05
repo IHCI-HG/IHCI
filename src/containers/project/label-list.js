@@ -22,7 +22,7 @@ const columns = [{
     width: '30%',
     render: (text, record) => (
         <span>
-            <a href="#">申请</a>
+            <a href="#">作废</a>
         </span>
     ),
 }];
