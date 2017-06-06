@@ -1,17 +1,7 @@
 /*body*/
-body{
-    background-color: #e2e2e2;
-}
-
-
-
-/*beforeHeader*/
-#beforeHeader{
-    background-color: #363636;
-}
-#beforeHeader h1{
-    color: white;
-}
+/*body{*/
+    /*background-color: #e2e2e2;*/
+/*}*/
 
 
 
@@ -44,7 +34,7 @@ body{
     color: black;
 }
 #headerButtons{
-    width: 51px;
+    width: 60px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -52,6 +42,9 @@ body{
 
 
 /*section*/
+.sectionArticle{
+    padding: 20px 20px 10px 20px;
+}
 #section a{
     display: block;
 
@@ -62,11 +55,12 @@ body{
     text-decoration: none;
 }
 #section{
-    background-color:#eeeeee;
-
     margin-left:auto;
     margin-right:auto;
-    width:60%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #EEEEEE;
 }
 #section span{
     color: #7f7f7f;
@@ -135,10 +129,6 @@ body{
 
     color: #7e7b80;
 }
-#footer img{
-    width: 50px;
-    height: 50px;
-}
 #footerPartThree{
     font-size: 11px;
     text-align: right;
@@ -147,4 +137,24 @@ body{
 
 
 
+.turnToTop img{
+    width: 50px;
+    height: 50px;
+}
+.turnToTop{
+    left: 90%;
+}
 
+
+
+@media (max-width: 748px){
+    #section{
+        width: 100%;
+    }
+}
+
+@media (min-width: 748px){
+    #section{
+        width: 748px;
+    }
+}

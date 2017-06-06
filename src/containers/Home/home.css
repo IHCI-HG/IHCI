@@ -1,0 +1,354 @@
+.cover {
+    background-image: url("images/bg.jpg");
+    background-position: center;
+    background-size: cover; 
+    height: 600px;
+}
+
+.cover h1 {
+    color: white;
+    font-size: 8rem;
+    margin: 0;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.cover img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 50px;
+    height: 50px;
+}
+
+.description {
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+h2 {
+    font-size: 2rem;
+    padding: 50px 0 5px 0;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+table {
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+
+.chance ul {
+    text-align: center;
+}
+
+.chance li {
+    display: inline-block;
+    padding-left: 28px;
+    margin: 5px 20px 5px 20px;
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+}
+
+.chance .smalltitle li:first-child {
+    background-image: url("images/xiangmu.png");
+}
+
+.chance .smalltitle li:nth-child(2) {
+    background-image: url("images/shixi.png");
+    padding-left: 32px;
+}
+
+.chance .smalltitle li:last-child {
+    background-image: url("images/bisai.png");
+}
+
+.chance ul li a {
+    color: rgba(0,0,0,.65);
+    font-size: 1.2rem; 
+}
+
+.chance ul li a:hover {
+    color: #c4c420;
+}
+
+.chance .pic {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.chacne .pic li {
+    width: 250px;
+    height: 150px;
+}
+
+.chance-pic {
+    margin:10px 40px 10px 40px;
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.chance-pic:hover {
+    border:1px solid #808080;
+}
+
+.model {
+    background-color: #fff;
+}
+
+.model ul {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 60rem;
+    padding-bottom: 50px;
+}
+
+.model p {
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 80px;
+}
+
+.model li {
+    display: inline-block;
+    width: 30rem;
+    vertical-align: top;
+}
+.model img {
+    float: left;
+    width: 15rem;
+    height: 15rem;
+}
+
+.model li:nth-child(3) img,
+.model li:last-child img {
+    float:right;
+}
+
+.model img:hover {
+    opacity: 0.7;
+    transition: opacity 1s;
+}
+
+.blog ul {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.blog li {
+    display: inline-block;
+    padding-bottom: 80px;
+}
+
+.blog-pic {
+    width: 300px;
+    height: 200px;
+}
+
+.help {
+    background-color: #fff;
+    padding-bottom: 20px;
+}
+
+.help ul {
+    text-align: center;
+}
+
+.help li {
+    display: inline-block;
+    width: 500px;
+    padding:30px 50px 30px 50px;
+    vertical-align: top;
+}
+
+.help li p {
+    font-size: 1.1rem;
+    padding-top:22px;
+}
+
+.help li img {
+    float: left;
+    margin-right: 10px;
+    width: 80px;
+    height: 80px;
+}
+
+footer {
+    background-color: #808080;
+}
+
+footer .top {
+    border-bottom: 1px solid #555555;
+    margin: 0 30px 5px 30px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+footer .top p {
+    color: white;
+    display: inline-block;
+    font-size: 3rem;
+}
+
+footer .top input {
+    float: right;
+    height: 23px;
+    width: 300px;
+    margin-top: 30px;
+}
+
+.footer-tb {
+    border-bottom: 1px solid #555555;
+    margin: 10px 30px 5px 30px;
+    padding-left: 50px;
+}
+
+.footer-tb img {
+    float: right;
+    margin:40px 20px 0 0 ;
+    width: 50px;
+    height: 50px;
+}
+
+footer table {
+    padding-bottom: 20px;
+    display: inline-block;
+}
+
+footer table tr td {
+    color: #fff;
+}
+
+footer table td,
+footer table th {
+    font-size: 1rem;
+    padding: 2px 50px 2px 5px;
+}
+
+footer table tr td:first-child {
+    padding-right: 5px;
+}
+
+footer th:first-child {
+    text-align:left;
+}
+
+
+footer p:last-child {
+    text-align: right;
+    padding:5px 30px 5px 0;
+    color: #fff;
+}
+
+
+@media screen and (max-width: 800px) {
+    html {
+        font-size: 10px;
+    }
+    .cover {
+        height: 300px;
+    }
+    .cover h1 {
+        padding-top: 10px;
+    }
+    .cover img {
+        width: 50px;
+        height: 50px;
+        margin-top: 10%;
+    }
+    .chance table {
+        margin-top: 5px;
+        text-align: center;
+    }
+    .chance-pic {
+        margin: 0;
+        width: 80%;
+        height: 50%;
+    }
+    .model td img {
+        width: 100%;
+        height: 25%;
+    }
+    .blog li {
+        display: block;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+    .blog ul {
+        width: 100%;
+    }
+    .blog-pic {
+        width: 80%;
+        height: 20%;
+    }
+    .help li {
+        padding: 5px 5px 5px 5px;
+        width: 70%;
+    }
+    .help li img {
+        width: 4rem;
+        height: 4rem;
+    }
+    .help li p {
+        padding-top: 1rem;
+    }
+    footer .top input {
+        display: inline-block;
+        margin-top: 10px;
+        width: 40%;
+        text-align: right;
+    }
+    footer table td,
+    footer table th {
+    padding: 2px 2% 2px 5px;
+    }
+    .footer-tb img {
+        width: 50px;
+        height: 50px;
+        margin: 5% 0 0 0;
+    }
+    .footer-tb {
+        padding-left: 2px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    html{
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 310px) {
+   #arrowup{
+        display: none;
+   }
+}
+
+@media screen and (max-width: 974px) and (min-width: 800px){
+    .model li:nth-child(2) img {
+    float:right;
+    }
+    .model li:nth-child(3) img {
+    float:left;
+    }
+}
+
+@media screen and (max-width: 614px){
+    .model li:nth-child(2) img {
+    float:right;
+    }
+    .model li:nth-child(3) img {
+    float:left;
+    }
+}
+
+

@@ -1,114 +1,132 @@
-import React from 'react'
-import './home-page.scss'
-import { Button } from 'antd';
-import {Icon} from "antd";
-import { DatePicker } from 'antd';
-const { MonthPicker, RangePicker } = DatePicker;
-function onChange(date, dateString) {
-  console.log(date, dateString);
-}
-class Home extends React.Component {
-    render() {
-        return (
-            <div className='body'>
-                <div className="hope-page">
-                <div className="inner-mask"></div>
-                <p>我们提供创新、创造、就业和创业等多层次的机会平台</p>
-                <Button className="hope-page-button" type="primary" >浏览机会</Button>
-                </div>
-                <div className="chance-page">
-                  <div className="project-content">
-                      <div className="chance-icon">
-                        <Icon type="rocket" className="project-icon"/>
-                        <span>&nbsp;项目机会</span>
-                      </div>
-                      <div className="project">
-                         <Icon type="question-circle-o" />
-                         <span>SRP项目</span>
-                     </div>
-                    <div className="project">
-                              <Icon type="question-circle-o" />
-                              <span>国创项目</span>
-                    </div>
-                    <div className="project">
-                                  <Icon type="question-circle-o" />
-                                 <span>企业项目</span>
-                    </div>                    
-                </div>
-                      <div className="company-practice">
-                          <div className="practice-content">
-                          <Icon type="hourglass" /><span>企业实习机会</span>
-                          </div>
-                          </div>
-                </div>
-                <div className="example-page">
-                 <h1>遇见优秀榜样，预见精彩人生</h1>
-                 <br/>
-                 <span>看看他（她）们的故事</span>
-                 <br />
-                 <div className="table">
-                 <table className="table">
-                     <tr>
-                         <td className="picture"><img src="http://opbzdyf3b.bkt.clouddn.com/boy.jpg" alt="wrong"/></td>
-                         <td className="text"> <span className="name">时代先锋</span><br/>
-                            <span className="cause">C++工程师</span><br/>
-                            <span className="sentence">&nbsp;成为时代先锋是我们的不懈追求，我们致力于时代先锋的培养</span></td>
-                         <td className="picture"><img src="http://opbzdyf3b.bkt.clouddn.com/coding.jpg"/></td>
-                         <td className="text"> <span className="name">时代先锋</span><br/>
-                            <span className="cause">C++工程师</span><br/>
-                            <span className="sentence">&nbsp;成为时代先锋是我们的不懈追求，我们致力于时代先锋的培养</span></td>
+import React from 'react';
+import style from './home.css'
+const arrow1 = require('./images/arrowdown.png')
+const arrow2 = require('./images/arrowup.png')
+const c1 = require('./images/1-1.png')
+const c2 = require('./images/1-2.jpg')
+const c3 = require('./images/1-3.png')
+const c4 = require('./images/1-4.png')
+const c5 = require('./images/1-5.png')
+const c6 = require('./images/1-6.png')
+const m1 = require('./images/m1.jpg')
+const m2 = require('./images/m2.jpg')
+const m3 = require('./images/m3.jpg')
+const m4 = require('./images/m4.jpg')
+const b1 = require('./images/b1.jpg')
+const b2 = require('./images/b2.jpg')
+const b3 = require('./images/b3.jpg')
+const h1 = require('./images/h1.png')
+const h2 = require('./images/h2.png')
+const h3 = require('./images/h3.png')
+const h4 = require('./images/h4.png')
+const h5 = require('./images/h5.png')
+const h6 = require('./images/h6.png')
+
+
+
+
+const Home = () => (
+    <div className="main">
+        <div className="cover" id="top">
+            <h1>iHCI</h1>
+            <p className="description">我们提供创新、创造、就业和创业等多层次的机会平台</p>
+            <a href="#jump"><img src={arrow1} alt=""/></a>
+        </div>
+        <div className="chance" id="jump">
+            <h2>机会</h2>
+            <h3>iHCI给你提升自我的机会</h3>
+            <ul className="smalltitle">
+                <li><a href="">项目</a></li>
+                <li><a href="">实习</a></li>
+                <li><a href="">比赛</a></li>
+            </ul>
+            <ul className="pic">
+                <li><img src={c1} className="chance-pic" /></li>
+                <li><img src={c2} className="chance-pic" /></li>
+                <li><img src={c3} className="chance-pic" /></li>
+                <li><img src={c4} className="chance-pic" /></li>
+                <li><img src={c5} className="chance-pic" /></li>
+                <li><img src={c6} className="chance-pic" /></li>
+            </ul>
+        </div>
+        <div className="model">
+            <h2>榜样</h2>
+            <h3>看看他们的故事</h3>
+            <ul>
+                <li><img src={m1} alt=""/><p>Tom William</p></li>
+                <li><img src={m2} alt="" /><p>Sarah Green</p></li>
+                <li><img src={m3} alt=""/><p>John Doe</p></li>
+                <li><img src={m4} alt="" /><p>Jenny White</p></li>
+            </ul>
+        </div>
+        <div className="blog">
+            <h2>博客</h2>
+            <h3>微观技术前沿</h3>
+            <ul>
+                <li><img src={b1} className="blog-pic"/></li>
+                <li><img src={b2} className="blog-pic"/></li>
+                <li><img src={b3} className="blog-pic"/></li>
+            </ul>
+        </div>
+        <div className="help">
+            <h2>iHCI这样帮助你成长</h2>
+            <ul>
+                <li>
+                     <img src={h1} alt=""/>
+                     <p>在一周内看到5-10个合适的项目机会</p>
+                 </li>
+                 <li>
+                     <img src={h2} alt=""/>
+                     <p>让你在毕业时拥有漂亮的简历</p>
+                 </li>
+                 <li>
+                     <img src={h3} alt=""/>
+                     <p>我们尊重你的隐私，企业看不到你的姓名和联系方式，除非你同意</p>
+                 </li>
+                 <li>
+                     <img src={h4} alt=""/>
+                     <p>发现更好的自己</p>
+                 </li>
+                 <li>
+                     <img src={h5} alt=""/>
+                     <p>iHCI在整个过程中向你提供专业的帮助和建议</p>
+                 </li>
+                 <li>
+                     <img src={h6} alt=""/>
+                     <p>我们不收取任何费用，相反，入职后，你还会收到我们的一份贺礼</p>
+                 </li>
+            </ul>
+        </div>
+        <footer>
+            <div className="top">
+                <p>iHCI</p>
+                <input type="text"/>
+            </div>
+            <div className="footer-tb">
+                <table>
+                    <tr>
+                        <th colSpan="2">看机会</th><th>招人才</th><th>关于我们</th>
                     </tr>
-                    <tr className="needDo">
-                        <td className="text"> <span className="name">时代先锋</span><br/>
-                            <span className="cause">C++工程师</span><br/>
-                            <span className="sentence">&nbsp;成为时代先锋是我们的不懈追求，我们致力于时代先锋的培养</span></td>
-                        <td className="picture"><img src="http://opbzdyf3b.bkt.clouddn.com/girl.jpg"/></td>
-                        <td className="text">
-                            <span className="name">时代先锋</span><br/>
-                            <span className="cause">C++工程师</span><br/>
-                            <span className="sentence">&nbsp;成为时代先锋是我们的不懈追求，我们致力于时代先锋的培养</span>
-                            </td>
-                        <td className="picture"><img src="http://opbzdyf3b.bkt.clouddn.com/view.jpg"/></td>
-                   </tr>
+                    <tr>
+                        <td>看机会</td><td className="specialcell">常见问题</td><td>招人才</td><td>关于我们</td>
+                    </tr>
+                    <tr>
+                        <td>注册</td>
+                        <td></td>
+                        <td>注册</td>
+                        <td>加入我们</td>
+                    </tr>
+                    <tr>
+                        <td>登录</td><td></td><td>登录</td>
+                    </tr>
                 </table>
-                </div>
-                 <Button className="story">更多故事</Button>
-                </div>
-                <div className="occupation-page">
-                    <h1>我们这样帮你发现职业机会</h1>
-                    <div className="service-wrapper">
-                        <div className="service-block">
-                         <img src="https://snow-assets.100offer.com/assets/index/service/1-e97c44ba3cf591445d13bedaefb2f5da.png" alt="it's wrong"/>
-                            <div className="service-text">前沿技术阵地，选择未来，拥抱未来</div>
-                        </div>
-                        <div className="service-block">
-                            <img src="https://snow-assets.100offer.com/assets/index/service/2-d456bdf3ca805b6e1e5406f172f23a57.png" alt="wrong"/>
-                            <div className="service-text">专业的指导，让你对未来发展之路更加清晰</div>
-                        </div>
-                        <div className="service-block">
-                            <img src="https://snow-assets.100offer.com/assets/index/service/3-9029a219fa0ebd1fc587ef7980aa1436.png" alt="wrong"/>
-                            <div className="service-text">多项目实践，掌握前沿技术</div>
-                        </div>
-                        <div className="service-block">
-                            <img src="https://snow-assets.100offer.com/assets/index/service/4-971fa862b236b9850a6948fedb2953ac.png" alt="wrong"/>
-                            <div className="service-text">优秀的学习氛围，让你在浓厚的学习氛围下快速成长</div>
-                        </div>
-                        <div className="service-block">
-                            <img src="https://snow-assets.100offer.com/assets/index/service/5-e0d5cf8b4d72cc509b6e014db2433fb9.png"alt="wrong"/>
-                            <div className="service-text">师兄师姐的分享，让你更加经验丰富</div>
-                        </div>
-                        <div className="service-block">
-                            <img src="https://snow-assets.100offer.com/assets/index/service/6-2a80aa41b4cb8920fa4e72402eddd564.png"alt="wrong"/>
-                            <div className="service-text">活跃的社团的环境，助你在轻松的氛围中愉快coding</div>
-                        </div>
-                    </div>
-
+                <a href="#top"><img src={arrow2} id="arrowup"/></a>
             </div>
-            </div>
-            
-        );
-    }
-}
+            <p>iHCI@2017</p>
+        </footer>
+    </div>
 
-export default Home;
+)
 
+
+export default Home

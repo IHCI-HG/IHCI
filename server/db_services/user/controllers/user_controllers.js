@@ -22,7 +22,9 @@ let UserData = mongoose.model('UserDataModel', UserDataSchema);
 
 exports.create = function (req, res) {
 
-    req.body.password = md5(req.body.password);
+    if(req.body.password != undefined) {
+        req.body.password = md5(req.body.password);
+    }
     let user = new User(req.body);
     let userData = new UserData();
 
@@ -40,7 +42,7 @@ exports.create = function (req, res) {
                         message: 'create failed'
                     });
                 } else {
-                    res.jsonp(user);
+                    res.redirect('http://120.25.207.237')
                 }
             })
         }
@@ -49,7 +51,7 @@ exports.create = function (req, res) {
 
 
 exports.isLogin = function (req, res) {
-  
+
   if (req.session.sign) {
     res.send(req.session.username);
   } else {
@@ -124,7 +126,7 @@ exports.changePassword = function (req, res) {
                         }
                     })
                 } else {
-                    res.jsonp({message: 'old password error'});   
+                    res.jsonp({message: 'old password error'});
                 }
             }
         }
