@@ -8,6 +8,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL'
 
 import { message } from 'antd';
 import $ from 'jquery'
+import { browserHistory } from 'react-router'
 
 // actions
 
@@ -50,7 +51,7 @@ export function login(arg) {
             method: 'POST',
             body: {
                 username: arg.username,
-                password: arg.password,
+                password: arg.password, 
             }
         });
 
@@ -67,6 +68,7 @@ export function login(arg) {
                     type: LOGIN,
                     user: arg.username,
                 })
+                browserHistory.push("/")
             }
         })
 

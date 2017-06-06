@@ -29,7 +29,7 @@ class Login extends Component {
 
     loginBtnHandel(e) {
         this.props.login(this.state)
-        browserHistory.push("/")
+       // browserHistory.push("/")
     }
 
     render() {
