@@ -13,6 +13,7 @@ import {
 import { user, signUp, login } from './user'
 import Blog from '../containers/Blog'
 import { resume } from './resume'
+import { project } from './project'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -22,25 +23,17 @@ export const createRoutes = (store) => ({
     component: CoreLayout,
     indexRoute: { component: Home },
     childRoutes: [
-        //demoCompoant
-        //couter为原生的，Facebook官方脚手架的组件
         counter(store),
         about(store),
         todolist(store),
         user(store),
         login(store),
         signUp(store),
-
         resume(store),
-        // { path: '/signUp', component: signUp },
+        project(store),
+ 
         { path: '/blog', component: Blog },
-        //   CounterRoute(store),
-        //   demoCompoant(store),
-        //   {
-        //     path        : '/signUp',
-        //     component   : SignUpRoute
-        //   },
-        //   UserRoute(store)
+
         {
             path: '*',
             component: NotFind

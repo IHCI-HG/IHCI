@@ -3,6 +3,7 @@
  */
 
 const User = require('../db_services/user/controllers/user_controllers');
+const Wechat = require('../db_services/user/controllers/wechat_login_controllers')
 
 module.exports = function(app) {
   /**
@@ -33,6 +34,10 @@ module.exports = function(app) {
     User.updateUser(req, res);
   });
 
+  app.post('/api/project/user/updatePassword', function (req, res) {
+    User.changePassword(req, res);
+  })
+
   // 激活或是冻结帐号
   app.get('/api/project/user/activateOrInvalidUser', function (req, res) {
     User.activateOrInvalidUser(req, res);
@@ -60,7 +65,31 @@ module.exports = function(app) {
     if (req.session.sign) {
       req.session.sign = false;
     }
-
     res.send('signout success');
   });
+
+
+  /**
+ * 关于wechat 操作
+ */
+// 使用wechat登录
+// 传入参数  code  微信扫码后得到的code
+app.get('/api/project/user/wechat/Login', function (req, res) {
+    Wechat.wechatLogin(req, res);
+});
+
+/**
+ * 帐号与微信绑定
+ * 传入参数  code  微信扫码后得到的code
+ *          _id   帐号唯一标识符（mongodb数据id）
+ */
+app.get('/api/project/user/wechat/binding', function (req, res) {
+    Wechat.wechatBinding(req, res);
+});
+
+// 帐号与微信绑定
+// 传入参数  _id   帐号唯一标识符（mongodb数据id）
+app.get('/api/project/user/wechat/unbinding', function (req, res) {
+    Wechat.wechatUnbinding(req, res);
+});
 };

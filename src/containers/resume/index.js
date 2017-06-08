@@ -105,7 +105,6 @@ class Resume extends Component {
                     <Menu
                         theme="dark"
                         mode="inline"
-                        defaultSelectedKeys={['1']}
                         onClick={this.menuHandel}
                     >
                         <Menu.Item key="1">
@@ -114,7 +113,7 @@ class Resume extends Component {
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Icon type={this.props.finished.selfIntro ? "check-circle" : "check-circle-o"} />
-                            <span className="nav-text">个人介绍 <span style={{ color: "red" }}>*</span></span>
+                            <span className="nav-text">自我介绍 <span style={{ color: "red" }}>*</span></span>
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Icon type={this.props.finished.project ? "check-circle" : "check-circle-o"} />

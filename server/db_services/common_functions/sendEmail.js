@@ -27,9 +27,8 @@ exports.sendmail = function(req, res){
     option.html += '<a href="http://www.baidu.com?username=' + username + '" target="_blank">www.baidu.com</a><br>';
     transporter.sendMail(option, function(error, response){
         if(error){
-            console.log("fail: " + error);
+            res.send('send email faild');
         }else{
-            console.log("success: " + response.message);
             res.send('send email success');
         }
     });

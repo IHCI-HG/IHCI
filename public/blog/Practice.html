@@ -7,11 +7,8 @@
 
 <body>
 
-    <!--<div id="beforeHeader">-->
-        <!--<h1>博客系统</h1>-->
-    <!--</div>-->
 
-    <div id="header">
+    <div id="header" name="header">
         <br/>
         <br/>
         <br/>
@@ -32,6 +29,7 @@
         <br/>
         <br/>
     </div><br/><br/>
+
 
             <!--<div id="nav">-->
                 <!--<ul>-->
@@ -118,8 +116,6 @@
         headerStyleInit(0);
         sectionStyle();
 
-        beforeHeaderConstruct();
-
         setInterval(setIntervalFunction,10000);
 
         for(sectionNum=0;sectionNum<5;sectionNum++){
@@ -127,6 +123,8 @@
         }
 
         footerConstruct();
+
+        turnToTopButtonConstruct();
     </script>
 </body>
 </html>

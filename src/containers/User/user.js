@@ -43,7 +43,7 @@ class User extends Component {
                         <label>账号邮箱</label>
                         <input type="email" disabled="true" className="form-control" placeholder={this.props.email + "  (已绑定)"}/>
                     </div>
-                    <div className="form-group">
+                    {/*<div className="form-group">
                         <label>密码</label>
                         <input type="password" className="form-control" placeholder='请输入新密码'/>
                         <div className="input-group">
@@ -52,7 +52,24 @@ class User extends Component {
                                  <button  className="btn btn-default pull-right">确认</button>
                             </span>
                         </div>
-                    </div>
+                    </div>*/}
+
+                    <div className={'form-group ' + this.passwordState()}>
+                    <input type='password' className='form-control' ref='password' placeholder='新密码' onChange={this.passwordCheck.bind(this)} />
+                    {this.passwordCheckSpan(this.state.passwordState)}
+                </div>
+
+                <div className={'form-group ' + this.checkNewPasswordState()}>
+                    <input type='password'
+                        className='form-control'
+                        ref='checkPassword'
+                        placeholder='确认新密码'
+                        onChange={this.checkNewPasswordCheck.bind(this)}
+                    />
+                    {this.checkPasswordSpan(this.state.checkPasswordState)}
+
+                </div>
+
                     <div className="form-group">
                         <label>第三方账号关联</label>
                         {
@@ -84,6 +101,16 @@ class User extends Component {
         return (
             <div>
                 {this.loginJudge()}
+                {
+                    this.props.ifLogin ?
+                     <div>
+                         sssss
+                     </div>
+                    :
+                    <div>
+                        ssssss
+                    </div>
+                }
             </div>
         );
     }

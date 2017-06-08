@@ -20,6 +20,8 @@ const user = require('./routes/user_route');
 const user_data = require('./routes/user_data_route');
 const resume = require('./routes/resume_route');
 const projects = require('./routes/project_route');
+const label = require('./routes/label_route');
+const article = require('./routes/acticle_route')
 
 const app = express();
 app.disable('x-powered-by');
@@ -32,13 +34,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-//
-// const db = require('./config/db_connection');
-// const User = require('./db_services/user/controllers/user_controllers');
-// const UserData = require('./db_services/user_data/user_data_controller');
-// const SendEmail = require('./db_services/common_functions/sendEmail');
-// const Resume = require('./db_services/resumes/resumes_controllers');
-// const Users = mongoose.model('UserModel', require('./db_services/user/models/user_models').UserSchema);
+
 
 app.use(cookieParser('what do you want to do?'));
 app.use(session({
@@ -59,79 +55,9 @@ user(app);
 user_data(app);
 resume(app);
 projects(app);
+label(app);
+article(app);
 
-// /**
-//  * 对user表的操作，包括：
-//  *      createUser： 创建（用户注册）
-//  *      isNameExit:  判断用户名是否已存在
-//  *      getUser： 获得用户信息
-//  *      updateUser: 更新用户数据
-//  */
-//
-// // 创建用户，即用户注册登录
-// app.post ('/api/project/user/createUser', function (req, res) {
-//   User.create(req, res);
-// });
-//
-// // 判断用户名是否可用
-// app.get ('/api/project/user/isNameExit', function (req, res) {
-//     User.isNameExit(req, res);
-// });
-//
-// // 获取用户信息
-// app.get ('/api/project/user/getUser', function (req, res) {
-//   User.getUserInformation(req, res);
-// });
-//
-// // 更新用户数据
-// app.post ('/api/project/user/updateUser', function (req, res) {
-//   User.updateUser(req, res);
-// });
-//
-// // 激活或是冻结帐号
-// app.get ('/api/project/user/activateOrInvalidUser', function (req, res) {
-//   User.activateOrInvalidUser(req, res);
-// });
-
-// //  发送邮件
-// app.get ('/api/project/sendEmail', function (req, res) {
-//    SendEmail.sendmail(req, res);
-// });
-
-// /**
-//  * 对user_data表的操作，包括：
-//  *       getUserDataById： 根据Id获得用户数据user_data
-//  *       updataUserDataById: 根据Id修改用户数据
-//  */
-//
-// // 获取用户对应的user_data数据信息
-// app.get ('/api/project/userData/getUserDataById', function (req, res) {
-//   UserData.getUserDataInformationById(req, res);
-// });
-//
-// // 更新用户对应的user_data数据信息
-// app.post ('/api/project/userData/updateUserDataById', function (req, res) {
-//     UserData.updateUserDataInformationById(req, res);
-// });
-
-// /**
-//  * 对resume表的操作，包括：
-//  *
-//  */
-//
-// // 获取用户对应的user_data数据信息
-// app.get ('/api/project/resumes/getUserDataById', function (req, res) {
-//   UserData.getUserDataInformationById(req, res);
-// });
-//
-// // 更新用户对应的user_data数据信息
-// app.post ('/api/project/resumes/createResume', function (req, res) {
-//   Resume.createResume(req, res);
-// });
-
-// This rewrites all routes requests to the root /index.html file
-// (ignoring file requests). If you want to implement universal
-// rendering, you'll want to remove this middleware.
 app.use(require('connect-history-api-fallback')());
 // Apply gzip compression
 app.use(compress());

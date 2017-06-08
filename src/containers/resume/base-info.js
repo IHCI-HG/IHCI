@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './base-info.scss'
-
+import { browserHistory } from 'react-router'
 import { Form, Icon, Input, Button, Checkbox, message, Radio, Select } from 'antd';
 const FormItem = Form.Item;
 const RadioButton = Radio.Button;
@@ -20,8 +20,10 @@ class ResumeBaseInfo extends Component {
         email: this.props.email,
     }
 
-    saveHandel = ()=> {
+    saveHandel = ()=> {}
 
+    sexHandel(e) {
+        console.log(e.target);
     }
 
     render() {
@@ -79,7 +81,7 @@ class ResumeBaseInfo extends Component {
 
                     <FormItem>
                         <span className="prefix"> 专业 <span style={{ color: "red" }}>*</span></span>
-                        <Input placeholder="请输入你的专业" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                        <Input placeholder="请输入你的专业" value={this.state.major} onChange={(e) => { this.setState({ major: e.target.value }) }} />
                     </FormItem>
 
                     <FormItem>
@@ -98,12 +100,12 @@ class ResumeBaseInfo extends Component {
 
                     <FormItem>
                         <span className="prefix"> 手机号码 <span style={{ color: "red" }}>*</span></span>
-                        <Input placeholder="请输入你的手机号码" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                        <Input placeholder="请输入你的手机号码" value={this.state.phone} onChange={(e) => { this.setState({ phone: e.target.value }) }} />
                     </FormItem>
 
                     <FormItem>
                         <span className="prefix"> 邮件地址 <span style={{ color: "red" }}>*</span></span>
-                        <Input placeholder="请输入你的邮件地址" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                        <Input placeholder="请输入你的邮件地址" value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} />
                     </FormItem>
 
                     <FormItem
@@ -114,7 +116,11 @@ class ResumeBaseInfo extends Component {
                         <Button type="primary" className="save-button" >
                             保存
                         </Button>
-                        <Button type="primary" className="next-page-button" >
+                        <Button
+                            type="primary"
+                            className="next-page-button"
+                            onClick={() => { browserHistory.push("/resume/self-intro")}}
+                        >
                             下一页
                         </Button>
                     </FormItem>
