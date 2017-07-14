@@ -40,6 +40,8 @@ class newNav extends Component {
                 browserHistory.push("/blog"); break;
             case "project":
                 browserHistory.push("/project"); break;
+            case "powerControl":
+                browserHistory.push("/powerControl");break;
         }
     }
 
@@ -53,6 +55,7 @@ class newNav extends Component {
                 <SubMenu title="用户">
                     <Menu.Item key="resume"  onClick={() => browserHistory.push("/resume")}>简历</Menu.Item>
                     <Menu.Item key="setting" onClick={() => browserHistory.push("/user")}>个人设置</Menu.Item>
+                    <Menu.Item key="powerControl" onClick={() => browserHistory.push("/powerControl")}>权限控制</Menu.Item>
                     <Menu.Item key="logout" onClick={this.props.signOut}>登出</Menu.Item>
                 </SubMenu>
             )

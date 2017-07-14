@@ -33,3 +33,13 @@ export const login = (store) => ({
         }, 'login')
     }
 })
+
+export const powerControl = (store) => ({
+  path : 'powerControl',
+  getComponent (nextState, cb) {
+    require.ensure([], (require) => {
+      const component = require('../containers/User/power-control').default
+      cb(null, component)
+    }, 'powerControl')
+  }
+})

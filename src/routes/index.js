@@ -10,7 +10,7 @@ import {
     // demo1,
     // demo2
 } from './demoCompoant'
-import { user, signUp, login } from './user'
+import { user, signUp, login, powerControl } from './user'
 import Blog from '../containers/Blog'
 import { resume } from './resume'
 import { project } from './project'
@@ -31,6 +31,7 @@ export const createRoutes = (store) => ({
         signUp(store),
         resume(store),
         project(store),
+        powerControl(store),
  
         { path: '/blog', component: Blog },
 
