@@ -26,12 +26,7 @@ const h6 = require('./images/h6.png')
 
 
 const Home = () => (
-<<<<<<< HEAD
-    <div className='jumbotron'>
-        <h1>这是主页111111111</h1>
-        <p>这是一些描述</p>
-        <button className='btn btn-primary'>Learn more</button>
-=======
+
     <div className="main">
         <div className="cover" id="top">
             <h1>iHCI</h1>
