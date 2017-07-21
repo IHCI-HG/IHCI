@@ -42,6 +42,8 @@ class newNav extends Component {
                 browserHistory.push("/project"); break;
             case "powerControl":
                 browserHistory.push("/powerControl");break;
+            case "createTeam":
+                browserHistory.push("/createTeam");break;
         }
     }
 
@@ -60,6 +62,17 @@ class newNav extends Component {
                 </SubMenu>
             )
         }
+    }
+
+    team(){
+         if(this.props.isLogin) {
+            
+                return(
+                    <SubMenu title="团队">
+                        <Menu.Item key="createTeam"  onClick={() => browserHistory.push("/createTeam")}>创建团队</Menu.Item>
+                    </SubMenu>
+                )
+         }
     }
 
     render() {
@@ -82,6 +95,7 @@ class newNav extends Component {
                         <Menu.Item key="todulist">todolist</Menu.Item>
                     </SubMenu>*/}
                     {this.user()}
+                    {this.team()}
                 </Menu>
 
             </Header>
