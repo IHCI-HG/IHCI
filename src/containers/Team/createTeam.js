@@ -34,7 +34,6 @@ class CreateTeam extends Component{
                             type = "dark"
                             className = "cancel-btn"
                             //onClick = {}
-                            //disabled = {}
                         >
                             取消
                        </Button>
