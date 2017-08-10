@@ -27,10 +27,10 @@ class TeamList extends Component{
         return(
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
-                <ul onClick={() => browserHistory.push("/createTeam")}>
+                <ul>
                     <li><p>团队</p></li>
                     
-                    <li key="add">
+                    <li key="add" onClick={() => browserHistory.push("/createTeam")}>
                        <div className="addbtn" >
                           <div className="icon-container" >
                              <img id="addIcon" src={add}/>
