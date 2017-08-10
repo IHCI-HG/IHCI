@@ -14,7 +14,7 @@ class CreateTeam extends Component{
             <div className = "createTeam-container">
                <div className = "header">
                    <p className = "title">创建新团队</p>
-                   <img id="cancel" src={close}/>
+                   <img id="cancel" src={close} onClick={() => browserHistory.push("/teamList")}/>
                </div>
                <input type="text" placeholder="团队名称"></input>
                <button>完成创建</button>
