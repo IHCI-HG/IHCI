@@ -22,10 +22,18 @@ const h4 = require('./images/h4.png')
 const h5 = require('./images/h5.png')
 const h6 = require('./images/h6.png')
 
+<<<<<<< HEAD
 
 
 
 const Home = () => (
+=======
+
+
+
+const Home = () => (
+
+>>>>>>> origin/zml
     <div className="main">
         <div className="cover" id="top">
             <h1>iHCI</h1>
@@ -124,6 +132,10 @@ const Home = () => (
             </div>
             <p>iHCI@2017</p>
         </footer>
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> origin/zml
     </div>
 
 )
