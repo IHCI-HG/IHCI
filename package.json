@@ -110,6 +110,7 @@
     "json-loader": "^0.5.4",
     "jsonwebtoken": "^7.2.1",
     "karma-phantomjs-launcher": "^1.0.2",
+    "koa": "^2.3.0",
     "kraken-js": "^2.1.0",
     "md5": "^2.2.1",
     "mongoose": "^4.7.5",
