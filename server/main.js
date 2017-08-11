@@ -58,7 +58,7 @@ resume(app);
 projects(app);
 label(app);
 article(app);
-//team(app);
+team(app);
 
 app.use(require('connect-history-api-fallback')());
 // Apply gzip compression
