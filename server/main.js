@@ -22,6 +22,7 @@ const resume = require('./routes/resume_route');
 const projects = require('./routes/project_route');
 const label = require('./routes/label_route');
 const article = require('./routes/acticle_route')
+const team = require('./routes/team_route')
 
 const app = express();
 app.disable('x-powered-by');
@@ -57,6 +58,7 @@ resume(app);
 projects(app);
 label(app);
 article(app);
+//team(app);
 
 app.use(require('connect-history-api-fallback')());
 // Apply gzip compression
