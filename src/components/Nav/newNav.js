@@ -42,8 +42,8 @@ class newNav extends Component {
                 browserHistory.push("/project"); break;
             case "powerControl":
                 browserHistory.push("/powerControl");break;
-            case "createTeam":
-                browserHistory.push("/createTeam");break;
+            case "team":
+                browserHistory.push("/teamList");break;
         }
     }
 
@@ -68,9 +68,7 @@ class newNav extends Component {
          if(this.props.isLogin) {
             
                 return(
-                    <SubMenu title="团队">
-                        <Menu.Item key="createTeam"  onClick={() => browserHistory.push("/createTeam")}>创建团队</Menu.Item>
-                    </SubMenu>
+                        <Menu.Item key="team" >团队</Menu.Item>
                 )
          }
     }
@@ -94,8 +92,9 @@ class newNav extends Component {
                         <Menu.Item key="counter">counter</Menu.Item>
                         <Menu.Item key="todulist">todolist</Menu.Item>
                     </SubMenu>*/}
-                    {this.user()}
-                    {this.team()}
+                     {this.team()}
+                     {this.user()}
+                   
                 </Menu>
 
             </Header>
