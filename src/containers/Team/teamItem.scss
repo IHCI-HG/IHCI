@@ -24,12 +24,18 @@
 
     .icon {
         float:right;
+        width: 14px;
         margin: 15px 10px 0 0;
     }
 
     #favourites {
         display: block;
-        margin-bottom: 11px;
+        margin: 0 1px 10px 1px;
+    }
+
+    #edit {
+        display: block;
+        margin: 0 1px 11px 1px;
     }
 
     p {

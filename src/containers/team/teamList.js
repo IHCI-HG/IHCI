@@ -81,7 +81,9 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-                    <li>{TeamItem}</li>
+                    <li>
+                        <TeamItem></TeamItem>
+                    </li>
                     
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal}>
@@ -91,8 +93,7 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
-                </ul>
-                <Modal
+                    <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
@@ -108,6 +109,8 @@ class TeamList extends Component{
                         <button>完成创建</button>
                     </div>
                 </Modal>
+                </ul>
+                
             </div>
         )
     }
