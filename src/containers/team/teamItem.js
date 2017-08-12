@@ -7,13 +7,29 @@ const favourites = require('./images/favourites.png')
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
-
-
+    constructor(props){
+        super(props);
+        this.state={
+            background:'rgba(0,0,0,0)'
+        }
+    }
+    handleMouseover=()=>{
+        this.setState({
+            background:'rgba(249,249,249,0.9)'
+        });
+    }
+    handleMouseOut=()=>{
+        this.setState({
+            background:'rgba(0,0,0,0)'
+        });
+    }
     render(){
         return (
-            <div className="container-active" >
-                <div className="picture"></div>
-                <div className="icon">
+            <div className="container-active" style={{background:this.state.background}}>
+                <div className="picture" 
+                onMouseOver={this.handleMouseover} 
+                onMouseOut={this.handleMouseOut}></div>
+                <div className="icon" >
                     <img id="favourites" src={favourites} />
                     <img id="edit" src={edit}/>
                 </div>
