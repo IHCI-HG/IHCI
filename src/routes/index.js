@@ -39,11 +39,7 @@ export const createRoutes = (store) => ({
         project(store),
         powerControl(store),
         teamList(store),
-<<<<<<< HEAD
         createTeam(store),
-=======
-    
->>>>>>> origin/zml
  
         { path: '/blog', component: Blog },
 
