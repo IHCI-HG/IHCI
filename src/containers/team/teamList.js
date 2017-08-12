@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+<<<<<<< HEAD
 import './teamList.scss'
 
 
@@ -8,6 +9,68 @@ const add = require('./images/add.png')
 
 class TeamList extends Component{
 
+=======
+import Modal from 'react-modal';
+import './teamList.scss'
+import"./createTeam.scss"
+import './teamItem.scss'
+import TeamItem from './teamItem'; 
+
+const close = require('./images/close.png')
+const add = require('./images/add.png')
+
+const customStyles = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        },
+
+    content : {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border:'none',
+        backgroundColor:'rgba(0, 0, 0, 0)'
+    },
+
+};
+
+
+class TeamList extends Component{
+
+    constructor() {
+        super();
+
+        this.state = {
+            modalIsOpen: false
+        };
+
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        this.subtitle.style.color = '#f00';
+    }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+    }
+
+>>>>>>> origin/zml
 
     markedTeam(){
         //星标团队
@@ -28,10 +91,17 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
+<<<<<<< HEAD
                     <li><p>团队</p></li>
                     
                     <li key="add" onClick={() => browserHistory.push("/createTeam")}>
                        <div className="addbtn" >
+=======
+                    <li>{TeamItem}</li>
+                    
+                    <li key="add" onClick={this.openModal}>
+                       <div className="addbtn" onClick={this.openModal}>
+>>>>>>> origin/zml
                           <div className="icon-container" >
                              <img id="addIcon" src={add}/>
                           </div>
@@ -39,6 +109,25 @@ class TeamList extends Component{
                        <p>创建新团队</p>
                     </li>
                 </ul>
+<<<<<<< HEAD
+=======
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                >
+
+                    <div className="createTeam-container">
+                        <div className="header">
+                            <p className="title">创建新团队</p>
+                            <img id="cancel" src={close} onClick={this.closeModal} />
+                        </div>
+                        <input type="text" placeholder="团队名称"></input>
+                        <button>完成创建</button>
+                    </div>
+                </Modal>
+>>>>>>> origin/zml
             </div>
         )
     }

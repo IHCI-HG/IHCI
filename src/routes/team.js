@@ -10,6 +10,7 @@ export const teamList = (store) => ({
         }, 'team')
     }
 });
+<<<<<<< HEAD
 
 export const createTeam = (store) => ({
     path: 'createTeam',
@@ -20,3 +21,5 @@ export const createTeam = (store) => ({
         }, 'team')
     }
 });
+=======
+>>>>>>> origin/zml
