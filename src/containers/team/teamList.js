@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-import Modal from 'react-modal'
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import Modal from 'react-modal';
 import './teamList.scss'
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
@@ -39,13 +39,13 @@ const customStyles = {
 
 class TeamList extends Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             modalIsOpen: false,
             name:"",
-            //members: [this.props.user.user, "test@test.test"]
+            members: [this.props.user.user, "test@test.test"]
         };
 
         this.openModal = this.openModal.bind(this);
@@ -85,12 +85,12 @@ class TeamList extends Component{
                 if (data != {}) {
                     notification.open({
                         message: '创建成功',
-                        //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+                        description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
                     });
                 }
             })
         }else{
-             message.info('请输入团队名称');
+             message.error('请输入团队名称');
         }
     }
 
@@ -137,7 +137,11 @@ class TeamList extends Component{
                             <p className="title">创建新团队</p>
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
-                        <input type="text" placeholder="团队名称"></input>
+                        <input 
+                            type="text" 
+                            placeholder="团队名称" 
+                            onChange={this.handleInputChange.bind(this)}
+                        ></input>
                         <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
