@@ -5,7 +5,7 @@ import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
 const favourites = require('./images/favourites.png')
-const favouritesFilling = require('./images/favourites.png')
+const favouritesFilling = require('./images/favourites-filling.png')
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
@@ -14,6 +14,7 @@ constructor(props){
         this.state={
             background:'rgba(0,0,0,0)',
             showIcon:'none',
+            name:this.props.teamName,
         }
     }
     handleMouseover=()=>{
@@ -42,7 +43,7 @@ constructor(props){
                          <img id="edit"  src={edit}/>
                      </Tooltip>
                 </div>
-                <p>iHCI</p>
+                <p>{this.state.name}</p>
             </div>
         )
     }
