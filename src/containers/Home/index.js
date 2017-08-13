@@ -125,7 +125,6 @@ const Home = () => (
             </div>
             <p>iHCI@2017</p>
         </footer>
->>>>>>> master
     </div>
 
 )

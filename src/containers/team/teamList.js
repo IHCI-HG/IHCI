@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 import './teamList.scss'
-import"./createTeam.scss"
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
+import { notification } from 'antd';
+import $ from 'jquery'
+import './createTeam.scss'
+
 
 const close = require('./images/close.png')
 const add = require('./images/add.png')
@@ -40,12 +43,14 @@ class TeamList extends Component{
         super();
 
         this.state = {
-             modalIsOpen: false,  
-             background:'rgba(0,0,0,0)'
+            modalIsOpen: false,  
+            background:'rgba(0,0,0,0)',
+            name:"",
+            //members: [this.props.user.user, "test@test.test"]
         };
 
         this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
+        //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -65,15 +70,38 @@ class TeamList extends Component{
         this.setState({ modalIsOpen: true });
     }
 
-    afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        this.subtitle.style.color = '#f00';
-    }
+    // afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     this.subtitle.style.color = '#f00';
+    // }
 
     closeModal() {
         this.setState({ modalIsOpen: false });
     }
 
+    handleInputChange(event){
+        const text = event.target.value;
+        this.setState({
+            name: text
+        });
+    }
+
+    handleSubmit(){
+        console.log(this.state)
+        $.ajax({
+            method: 'POST',
+            url: 'http://' + window.location.host + '/api/project/team/createTeam',
+            data: this.state
+        }).done(function (data) {
+            //console.log(data)
+            if (data != {}) {
+                notification.open({
+                    message: '创建成功',
+                    //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+                });
+            }
+        })
+    }
 
     markedTeam(){
         //星标团队
@@ -113,6 +141,7 @@ class TeamList extends Component{
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
+                    contentLabel="Modal"
                 >
 
                     <div className="createTeam-container">
@@ -121,7 +150,7 @@ class TeamList extends Component{
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
                         <input type="text" placeholder="团队名称"></input>
-                        <button>完成创建</button>
+                        <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
                 </ul>
@@ -157,7 +186,8 @@ class TeamList extends Component{
 
 function mapStateToProps(state) {
     return {
-
+        team: state.team,
+        user: state.user
     }
 }
 
