@@ -1,0 +1,61 @@
+
+.teamList-container {
+    margin: 0 auto;
+
+
+  .small-container {
+    margin: 40px;
+    clear: left;
+  }
+
+  .title {
+    margin-bottom: 30px;
+    font-family:PingFangSC-Regular;
+    font-size:18px;
+    color:#333333;
+  }
+
+ 
+  li {
+      width: 210px;
+      height: 140px;
+      float: left;
+      margin: 30px;
+  }
+
+  li:hover{
+       cursor:pointer
+  }
+
+
+  .addbtn {
+      background:#fff;
+      width:150px;
+      height:100px;
+      padding: 32.5px 58px;
+  }
+
+
+  .icon-container {
+    background:#cccccc;
+    width:34px;
+    height:35px;
+    border-radius:100%;
+  }
+
+  #addIcon {
+   margin: 8px;
+  }
+ 
+  p {
+      margin-top: 10px;
+      margin-left: -60px;
+      font-family:PingFangSC-Regular;
+      font-size:16px;
+      color:#333333;
+      text-align:center;
+  }
+  
+
+
+}

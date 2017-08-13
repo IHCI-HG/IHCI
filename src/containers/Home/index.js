@@ -26,6 +26,7 @@ const h6 = require('./images/h6.png')
 
 
 const Home = () => (
+
     <div className="main">
         <div className="cover" id="top">
             <h1>iHCI</h1>
@@ -124,6 +125,7 @@ const Home = () => (
             </div>
             <p>iHCI@2017</p>
         </footer>
+>>>>>>> master
     </div>
 
 )
