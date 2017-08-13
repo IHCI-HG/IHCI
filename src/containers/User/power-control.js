@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import './power-control.scss'
 
-const favourites = require('../Team/images/favourites.png')
-const edit = require('../Team/images/edit.png')
+const favourites = require('../team/images/favourites.png')
+const edit = require('../team/images/edit.png')
 
 class PowerControl extends Component{
 

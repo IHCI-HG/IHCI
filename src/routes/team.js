@@ -11,12 +11,12 @@ export const teamList = (store) => ({
     }
 });
 
-export const createTeam = (store) => ({
-    path: 'createTeam',
-    getComponent(nextState, cb) {
-        require.ensure([], (require) => {
-            const component = require('../containers/team/createTeam').default
-            cb(null, component) 
-        }, 'team')
-    }
-});
+// export const createTeam = (store) => ({
+//     path: 'createTeam',
+//     getComponent(nextState, cb) {
+//         require.ensure([], (require) => {
+//             const component = require('../containers/team/createTeam').default
+//             cb(null, component) 
+//         }, 'team')
+//     }
+// });

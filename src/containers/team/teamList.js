@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-<<<<<<< HEAD
-import './teamList.scss'
-
-
-const add = require('./images/add.png')
-
-class TeamList extends Component{
-
-=======
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 import './teamList.scss'
 import"./createTeam.scss"
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
+import { notification } from 'antd';
+import $ from 'jquery'
+
 
 const close = require('./images/close.png')
 const add = require('./images/add.png')
@@ -49,7 +43,9 @@ class TeamList extends Component{
         super();
 
         this.state = {
-            modalIsOpen: false
+            modalIsOpen: false,
+            name:"",
+            //members: [this.props.user.user, "test@test.test"]
         };
 
         this.openModal = this.openModal.bind(this);
@@ -70,7 +66,29 @@ class TeamList extends Component{
         this.setState({ modalIsOpen: false });
     }
 
->>>>>>> origin/zml
+    handleInputChange(event){
+        const text = event.target.value;
+        this.setState({
+            name: text
+        });
+    }
+
+    handleSubmit(){
+        console.log(this.state)
+        $.ajax({
+            method: 'POST',
+            url: 'http://' + window.location.host + '/api/project/team/createTeam',
+            data: this.state
+        }).done(function (data) {
+            //console.log(data)
+            if (data != {}) {
+                notification.open({
+                    message: '创建成功',
+                    //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+                });
+            }
+        })
+    }
 
     markedTeam(){
         //星标团队
@@ -91,17 +109,10 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-<<<<<<< HEAD
-                    <li><p>团队</p></li>
-                    
-                    <li key="add" onClick={() => browserHistory.push("/createTeam")}>
-                       <div className="addbtn" >
-=======
                     <li>{TeamItem}</li>
                     
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal}>
->>>>>>> origin/zml
                           <div className="icon-container" >
                              <img id="addIcon" src={add}/>
                           </div>
@@ -109,8 +120,6 @@ class TeamList extends Component{
                        <p>创建新团队</p>
                     </li>
                 </ul>
-<<<<<<< HEAD
-=======
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -124,10 +133,9 @@ class TeamList extends Component{
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
                         <input type="text" placeholder="团队名称"></input>
-                        <button>完成创建</button>
+                        <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
->>>>>>> origin/zml
             </div>
         )
     }
@@ -159,7 +167,8 @@ class TeamList extends Component{
 
 function mapStateToProps(state) {
     return {
-
+        team: state.team,
+        user: state.user
     }
 }
 
