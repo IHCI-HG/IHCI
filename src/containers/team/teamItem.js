@@ -8,10 +8,9 @@ const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
 
-
     render(){
         return (
-            <div className="container-active" >
+            <div className="container-active" ref="teamItem" >
                 <div className="picture"></div>
                 <div className="icon">
                     <img id="favourites" src={favourites} />
