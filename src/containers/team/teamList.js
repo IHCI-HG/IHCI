@@ -40,8 +40,8 @@ class TeamList extends Component{
         super();
 
         this.state = {
-            modalIsOpen: false,
-            background:'rgba(0,0,0,0)'
+             modalIsOpen: false,  
+             background:'rgba(0,0,0,0)'
         };
 
         this.openModal = this.openModal.bind(this);
@@ -49,16 +49,17 @@ class TeamList extends Component{
         this.closeModal = this.closeModal.bind(this);
     }
 
+
     handleMouseover=()=>{
-        this.setState({
-            background:'#fff'
-        });
-    }
-    handleMouseOut=()=>{
-        this.setState({
-            background:'rgba(0,0,0,0)'
-        });
-    }
+         this.setState({
+             background:'#fff'
+         });
+     }
+     handleMouseOut=()=>{
+         this.setState({
+             background:'rgba(0,0,0,0)'
+         });
+     }
 
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -93,7 +94,7 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-                    <li>
+                     <li>
                         <TeamItem></TeamItem>
                     </li>
                     
