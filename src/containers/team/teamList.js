@@ -43,14 +43,10 @@ class TeamList extends Component{
         super();
 
         this.state = {
-<<<<<<< HEAD
              modalIsOpen: false,  
-             background:'rgba(0,0,0,0)'
-=======
-            modalIsOpen: false,
-            name:"",
+             background:'rgba(0,0,0,0)',
+             name:"",
             //members: [this.props.user.user, "test@test.test"]
->>>>>>> jin.chengneng
         };
 
         this.openModal = this.openModal.bind(this);
