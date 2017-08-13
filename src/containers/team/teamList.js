@@ -7,6 +7,7 @@ import './teamItem.scss'
 import TeamItem from './teamItem'; 
 import { notification } from 'antd';
 import $ from 'jquery'
+import './createTeam.scss'
 
 
 const close = require('./images/close.png')
