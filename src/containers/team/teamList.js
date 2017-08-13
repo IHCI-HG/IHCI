@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import './teamList.scss'
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
@@ -73,21 +73,25 @@ class TeamList extends Component{
         });
     }
 
-    handleSubmit(){
+    handleSubmit() {
         console.log(this.state)
-        $.ajax({
-            method: 'POST',
-            url: 'http://' + window.location.host + '/api/project/team/createTeam',
-            data: this.state
-        }).done(function (data) {
-            //console.log(data)
-            if (data != {}) {
-                notification.open({
-                    message: '创建成功',
-                    //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
-                });
-            }
-        })
+        if (this.state.name != '') {
+            $.ajax({
+                method: 'POST',
+                url: 'http://' + window.location.host + '/api/project/team/createTeam',
+                data: this.state
+            }).done(function (data) {
+                //console.log(data)
+                if (data != {}) {
+                    notification.open({
+                        message: '创建成功',
+                        //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+                    });
+                }
+            })
+        }else{
+             message.info('请输入团队名称');
+        }
     }
 
     markedTeam(){
