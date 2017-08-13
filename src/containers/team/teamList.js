@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import Modal from 'react-modal'
 import './teamList.scss'
-import"./createTeam.scss"
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
 import { notification } from 'antd';
