@@ -45,30 +45,17 @@ class TeamList extends Component{
         this.state = {
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
-<<<<<<< HEAD
-            //  team:[{
-            //     name:"",
-            //     pro:""
-            //  },{
-            //
-            //}]
-             name:""
-=======
              teams:[{}],
              markedTeams:[{}],
              ownTeams:[{}],
              name:"",
->>>>>>> zml
             //members: [this.props.user.user, "test@test.test"]
         };
 
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-<<<<<<< HEAD
-=======
        
->>>>>>> zml
         this.handleInputChange=this.handleInputChange.bind(this);
     }
 
@@ -157,15 +144,8 @@ class TeamList extends Component{
     }
     
 
-<<<<<<< HEAD
-    // teams(){
-    //     return this.props.
-    // }
-
-=======
     //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
     //if(!this.props.isManager)
->>>>>>> zml
     myOwnTeam(){
        
         return(

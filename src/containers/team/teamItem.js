@@ -4,13 +4,8 @@ import { browserHistory } from 'react-router'
 import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
-<<<<<<< HEAD
 const favour = './images/favourites.png'
 const favourFilling = './images/favourites-filling.png'
-=======
-const favourites = require('./images/favourites.png')
-const favouritesFilling = require('./images/favourites-filling.png')
->>>>>>> zml
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
@@ -19,11 +14,8 @@ constructor(props){
         this.state={
             background:'rgba(0,0,0,0)',
             showIcon:'none',
-<<<<<<< HEAD
-            favor:favour
-=======
+            favor:favour,
             name:this.props.teamName,
->>>>>>> zml
         }
         this.handleMark=this.handleMark.bind(this);
     }
@@ -79,11 +71,7 @@ constructor(props){
                          <img id="edit"  src={edit}/>
                      </Tooltip>
                 </div>
-<<<<<<< HEAD
-                <p>{this.props.name}</p>
-=======
                 <p>{this.state.name}</p>
->>>>>>> zml
             </div>
         )
     }
