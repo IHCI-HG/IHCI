@@ -35,7 +35,7 @@ export const createRoutes = (store) => ({
         project(store),
         powerControl(store),
         teamList(store),
-    
+        //createTeam(store),
  
         { path: '/blog', component: Blog },
 

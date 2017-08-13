@@ -49,9 +49,7 @@ class Resume extends Component {
                 this.setState({collapsed: false})
             }
         }
-
     }
-
 
     onCollapse = (collapsed) => {
         this.setState({
