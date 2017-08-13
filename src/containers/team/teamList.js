@@ -49,7 +49,7 @@ class TeamList extends Component{
         };
 
         this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
+        //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -57,10 +57,10 @@ class TeamList extends Component{
         this.setState({ modalIsOpen: true });
     }
 
-    afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        this.subtitle.style.color = '#f00';
-    }
+    // afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     this.subtitle.style.color = '#f00';
+    // }
 
     closeModal() {
         this.setState({ modalIsOpen: false });
@@ -125,6 +125,7 @@ class TeamList extends Component{
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
+                    contentLabel="Modal"
                 >
 
                     <div className="createTeam-container">
