@@ -39,19 +39,26 @@ const customStyles = {
 
 class TeamList extends Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
-             name:"",
+            //  team:[{
+            //     name:"",
+            //     pro:""
+            //  },{
+            //
+            //}]
+             name:""
             //members: [this.props.user.user, "test@test.test"]
         };
 
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.handleInputChange=this.handleInputChange.bind(this);
     }
 
 
@@ -115,6 +122,10 @@ class TeamList extends Component{
         )
     }
 
+    // teams(){
+    //     return this.props.
+    // }
+
     myOwnTeam(){
         //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
         //if(!this.props.isManager)
@@ -149,7 +160,7 @@ class TeamList extends Component{
                             <p className="title">创建新团队</p>
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
-                        <input type="text" placeholder="团队名称"></input>
+                        <input type="text" placeholder="团队名称" value={this.state.name} onChange={this.handleInputChange}></input>
                         <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>

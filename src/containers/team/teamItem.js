@@ -4,8 +4,8 @@ import { browserHistory } from 'react-router'
 import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
-const favourites = require('./images/favourites.png')
-const favouritesFilling = require('./images/favourites.png')
+const favour = './images/favourites.png'
+const favourFilling = './images/favourites-filling.png'
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
@@ -14,7 +14,9 @@ constructor(props){
         this.state={
             background:'rgba(0,0,0,0)',
             showIcon:'none',
+            favor:favour
         }
+        this.handleMark=this.handleMark.bind(this);
     }
     handleMouseover=()=>{
         this.setState({
@@ -30,19 +32,45 @@ constructor(props){
         });  
     }
 
+    handleMark=()=>{
+        console.log(this.state.favor);
+        var value=this.state.favor;
+        if(value==favour)
+            value=favourFilling
+        else
+            value=favour
+        this.setState({
+            favor:value
+        });
+        
+        // $.ajax({
+        //     method: 'POST',
+        //     url: 'http://' + window.location.host + '/api/project/team/teamMark',
+        //     data: this.state
+        // }).done(function (data) {
+        //     //console.log(data)
+        //     if (data != {}) {
+        //         notification.open({
+        //             message: '创建成功',
+        //             //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+        //         });
+        //     }
+        // })
+    }
+
     render(){
         return (
             <div className="container"  style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
                 <div className="picture" ></div>
-                <div className="icon"  style={{display:this.state.showIcon}}>
+                <div className="icon"  style={{display:this.state.showIcon}} >
                      <Tooltip placement="right" title="标记为星标团队">
-                         <img id="favourites" src={favourites}/>
+                         <img id="favourites" onClick={this.handleMark.bind(this)} src={require(this.state.favor)}/>
                      </Tooltip>
                      <Tooltip placement="right" title="编辑">
                          <img id="edit"  src={edit}/>
                      </Tooltip>
                 </div>
-                <p>iHCI</p>
+                <p>{this.props.name}</p>
             </div>
         )
     }
