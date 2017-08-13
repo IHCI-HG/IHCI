@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
 const favourites = require('./images/favourites.png')
@@ -34,8 +35,12 @@ constructor(props){
             <div className="container"  style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
                 <div className="picture" ></div>
                 <div className="icon"  style={{display:this.state.showIcon}}>
-                    <img id="favourites" src={favourites}/>
-                    <img id="edit"  src={edit}/>
+                     <Tooltip placement="right" title="标记为星标团队">
+                         <img id="favourites" src={favourites}/>
+                     </Tooltip>
+                     <Tooltip placement="right" title="编辑">
+                         <img id="edit"  src={edit}/>
+                     </Tooltip>
                 </div>
                 <p>iHCI</p>
             </div>
