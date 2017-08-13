@@ -9,16 +9,24 @@ const favouritesFilling = require('./images/favourites-filling.png')
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
+<<<<<<< HEAD
 constructor(props){
         super(props);
         this.state={
             background:'rgba(0,0,0,0)',
             showIcon:'none',
             name:this.props.teamName,
+=======
+    constructor(props){
+        super(props);
+        this.state={
+            background:'rgba(0,0,0,0)'
+>>>>>>> liuzhuoman
         }
     }
     handleMouseover=()=>{
         this.setState({
+<<<<<<< HEAD
             background: 'rgba(249,249,249,0.9)',
             showIcon: 'block',
         });
@@ -42,6 +50,25 @@ constructor(props){
                      <Tooltip placement="right" title="编辑">
                          <img id="edit"  src={edit}/>
                      </Tooltip>
+=======
+            background:'rgba(249,249,249,0.9)'
+        });
+    }
+    handleMouseOut=()=>{
+        this.setState({
+            background:'rgba(0,0,0,0)'
+        });
+    }
+    render(){
+        return (
+            <div className="container-active" style={{background:this.state.background}}>
+                <div className="picture" 
+                onMouseOver={this.handleMouseover} 
+                onMouseOut={this.handleMouseOut}></div>
+                <div className="icon" >
+                    <img id="favourites" src={favourites} />
+                    <img id="edit" src={edit}/>
+>>>>>>> liuzhuoman
                 </div>
                 <p>{this.state.name}</p>
             </div>

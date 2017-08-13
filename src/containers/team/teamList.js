@@ -43,6 +43,7 @@ class TeamList extends Component{
         super();
 
         this.state = {
+<<<<<<< HEAD
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
              teams:[{}],
@@ -50,6 +51,10 @@ class TeamList extends Component{
              ownTeams:[{}],
              name:"",
             //members: [this.props.user.user, "test@test.test"]
+=======
+            modalIsOpen: false,
+            background:'rgba(0,0,0,0)'
+>>>>>>> liuzhuoman
         };
 
         this.openModal = this.openModal.bind(this);
@@ -59,6 +64,7 @@ class TeamList extends Component{
         this.handleInputChange=this.handleInputChange.bind(this);
     }
 
+<<<<<<< HEAD
 
    //获取团队列表
    // getTeamList() {
@@ -76,6 +82,18 @@ class TeamList extends Component{
              background:'rgba(0,0,0,0)'
          });
      }
+=======
+    handleMouseover=()=>{
+        this.setState({
+            background:'#fff'
+        });
+    }
+    handleMouseOut=()=>{
+        this.setState({
+            background:'rgba(0,0,0,0)'
+        });
+    }
+>>>>>>> liuzhuoman
 
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -152,12 +170,18 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
+<<<<<<< HEAD
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
                                  <li><TeamItem teamName={item.teamName}></TeamItem></li>
                          )})
                      }
+=======
+                    <li>
+                        <TeamItem></TeamItem>
+                    </li>
+>>>>>>> liuzhuoman
                     
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal} 
@@ -169,8 +193,7 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
-                </ul>
-                <Modal
+                    <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
@@ -187,6 +210,8 @@ class TeamList extends Component{
                         <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
+                </ul>
+                
             </div>
         )
     }
