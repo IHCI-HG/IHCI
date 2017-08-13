@@ -40,13 +40,26 @@ class TeamList extends Component{
         super();
 
         this.state = {
-            modalIsOpen: false
+             modalIsOpen: false,  
+             background:'rgba(0,0,0,0)'
         };
 
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
+
+
+    handleMouseover=()=>{
+         this.setState({
+             background:'#fff'
+         });
+     }
+     handleMouseOut=()=>{
+         this.setState({
+             background:'rgba(0,0,0,0)'
+         });
+     }
 
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -81,11 +94,15 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-                    <li><TeamItem></TeamItem></li>
+                     <li>
+                        <TeamItem></TeamItem>
+                    </li>
                     
                     <li key="add" onClick={this.openModal}>
-                       <div className="addbtn" onClick={this.openModal}>
-                          <div className={"icon-container"} >
+                       <div className="addbtn" onClick={this.openModal} 
+                       onMouseOver={this.handleMouseover} onMouseOut={this.handleMouseOut} 
+                       style={{background:this.state.background}}>
+                          <div className="icon-container" >
                              <img id="addIcon" src={add}/>
                           </div>
                        </div>
