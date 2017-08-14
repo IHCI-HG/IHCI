@@ -44,19 +44,6 @@ constructor(props){
             favor:value
         });
         
-        // $.ajax({
-        //     method: 'POST',
-        //     url: 'http://' + window.location.host + '/api/project/team/teamMark',
-        //     data: this.state
-        // }).done(function (data) {
-        //     //console.log(data)
-        //     if (data != {}) {
-        //         notification.open({
-        //             message: '创建成功',
-        //             //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
-        //         });
-        //     }
-        // })
     }
 
     render(){
