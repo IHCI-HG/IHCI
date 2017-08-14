@@ -6,6 +6,7 @@ var promise = require('bluebird');
 
 // Build the connection string
 var dbURI = 'mongodb://127.0.0.1:27017/project';
+//var dbURI = 'mongodb://47.93.235.243:27017/project';
 
 mongoose.Promise = promise;
 // Create the database connection

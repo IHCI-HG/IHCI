@@ -1,41 +1,202 @@
+.member-background{
+    background:#ffffff;
+    border-radius:3px;
+    width:960px;
+    height:600px;
+}
 
-    .container-active {
-        background:rgba(249,249,249,0.90);
-        border:1px solid #eeeeee;
-        width:210px;
-        height:140px;
-    }
+.left-container{
+    background:#ffffff;
+    box-shadow:1px 1px 4px 0 rgba(204,204,204,0.50);
+    width:250px;
+    height:461px;
+    position: relative;
+    left: 15px;
+    top:45px;
+}
 
-    .container {
-        background:#ececec;
-        width:210px;
-        height:140px;
-    }
+.text-fill{
+    border:1px solid #999999;
+    border-radius:2px;
+    width:228px;
+    height:28px;
+    position: relative;
+    left: 10px;
+    top:24px;
+}
 
+.team{
+    font-family:PingFangSC-Regular;
+    font-size:18px;
+    padding:37px,25px,37px,25px;
+    color:rgba(51,51,51,0.87);
+    float: left;
+    position: relative;
+    left: 20px;
+    top:10px;
+}
 
-    .picture {
-        position: relative;
-        float:left;
-        background:#eeeeee;
-        width:150px;
-        height:94px;
-        margin: 10px 16px 10px 15px;
-    }
+.more{
+    width:6px;
+    height:11px;
+    float: left;
+    position: relative;
+    left: 26px;
+    top: 19px;
+}
 
-    .icon {
-        float:right;
-        margin: 15px 10px 0 0;
-    }
+.team-name{
+    font-family:PingFangSC-Regular;
+    font-size:18px;
+    color:#305f61;
+    float: left;
+    position: relative;
+    left: 35px;
+    top:10px;
+}
 
-    #favourites {
-        display: block;
-        margin-bottom: 11px;
-    }
+.more-unfold{
+    width:12px;
+    height:7px;
+    float: left;
+    position: relative;
+    left: 45px;
+    top:21px;
+}
 
-    p {
-        font-family:PingFangSC-Regular;
-        font-size:16px;
-        color:#333333;
-        text-align:center;
-        margin-top: 10px;
-    }
+.shape{
+    width:14px;
+    height:14px;
+    float: left;
+    position: relative;
+    left: 54px;
+    top:14px;
+}
+
+.triangle{
+    transform:rotate(-90deg);
+    background:#757575;
+    width:6px;
+    height:6px;
+    float: left;
+    position: relative;
+    left: 60px;
+    top:18px;
+}
+.rectangle{
+    background:rgba(102,102,102,0.90);
+    border-radius:2px;
+    width:42px;
+    height:24px;
+    float: left;
+    position: relative;
+    left: 59px;
+    top:9px;
+}
+
+.star{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#ffffff;
+    text-align:left;
+    float: left;
+    position: relative;
+    left: 25px;
+    top:12px;
+}
+
+.member{
+    font-family:PingFangSC-Regular;
+    font-size:16px;
+    color:#333333;
+    float: left;
+    position: relative;
+    left: 291px;
+    top:-400px;
+}
+.memberlist{
+    position: relative;
+    top:30px;
+}
+
+.add-container{
+    background:#305f61;
+    width:34px;
+    height:34px;
+    border-radius:100%;
+}
+
+#addIcon {
+    margin: 8px;
+   }
+
+.add-member{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#333333;
+    letter-spacing:0;
+    line-height:20px;
+    text-align:left;
+    position: relative;
+    left: 45px;
+    top:-25px;
+}
+
+.star-team{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#333333;
+    position: relative;
+    left: 10px;
+    top:40px;
+}
+
+.line1{
+    position: relative;
+    top:10px;
+}
+
+.star-teamlist{
+    position: relative;
+    top:40px;
+}
+
+.all-team{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#333333;
+    position: relative;
+    left: 10px;
+    top: 100px
+}
+
+.line2{
+    position: relative;
+    top:10px;
+}
+
+.all-teamlist{
+    position: relative;
+    top:40px;
+}
+
+.circle{
+    background:#305f61;
+    width:34px;
+    height:34px;
+    border-radius:100%;
+}
+li{
+    margin: 10px 0;
+  }
+.name{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#333333;
+    letter-spacing:0;
+    line-height:20px;
+    text-align:left;
+    position: relative;
+    left: 45px;
+    top:-25px;
+}
