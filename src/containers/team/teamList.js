@@ -24,15 +24,14 @@ const customStyles = {
         },
 
     content : {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
+        //top: '50%',
+        //left: '50%',
+        //right: 'auto',
+        //bottom: 'auto',
+        //marginRight: '-50%',
+        //transform: 'translate(-50%, -50%)',
         border:'none',
         backgroundColor:'rgba(0, 0, 0, 0)',
-        scroll:'no',
     },
 
 };
@@ -196,7 +195,7 @@ class TeamList extends Component{
                             <p className="title">创建新团队</p>
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
-                        <input type="text" placeholder="团队名称" value={this.state.name} onChange={this.handleInputChange}></input>
+                        <input type="text" placeholder="团队名称" value={this.state.name} onChange={this.handleInputChange} autoFocus></input>
                         <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
