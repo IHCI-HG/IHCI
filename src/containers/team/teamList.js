@@ -45,9 +45,9 @@ class TeamList extends Component{
         this.state = {
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
-             teams:[{}],
-             markedTeams:[{}],
-             ownTeams:[{}],
+             teams:[],
+             markedTeams:[],
+             ownTeams:[],
              name:"",
             //members: [this.props.user.user, "test@test.test"]
         };
@@ -113,7 +113,7 @@ class TeamList extends Component{
                 
             }
         })
-
+       //添加新团队项到我拥有的团队列表
         var name = this.state.name;
         this.setState({
             ownTeams: [
