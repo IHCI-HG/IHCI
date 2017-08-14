@@ -16,8 +16,10 @@ constructor(props){
             showIcon:'none',
             favor:favour,
             name:this.props.teamName,
+            mark:0
         }
         this.handleMark=this.handleMark.bind(this);
+        // this.updateTeamMark=this.updateTeamMark.bind(this);
     }
     handleMouseover=()=>{
         this.setState({
@@ -34,25 +36,39 @@ constructor(props){
     }
 
     handleMark=()=>{
-        console.log(this.state.favor);
+        console.log(this.state);
         var value=this.state.favor;
-        if(value==favour)
-            value=favourFilling
-        else
-            value=favour
+        var mk=this.state.mark;
+        if(value==favour){
+            value=favourFilling;
+            mk=1;
+        }else{
+            value=favour;
+            mk=0;
+        }
+        console.log(value+" "+mk);
         this.setState({
-            favor:value
+            favor:value,
+            mark:mk
         });
-        
+        this.props.handleTeamMark();
+        // console.log(this.state);
+        // console.log(this.state.mark);
     }
+
+    // updateTeamMark=()=>{
+    //     this.setState({});
+    //     this.props.handleTeamMark();
+    //     // console.log("111");
+    // }
 
     render(){
         return (
-            <div className="container"  style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
+            <div className="container" checked={this.state.mark} style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
                 <div className="picture" ></div>
                 <div className="icon"  style={{display:this.state.showIcon}} >
                      <Tooltip placement="right" title="标记为星标团队">
-                         <img id="favourites" onClick={this.handleMark.bind(this)} src={require(this.state.favor)}/>
+                         <img id="favourites" onClick={this.handleMark} src={require(this.state.favor)}/>
                      </Tooltip>
                      <Tooltip placement="right" title="编辑">
                          <img id="edit"  src={edit}/>

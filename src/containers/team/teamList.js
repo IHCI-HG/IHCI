@@ -45,9 +45,9 @@ class TeamList extends Component{
         this.state = {
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
-             teams:[{}],
-             markedTeams:[{}],
-             ownTeams:[{}],
+             teams:[],
+             markedTeams:[],
+             ownTeams:[],
              name:"",
             //members: [this.props.user.user, "test@test.test"]
         };
@@ -55,7 +55,7 @@ class TeamList extends Component{
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-       
+        this.handleTeamMark=this.handleTeamMark.bind(this);        
         this.handleInputChange=this.handleInputChange.bind(this);
     }
 
@@ -98,7 +98,7 @@ class TeamList extends Component{
     }
 
     handleSubmit(){
-        console.log(this.state)
+        // console.log(this.state)
         $.ajax({
             method: 'POST',
             url: 'http://' + window.location.host + '/api/project/team/createTeam',
@@ -122,7 +122,22 @@ class TeamList extends Component{
                 },
                 ...this.state.ownTeams
             ]
+        });
+        console.log(this.state);
+    }
+
+    handleTeamMark(){
+        var team=[];
+        this.state.teams.map(function(item){  
+           if(item.marked==1){
+               team.add(item);
+           } 
+        });
+        
+        this.setState({
+            markedTeams:team
         })
+        console.log(team)
     }
    
     //星标团队
@@ -135,7 +150,7 @@ class TeamList extends Component{
                      {  
                         this.state.markedTeams.map(function (item) {
                              return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                                 <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
                          )})
                      }
                 </ul>
@@ -155,7 +170,7 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                                 <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
                          )})
                      }
                     
@@ -202,7 +217,7 @@ class TeamList extends Component{
                      {  
                         this.state.teams.map(function (item) {
                              return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                                 <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
                          )})
                      }
                 </ul>
