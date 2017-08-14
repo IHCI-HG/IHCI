@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import './teamList.scss'
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
-import { notification } from 'antd';
+import { notification, Alert } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
@@ -31,7 +31,8 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         border:'none',
-        backgroundColor:'rgba(0, 0, 0, 0)'
+        backgroundColor:'rgba(0, 0, 0, 0)',
+        scroll:'no',
     },
 
 };
@@ -98,6 +99,12 @@ class TeamList extends Component{
     }
 
     handleSubmit(){
+        if(!this.state.name){
+            notification.open({
+                    message: '请输入团队名称 !',
+                });
+            return;
+        }
         console.log(this.state)
         $.ajax({
             method: 'POST',
@@ -127,20 +134,27 @@ class TeamList extends Component{
    
     //星标团队
     markedTeam(){
-        
-        return(
-            <div className="small-container">
-                <span className="title">星标团队</span>
-                <ul>
-                     {  
-                        this.state.markedTeams.map(function (item) {
-                             return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
-                         )})
-                     }
-                </ul>
-            </div>
-        )
+        if(!this.state.markedTeams.length)
+            return(
+                <div className="small-container">
+                    <span className="title">星标团队</span>
+                    <ul><li>还没有星标团队哦~</li></ul>
+                </div>
+            )
+        else
+            return(
+                <div className="small-container">
+                    <span className="title">星标团队</span>
+                    <ul>
+                        {  
+                            this.state.markedTeams.map(function (item) {
+                                return (
+                                    <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                            )})
+                        }
+                    </ul>
+                </div>
+            )
     }
     
 
@@ -194,21 +208,28 @@ class TeamList extends Component{
  
     //我参与的团队
     myTeam(){
-       
-        return(
-            <div className="small-container">
-                <span className="title">我参与的团队</span>
-                <ul>
-                     {  
-                        this.state.teams.map(function (item) {
-                             return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
-                         )})
-                     }
-                </ul>
-                
-            </div>
-        )
+        if(!this.state.teams.length)
+            return(
+                <div className="small-container">
+                    <span className="title">我参与的团队</span>
+                    <ul><li>你还没有团队哦~</li></ul>
+                </div>
+            )
+        else
+            return(
+                <div className="small-container">
+                    <span className="title">我参与的团队</span>
+                    <ul>
+                        {  
+                            this.state.teams.map(function (item) {
+                                return (
+                                    <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                            )})
+                        }
+                    </ul>
+                    
+                </div>
+            )
     }
 
     render(){
