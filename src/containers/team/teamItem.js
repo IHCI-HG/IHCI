@@ -55,13 +55,6 @@ constructor(props){
         // console.log(this.state);
         // console.log(this.state.mark);
     }
-
-    // updateTeamMark=()=>{
-    //     this.setState({});
-    //     this.props.handleTeamMark();
-    //     // console.log("111");
-    // }
-
     render(){
         return (
             <div className="container" checked={this.state.mark} style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
