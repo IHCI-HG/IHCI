@@ -55,7 +55,7 @@ class TeamList extends Component{
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-       
+        //this._handleTeamMark=this.handleTeamMark.bind(this);
         this.handleInputChange=this.handleInputChange.bind(this);
     }
 
@@ -125,10 +125,31 @@ class TeamList extends Component{
             ownTeams: [
                 ...this.state.ownTeams,
                 {
-                    teamName:name,
+                    teamName: name,
+                    mark: 0,
+                    inMarkedTeam: 0,
                 },
             ]
         })
+    }
+    
+    //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
+    handleTeamMark(index){
+        this.state.teams.map(function(item){  
+            //有星标且原来不在星标团队中
+           if(item.mark && !item.inMarkedTeam){ 
+               this.setState({
+                   markedTeams: [
+                       ...this.state.markedTeams,
+                       item,
+                   ]
+               })
+           }//取消星标且原来在星标团队中 
+           else if (!item.mark && item.inMarkedTeam)
+               this.setState({
+                   markedTeams: this.state.markedTeams.filter((elem, i) => index !== i)
+               })
+        });
     }
    
     //星标团队
@@ -148,7 +169,7 @@ class TeamList extends Component{
                         {  
                             this.state.markedTeams.map(function (item) {
                                 return (
-                                    <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                                    <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
                             )})
                         }
                     </ul>
@@ -179,7 +200,7 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                                 <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
                          )})
                      }
                     
@@ -196,7 +217,7 @@ class TeamList extends Component{
                             <p className="title">创建新团队</p>
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
-                        <input type="text" placeholder="团队名称" value={this.state.name} onChange={this.handleInputChange} autoFocus></input>
+                        <input type="text" placeholder="团队名称"  onChange={this.handleInputChange} autoFocus></input>
                         <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
@@ -223,7 +244,7 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                                    <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
                             )})
                         }
                     </ul>
@@ -233,6 +254,7 @@ class TeamList extends Component{
     }
 
     render(){
+        this._handleTeamMark=this.handleTeamMark.bind(this);
         return (
             <div className="teamList-container">
                 {this.markedTeam()}
