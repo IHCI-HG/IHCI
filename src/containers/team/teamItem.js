@@ -34,14 +34,16 @@ constructor(props){
     render(){
         return (
             <div className="container"  style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
-                <div className="picture" ></div>
-                <div className="icon"  style={{display:this.state.showIcon}}>
-                     <Tooltip placement="right" title="标记为星标团队">
-                         <img id="favourites" src={favourites}/>
-                     </Tooltip>
-                     <Tooltip placement="right" title="编辑">
-                         <img id="edit"  src={edit}/>
-                     </Tooltip>
+                <div className="container2">
+                    <div className="picture" ></div>
+                    <div className="icon" style={{ display: this.state.showIcon }}>
+                        <Tooltip placement="right" title="标记为星标团队">
+                            <img id="favourites" src={favourites} />
+                        </Tooltip>
+                        <Tooltip placement="right" title="编辑">
+                            <img id="edit" src={edit} />
+                        </Tooltip>
+                </div>
                 </div>
                 <p>{this.state.name}</p>
             </div>

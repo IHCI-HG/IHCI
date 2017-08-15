@@ -123,10 +123,10 @@ class TeamList extends Component{
         var name = this.state.name;
         this.setState({
             ownTeams: [
+                ...this.state.ownTeams,
                 {
                     teamName:name,
                 },
-                ...this.state.ownTeams
             ]
         })
     }
@@ -165,13 +165,6 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-                     {  
-                        this.state.ownTeams.map(function (item) {
-                             return (
-                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
-                         )})
-                     }
-                    
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal} 
                        onMouseOver={this.handleMouseover} onMouseOut={this.handleMouseOut} 
@@ -182,6 +175,14 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
+
+                     {  
+                        this.state.ownTeams.map(function (item) {
+                             return (
+                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                         )})
+                     }
+                    
                     <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}

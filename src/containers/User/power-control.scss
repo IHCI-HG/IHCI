@@ -1,17 +1,15 @@
 
-    .container-active {
+    .container {
         background:rgba(249,249,249,0.90);
         border:1px solid #eeeeee;
         width:210px;
         height:140px;
     }
 
-    .container {
-        background:#ececec;
-        width:210px;
-        height:140px;
+    .small-container {
+        height:115px;
+        width: 210px;
     }
-
 
     .picture {
         position: relative;
@@ -24,18 +22,23 @@
 
     .icon {
         float:right;
+        width: 14px;
         margin: 15px 10px 0 0;
     }
 
     #favourites {
         display: block;
-        margin-bottom: 11px;
+        margin: 0 1px 10px 1px;
+    }
+
+    #edit {
+        display: block;
+        margin: 0 1px 11px 1px;
     }
 
     p {
         font-family:PingFangSC-Regular;
-        font-size:16px;
+        font-size:14px;
         color:#333333;
         text-align:center;
-        margin-top: 10px;
     }
