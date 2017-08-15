@@ -188,8 +188,7 @@ class TeamList extends Component{
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
-                    contentLabel="Modal"
-                >
+                    contentLabel="Modal">
 
                     <div className="createTeam-container">
                         <div className="header">
