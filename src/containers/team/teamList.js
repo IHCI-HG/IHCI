@@ -160,7 +160,7 @@ class TeamList extends Component{
     
 
     //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
-    //if(!this.props.isManager)
+
     myOwnTeam(){
        
         return(
@@ -207,7 +207,7 @@ class TeamList extends Component{
         )
     }
  
-    //我参与的团队
+    //我参与的团队   
     myTeam(){
        
         return(
