@@ -43,15 +43,39 @@ class TeamList extends Component{
         super(props);
 
         this.state = {
-            modalIsOpen: false,
-            name:"",
-            members: [this.props.user.user, "test@test.test"]
+             modalIsOpen: false,  
+             background:'rgba(0,0,0,0)',
+             teams:[{}],
+             markedTeams:[{}],
+             ownTeams:[{}],
+             name:"",
+             members: [this.props.user.user, "test@test.test"]
         };
 
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+       
+        this.handleInputChange=this.handleInputChange.bind(this);
     }
+
+
+   //获取团队列表
+   // getTeamList() {
+   //
+   // }
+
+
+    handleMouseover=()=>{
+         this.setState({
+             background:'#fff'
+         });
+     }
+     handleMouseOut=()=>{
+         this.setState({
+             background:'rgba(0,0,0,0)'
+         });
+     }
 
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -79,6 +103,7 @@ class TeamList extends Component{
             $.ajax({
                 method: 'POST',
                 url: 'http://' + window.location.host + '/api/project/team/createTeam',
+                //data: JSON.stringify(this.state)
                 data: this.state
             }).done(function (data) {
                 //console.log(data)
@@ -89,42 +114,66 @@ class TeamList extends Component{
                     });
                 }
             })
-        }else{
-             message.error('请输入团队名称');
+        } else {
+            message.error('请输入团队名称');
         }
-    }
 
+        var name = this.state.name;
+        this.setState({
+            ownTeams: [
+                {
+                    teamName: name,
+                },
+                ...this.state.ownTeams
+            ]
+        })
+    }
+   
+    //星标团队
     markedTeam(){
-        //星标团队
+        
         return(
             <div className="small-container">
                 <span className="title">星标团队</span>
                 <ul>
-                    <li>星标团队列表</li>
+                     {  
+                        this.state.markedTeams.map(function (item) {
+                             return (
+                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                         )})
+                     }
                 </ul>
             </div>
         )
     }
+    
 
+    //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
+    //if(!this.props.isManager)
     myOwnTeam(){
-        //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
-        //if(!this.props.isManager)
+       
         return(
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-                    <li>{TeamItem}</li>
+                     {  
+                        this.state.ownTeams.map(function (item) {
+                             return (
+                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                         )})
+                     }
                     
                     <li key="add" onClick={this.openModal}>
-                       <div className="addbtn" onClick={this.openModal}>
+                       <div className="addbtn" onClick={this.openModal} 
+                       onMouseOver={this.handleMouseover} onMouseOut={this.handleMouseOut} 
+                       style={{background:this.state.background}}>
                           <div className="icon-container" >
                              <img id="addIcon" src={add}/>
                           </div>
                        </div>
                        <p>创建新团队</p>
                     </li>
-                </ul>
-                <Modal
+                    <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
@@ -137,25 +186,29 @@ class TeamList extends Component{
                             <p className="title">创建新团队</p>
                             <img id="cancel" src={close} onClick={this.closeModal} />
                         </div>
-                        <input 
-                            type="text" 
-                            placeholder="团队名称" 
-                            onChange={this.handleInputChange.bind(this)}
-                        ></input>
+                        <input type="text" placeholder="团队名称" value={this.state.name} onChange={this.handleInputChange}></input>
                         <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                     </div>
                 </Modal>
+                </ul>
+                
             </div>
         )
     }
-
+ 
+    //我参与的团队
     myTeam(){
-        //我参与的团队
+       
         return(
             <div className="small-container">
                 <span className="title">我参与的团队</span>
                 <ul>
-                    <li><p>团队</p></li>
+                     {  
+                        this.state.teams.map(function (item) {
+                             return (
+                                 <li><TeamItem teamName={item.teamName}></TeamItem></li>
+                         )})
+                     }
                 </ul>
                 
             </div>
@@ -185,4 +238,4 @@ const mapDispatchToProps = {
     
 }
 
-export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList);
+export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)
