@@ -1,5 +1,5 @@
 const teamInitialState = {
-   
+   teams:[]
 }
 
 const team = (state = teamInitialState, action) => {

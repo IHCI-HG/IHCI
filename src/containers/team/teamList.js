@@ -45,15 +45,15 @@ class TeamList extends Component{
         this.state = {
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
-             teams:[{
-                 teamName:"test",
-                 mark:false
-             }],
+             teams:[],
              markedTeams:[],
              ownTeams:[],
+             //创建新团队属性
              name:"",
              members: [this.props.user.user, "test@test.test"]
         };
+
+        this.getTeamList();
 
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -63,10 +63,15 @@ class TeamList extends Component{
     }
 
 
-   //获取团队列表
-   // getTeamList() {
-   //
-   // }
+    //获取团队列表
+    getTeamList() {
+        $.get('http://' + window.location.host + '/api/project/team/queryTeam', function(teams) {
+            //console.log(teams)
+            this.setState ({
+                teams: teams
+            })
+        }.bind(this))
+    }
 
 
     handleMouseover=()=>{
@@ -101,7 +106,10 @@ class TeamList extends Component{
     }
 
     handleSubmit() {
-        console.log(this.state)
+        var id = this.props.user.user +" "+ Date();
+        this.setState({
+            _id: id
+        });
         if (this.state.name != '') {
             $.ajax({
                 method: 'POST',
@@ -115,6 +123,8 @@ class TeamList extends Component{
                         message: '创建成功',
                         description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
                     });
+                    //成功创建后跳转到改团队页面
+                    //browserHistory.push('teamList');
                 }
             })
         } else {
@@ -129,6 +139,7 @@ class TeamList extends Component{
                     teamName: name,
                     mark: 0,
                     inMarkedTeam: 0,
+                    _id: id
                 },
             ]
         })
@@ -170,7 +181,7 @@ class TeamList extends Component{
                         {  
                             this.state.markedTeams.map(function (item) {
                                 return (
-                                    <li key="item.teamName">
+                                    <li key={item._id}>
                                         <TeamItem 
                                             teamName={item.teamName} 
                                             mark={item.mark} 
@@ -207,7 +218,7 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                <li key="item.teamName">
+                                <li key={item._id}>
                                     <TeamItem 
                                         teamName={item.teamName} 
                                         mark={item.mark} 
@@ -257,9 +268,9 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key="item.teamName">
+                                    <li key={item._id}>
                                         <TeamItem 
-                                            teamName={item.teamName} 
+                                            teamName={item.name} 
                                             mark={item.mark} 
                                             //handleTeamMark={this.handleTeamMark}
                                             ></TeamItem>
