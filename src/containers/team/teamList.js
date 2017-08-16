@@ -5,11 +5,7 @@ import Modal from 'react-modal';
 import './teamList.scss'
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
-<<<<<<< HEAD
 import { notification, message } from 'antd';
-=======
-import { notification, Alert } from 'antd';
->>>>>>> origin/zml
 import $ from 'jquery'
 import './createTeam.scss'
 
@@ -49,7 +45,10 @@ class TeamList extends Component{
         this.state = {
              modalIsOpen: false,  
              background:'rgba(0,0,0,0)',
-             teams:[],
+             teams:[{
+                 teamName:"test",
+                 mark:false
+             }],
              markedTeams:[],
              ownTeams:[],
              name:"",
@@ -101,7 +100,6 @@ class TeamList extends Component{
         });
     }
 
-<<<<<<< HEAD
     handleSubmit() {
         console.log(this.state)
         if (this.state.name != '') {
@@ -123,42 +121,14 @@ class TeamList extends Component{
             message.error('请输入团队名称');
         }
 
-=======
-    handleSubmit(){
-        if(!this.state.name){
-            notification.open({
-                    message: '请输入团队名称 !',
-                });
-            return;
-        }
-        console.log(this.state)
-        $.ajax({
-            method: 'POST',
-            url: 'http://' + window.location.host + '/api/project/team/createTeam',
-            data: this.state
-        }).done(function (data) {
-            //console.log(data)
-            if (data != {}) {
-                notification.open({
-                    message: '创建成功',
-                    //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
-                });
-                
-            }
-        })
-       //添加新团队项到我拥有的团队列表
->>>>>>> origin/zml
         var name = this.state.name;
         this.setState({
             ownTeams: [
                 ...this.state.ownTeams,
                 {
                     teamName: name,
-<<<<<<< HEAD
-=======
                     mark: 0,
                     inMarkedTeam: 0,
->>>>>>> origin/zml
                 },
             ]
         })
@@ -200,7 +170,13 @@ class TeamList extends Component{
                         {  
                             this.state.markedTeams.map(function (item) {
                                 return (
-                                    <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
+                                    <li key="item.teamName">
+                                        <TeamItem 
+                                            teamName={item.teamName} 
+                                            mark={item.mark} 
+                                            //handleTeamMark={this.handleTeamMark}
+                                        ></TeamItem>
+                                    </li>
                             )})
                         }
                     </ul>
@@ -231,7 +207,13 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                 <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
+                                <li key="item.teamName">
+                                    <TeamItem 
+                                        teamName={item.teamName} 
+                                        mark={item.mark} 
+                                        //handleTeamMark={this.handleTeamMark}
+                                    ></TeamItem>
+                                </li>
                          )})
                      }
                     
@@ -275,7 +257,13 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
+                                    <li key="item.teamName">
+                                        <TeamItem 
+                                            teamName={item.teamName} 
+                                            mark={item.mark} 
+                                            //handleTeamMark={this.handleTeamMark}
+                                            ></TeamItem>
+                                    </li>
                             )})
                         }
                     </ul>
@@ -285,7 +273,7 @@ class TeamList extends Component{
     }
 
     render(){
-        this._handleTeamMark=this.handleTeamMark.bind(this);
+        //this._handleTeamMark=this.handleTeamMark.bind(this);
         return (
             <div className="teamList-container">
                 {this.markedTeam()}

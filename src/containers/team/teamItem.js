@@ -20,7 +20,7 @@ constructor(props){
             inMarkedTeam: this.props.inMarkedTeam,
         }
 
-        handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
+        //handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
         //this.handleMark=this.handleMark.bind(this);
         // this.updateTeamMark=this.updateTeamMark.bind(this);
     }
@@ -53,7 +53,7 @@ constructor(props){
         this.setState({
             mark: !this.state.mark,
         });
-        this.handleTeamMark(index);//调用父节点teamlist的方法
+        //this.handleTeamMark(index);//调用父节点teamlist的方法
         
         this.setState({
             isMarkedTeam: !this.state.isMarkedTeam,
@@ -69,7 +69,11 @@ constructor(props){
                     <div className="picture" ></div>
                     <div className="icon" style={{ display: this.state.showIcon }}>
                         <Tooltip placement="right" title="标记为星标团队">
-                            <img id="favourites" onClick={this.handleMark.bind(this,index)} src={this.state.mark ? favourFilling : favour} />
+                            <img 
+                                id="favourites" 
+                                onClick={this.handleMark.bind(this.index)} 
+                                src={this.state.mark ? favourFilling : favour} 
+                            />
                         </Tooltip>
                         <Tooltip placement="right" title="编辑">
                             <img id="edit" src={edit} />
