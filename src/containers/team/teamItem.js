@@ -18,9 +18,10 @@ constructor(props){
             name: this.props.teamName,
             mark: this.props.mark,
             inMarkedTeam: this.props.inMarkedTeam,
+            members: [],
         }
 
-        handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
+        //handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
         //this.handleMark=this.handleMark.bind(this);
         // this.updateTeamMark=this.updateTeamMark.bind(this);
     }
@@ -38,7 +39,7 @@ constructor(props){
         });  
     }
 
-    handleMark=(index)=>{
+    handleMark=()=>{
         console.log(this.state);
         //var value=this.state.favor;
         //var mk=this.state.mark;
@@ -53,7 +54,7 @@ constructor(props){
         this.setState({
             mark: !this.state.mark,
         });
-        this.handleTeamMark(index);//调用父节点teamlist的方法
+        //this.handleTeamMark(index);//调用父节点teamlist的方法
         
         this.setState({
             isMarkedTeam: !this.state.isMarkedTeam,
@@ -68,8 +69,8 @@ constructor(props){
                 <div className="container2">
                     <div className="picture" ></div>
                     <div className="icon" style={{ display: this.state.showIcon }}>
-                        <Tooltip placement="right" title="标记为星标团队">
-                            <img id="favourites" onClick={this.handleMark.bind(this,index)} src={this.state.mark ? favourFilling : favour} />
+                        <Tooltip placement="right" title="星标">
+                            <img id="favourites" onClick={this.handleMark} src={this.state.mark ? favourFilling : favour} />
                         </Tooltip>
                         <Tooltip placement="right" title="编辑">
                             <img id="edit" src={edit} />

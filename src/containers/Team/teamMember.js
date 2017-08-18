@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { Menu, Select, Input, Icon, Breadcrumb, Tooltip} from 'antd';
-import  TeamItem2  from '../Team/teamItem2';
-import './power-control.scss'
-import '../Team/teamItem2.scss'
+import  TeamItem2  from './teamItem2';
+import './teamMember.scss'
+import './teamItem2.scss'
 const Option = Select.Option;
 const Search = Input.Search;
 
-const favour = require('../Team/images/favourites.png')
-const favourFilling = require('../Team/images/favourites-filling.png')
-const border = require('../Team/images/artboard.png')
-const add = require('../Team/images/add.png')
+const favour = require('./images/favourites.png')
+const favourFilling = require('./images/favourites-filling.png')
+const border = require('./images/artboard.png')
+const add = require('./images/add.png')
  
  
-class PowerControl extends Component{
+class TeamMember extends Component{
 
     constructor(props){
         super(props);
@@ -62,7 +62,7 @@ class PowerControl extends Component{
             <div className="container">
                 <div className="nav" >
                     <Breadcrumb>
-                        <Breadcrumb.Item><a href="">团队</a></Breadcrumb.Item>
+                        <Breadcrumb.Item><a onClick={() => browserHistory.push("/teamList")}>团队</a></Breadcrumb.Item>
                         {/*<Dropdown overlay={this.menu()} trigger={['click']}>
                             <a className="ant-dropdown-link" href="#">
                                 {this.state.currentTeam} <Icon type="down" />
@@ -78,7 +78,7 @@ class PowerControl extends Component{
                 <div className="small-container">
                     <div className="teamList-container">
                         <Search
-                                placeholder="input search text"
+                                placeholder="查找团队"
                                 style={{ width: 220, margin: 20 }}
                                 onSearch={this.handleSearch.bind(this)}
                             />
@@ -146,4 +146,4 @@ const mapDispatchToProps = {
     
 }
 
-export default PowerControl = connect(mapStateToProps, mapDispatchToProps)(PowerControl);
+export default TeamMember = connect(mapStateToProps, mapDispatchToProps)(TeamMember);

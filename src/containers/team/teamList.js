@@ -110,7 +110,7 @@ class TeamList extends Component{
             url: 'http://' + window.location.host + '/api/project/team/createTeam',
             data: this.state
         }).done(function (data) {
-            //console.log(data)
+            //console.log(data) 
             if (data != {}) {
                 notification.open({
                     message: '创建成功',
@@ -128,13 +128,16 @@ class TeamList extends Component{
                     teamName: name,
                     mark: 0,
                     inMarkedTeam: 0,
+                    members:[],
                 },
             ]
         })
+
+        browserHistory.push("/teamMember")
     }
     
     //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
-    handleTeamMark(index){
+    /*handleTeamMark(index){
         this.state.teams.map(function(item){  
             //有星标且原来不在星标团队中
            if(item.mark && !item.inMarkedTeam){ 
@@ -150,7 +153,7 @@ class TeamList extends Component{
                    markedTeams: this.state.markedTeams.filter((elem, i) => index !== i)
                })
         });
-    }
+    }*/
    
     //星标团队
     markedTeam(){
@@ -169,7 +172,7 @@ class TeamList extends Component{
                         {  
                             this.state.markedTeams.map(function (item) {
                                 return (
-                                    <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
+                                    <li key={item.teamName}><TeamItem teamName={item.teamName} mark={item.mark} /*handleTeamMark={this.handleTeamMark}*/></TeamItem></li>
                             )})
                         }
                     </ul>
@@ -200,7 +203,7 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                 <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
+                                 <li key={item.teamName}><TeamItem teamName={item.teamName} mark={item.mark} onClick={() => browserHistory.push("/teamMember")}/*handleTeamMark={this.handleTeamMark}*/></TeamItem></li>
                          )})
                      }
                     
@@ -244,17 +247,15 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key="item.teamName"><TeamItem teamName={item.teamName} mark={item.mark} handleTeamMark={this.handleTeamMark}></TeamItem></li>
+                                    <li key={item.teamName}><TeamItem teamName={item.teamName} mark={item.mark} /*handleTeamMark={this.handleTeamMark}*/></TeamItem></li>
                             )})
                         }
                     </ul>
-                    
                 </div>
             )
     }
 
     render(){
-        this._handleTeamMark=this.handleTeamMark.bind(this);
         return (
             <div className="teamList-container">
                 {this.markedTeam()}
