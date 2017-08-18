@@ -33,12 +33,13 @@ img:hover {
     background:#ffffff;
 }
 
-.scroll-container {
+.scroll-team {
    background:#ffffff;
    box-shadow:1px 1px 4px 0 rgba(204,204,204,0.50);
    width:260px;
-   height:500px;
+   height:450px;
    margin-left: 15px;
+   padding-bottom: 20px;
    overflow-y: scroll;
    overflow-x: hidden;
 }
@@ -59,9 +60,18 @@ img:hover {
     width:228px;
 }
 
-.memberList-container {
+.scroll-member {
     width: 695px;
+    height:450px;
     margin-left: 26px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.memberList-container {
+    width: 685px;
+    margin-left: 20px;
+    overflow: hidden;
 }
 
 span {

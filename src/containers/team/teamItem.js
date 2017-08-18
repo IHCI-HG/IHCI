@@ -69,7 +69,7 @@ constructor(props){
                 <div className="container2">
                     <div className="picture" ></div>
                     <div className="icon" style={{ display: this.state.showIcon }}>
-                        <Tooltip placement="right" title="星标">
+                        <Tooltip placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
                             <img id="favourites" onClick={this.handleMark} src={this.state.mark ? favourFilling : favour} />
                         </Tooltip>
                         <Tooltip placement="right" title="编辑">

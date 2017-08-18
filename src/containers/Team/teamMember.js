@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { Menu, Select, Input, Icon, Breadcrumb, Tooltip} from 'antd';
-import  TeamItem2  from './teamItem2';
+import  TeamItem2  from './teamItem2'
+import MemberItem from './memberItem'
 import './teamMember.scss'
 import './teamItem2.scss'
+import './memberItem.scss'
 const Option = Select.Option;
 const Search = Input.Search;
 
@@ -69,7 +71,7 @@ class TeamMember extends Component{
                             </a>
                         </Dropdown>*/}
                         {this.menu()}
-                        <Tooltip placement="right" title="星标">
+                        <Tooltip placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
                             <img id="favour" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
                         </Tooltip>
                     </Breadcrumb>
@@ -82,17 +84,11 @@ class TeamMember extends Component{
                                 style={{ width: 220, margin: 20 }}
                                 onSearch={this.handleSearch.bind(this)}
                             />
-                        <div className="scroll-container">
+                        <div className="scroll-team">
                             <div className="markedTeam">
                                 <p>星标团队</p>
                                 <img id="border" src={border} />
                                 <ul>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
                                     <li><TeamItem2></TeamItem2></li>
                                     <li><TeamItem2></TeamItem2></li>
                                 </ul>
@@ -117,17 +113,30 @@ class TeamMember extends Component{
 
                     <div className="memberList-container">
                         <span>所有成员</span>
-                        <ul>
-                           <li /*onClick={this.openModal}*/>
-                                <div className="addbtn" >
-                                    <div className="icon-container" >
-                                        <img id="addIcon" src={add} />
+                        <div className="scroll-member">
+                            <ul>
+                                <li /*onClick={this.openModal}*/>
+                                    <div className="addbtn" >
+                                        <div className="icon-container" >
+                                            <img id="addIcon" src={add} />
+                                        </div>
+                                        <p>添加新成员</p>
                                     </div>
-                                     <p>添加新成员</p>
-                                </div>
-                           </li> 
-                           {/*返回成员列表*/}
-                        </ul>
+                                </li>
+                                {/*返回成员列表*/}
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                                <li><MemberItem></MemberItem></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
