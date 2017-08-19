@@ -1,20 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { Menu, Select, Input, Icon, Breadcrumb, Tooltip} from 'antd';
+import Modal from 'react-modal'
+import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form} from 'antd';
 import  TeamItem2  from './teamItem2'
 import MemberItem from './memberItem'
+//import WrappedDynamicFieldSet from './dynamicFieldSet' /*引入动态增减表单项*/
+//import './dynamicFieldSet.scss'
 import './teamMember.scss'
 import './teamItem2.scss'
 import './memberItem.scss'
+import './addMember.scss'
 const Option = Select.Option;
-const Search = Input.Search;
+const FormItem = Form.Item;
+//const Search = Input.Search;
 
 const favour = require('./images/favourites.png')
 const favourFilling = require('./images/favourites-filling.png')
 const border = require('./images/artboard.png')
 const add = require('./images/add.png')
- 
+const close = require('./images/close.png')
+
+const customStyles = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        },
+
+    content : {
+        //top: '50%',
+        //left: '50%',
+        //right: 'auto',
+        //bottom: 'auto',
+        //marginRight: '-50%',
+        //transform: 'translate(-50%, -50%)',
+        border:'none',
+        backgroundColor:'rgba(0, 0, 0, 0)',
+    },
+
+};
  
 class TeamMember extends Component{
 
@@ -29,6 +57,22 @@ class TeamMember extends Component{
             searchText: '',
         }
         
+        this.openModal = this.openModal.bind(this);
+        //this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+     openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    // afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     this.subtitle.style.color = '#f00';
+    // }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
     }
 
 
@@ -79,11 +123,9 @@ class TeamMember extends Component{
 
                 <div className="small-container">
                     <div className="teamList-container">
-                        <Search
-                                placeholder="查找团队"
-                                style={{ width: 220, margin: 20 }}
-                                onSearch={this.handleSearch.bind(this)}
-                            />
+                        <form action="" class="input-kw-form">
+                            <input type="search" style={{ width: 220 }} placeholder="查找团队" />
+                        </form>
                         <div className="scroll-team">
                             <div className="markedTeam">
                                 <p>星标团队</p>
@@ -115,7 +157,7 @@ class TeamMember extends Component{
                         <span>所有成员</span>
                         <div className="scroll-member">
                             <ul>
-                                <li /*onClick={this.openModal}*/>
+                                <li onClick={this.openModal}>
                                     <div className="addbtn" >
                                         <div className="icon-container" >
                                             <img id="addIcon" src={add} />
@@ -135,6 +177,22 @@ class TeamMember extends Component{
                                 <li><MemberItem></MemberItem></li>
                                 <li><MemberItem></MemberItem></li>
                                 <li><MemberItem></MemberItem></li>
+                                <Modal
+                                    isOpen={this.state.modalIsOpen}
+                                    onAfterOpen={this.afterOpenModal}
+                                    onRequestClose={this.closeModal}
+                                    style={customStyles}
+                                    contentLabel="Modal"
+                                >
+
+                                    <div className="addMember-container">
+                                        <div className="header">
+                                            <p className="title">邀请新成员</p>
+                                            <img id="cancel" src={close} onClick={this.closeModal} />
+                                        </div>
+                                        {/*<WrappedDynamicFieldSet/>*/}
+                                    </div>
+                                </Modal>
                             </ul>
                         </div>
                     </div>

@@ -207,23 +207,23 @@ class TeamList extends Component{
                          )})
                      }
                     
-                    <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Modal"
-                >
+                     <Modal
+                         isOpen={this.state.modalIsOpen}
+                         onAfterOpen={this.afterOpenModal}
+                         onRequestClose={this.closeModal}
+                         style={customStyles}
+                         contentLabel="Modal"
+                     >
 
-                    <div className="createTeam-container">
-                        <div className="header">
-                            <p className="title">创建新团队</p>
-                            <img id="cancel" src={close} onClick={this.closeModal} />
-                        </div>
-                        <input type="text" placeholder="团队名称"  onChange={this.handleInputChange} autoFocus></input>
-                        <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
-                    </div>
-                </Modal>
+                         <div className="createTeam-container">
+                             <div className="header">
+                                 <p className="title">创建新团队</p>
+                                 <img id="cancel" src={close} onClick={this.closeModal} />
+                             </div>
+                             <input type="text" placeholder="团队名称" onChange={this.handleInputChange} autoFocus></input>
+                             <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
+                         </div>
+                     </Modal>
                 </ul>
                 
             </div>
