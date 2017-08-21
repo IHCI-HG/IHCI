@@ -6,7 +6,7 @@
     height:408px;
     margin: 0px auto;
     margin-top: 80px;
-}
+
     .header {
         border-radius:8px 8px 0 0;
         height: 56px;
@@ -63,3 +63,11 @@
         color:#ffffff;
         text-align:center;
     }
+
+    .email-container {
+      height: 352px;
+      width: 494px;
+      overflow: scroll;
+      overflow-x: hidden;
+  }
+}

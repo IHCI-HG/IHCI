@@ -49,6 +49,7 @@ class TeamList extends Component{
              markedTeams:[],
              ownTeams:[],
              name:"",
+             info:{},
             //members: [this.props.user.user, "test@test.test"]
         };
 
@@ -57,13 +58,27 @@ class TeamList extends Component{
         this.closeModal = this.closeModal.bind(this);
         //this._handleTeamMark=this.handleTeamMark.bind(this);
         this.handleInputChange=this.handleInputChange.bind(this);
+
+        this.getTeamList();
+        this.refresh();
     }
 
 
-   //获取团队列表
-   // getTeamList() {
-   //
-   // }
+  
+   getTeamList() {
+      $.get('http://rapapi.org/mockjs/24695/queryTeams?tuserName=a%40a.a').
+      then((data)=> {
+            console.log(data)
+            const team = data.data.teams
+            this.setState ({
+                info:data
+            })
+        })
+   }
+   //打印查看获得的数据是否放入info
+   refresh() {
+       console.log(this.state.info)
+   }
 
 
     handleMouseover=()=>{
@@ -247,7 +262,7 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key={item.teamName}><TeamItem teamName={item.teamName} mark={item.mark} /*handleTeamMark={this.handleTeamMark}*/></TeamItem></li>
+                                    <li key={item.teamID}><TeamItem teamName={item.teamID} mark={item.isStared} /*handleTeamMark={this.handleTeamMark}*/></TeamItem></li>
                             )})
                         }
                     </ul>

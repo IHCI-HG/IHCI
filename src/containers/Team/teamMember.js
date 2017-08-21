@@ -5,8 +5,8 @@ import Modal from 'react-modal'
 import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form} from 'antd';
 import  TeamItem2  from './teamItem2'
 import MemberItem from './memberItem'
-//import WrappedDynamicFieldSet from './dynamicFieldSet' /*引入动态增减表单项*/
-//import './dynamicFieldSet.scss'
+import DynamicFieldSet from './dynamicFieldSet' /*引入动态增减表单项*/
+import './dynamicFieldSet.scss'
 import './teamMember.scss'
 import './teamItem2.scss'
 import './memberItem.scss'
@@ -20,6 +20,7 @@ const favourFilling = require('./images/favourites-filling.png')
 const border = require('./images/artboard.png')
 const add = require('./images/add.png')
 const close = require('./images/close.png')
+const  WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
 
 const customStyles = {
     overlay: {
@@ -104,6 +105,7 @@ class TeamMember extends Component{
     }
 
     render(){
+
         return (
             <div className="container">
                 <div className="nav" >
@@ -124,7 +126,7 @@ class TeamMember extends Component{
                 <div className="small-container">
                     <div className="teamList-container">
                         <form action="" class="input-kw-form">
-                            <input type="search" style={{ width: 220 }} placeholder="查找团队" />
+                            <input type="search" style={{ width: 220, height:30, marginLeft:25, marginTop:24 }} placeholder="查找团队" />
                         </form>
                         <div className="scroll-team">
                             <div className="markedTeam">
@@ -190,7 +192,9 @@ class TeamMember extends Component{
                                             <p className="title">邀请新成员</p>
                                             <img id="cancel" src={close} onClick={this.closeModal} />
                                         </div>
-                                        {/*<WrappedDynamicFieldSet/>*/}
+                                        <div className="email-container">
+                                            <WrappedDynamicFieldSet/>
+                                        </div>
                                     </div>
                                 </Modal>
                             </ul>

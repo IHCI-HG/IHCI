@@ -49,11 +49,11 @@ class DynamicFieldSet extends React.Component {
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
-        sm: { span: 4 },
+        sm: { span: 6 },
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 20 },
+        sm: { span: 20 , offset: 4},
       },
     };
     const formItemLayoutWithOutLabel = {
@@ -68,7 +68,7 @@ class DynamicFieldSet extends React.Component {
       return (
         <FormItem
           {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-          label={index === 0 ? 'Passengers' : ''}
+          label={index === 0 ? '通过电子邮箱邀请' : ''}
           required={false}
           key={k}
         >
@@ -77,10 +77,10 @@ class DynamicFieldSet extends React.Component {
             rules: [{
               required: true,
               whitespace: true,
-              message: "Please input passenger's name or delete this field.",
+              message: "请输入有效的邮箱地址",
             }],
           })(
-            <Input placeholder="passenger name" style={{ width: '60%', marginRight: 8 }} />
+            <Input placeholder="请输入邮箱地址" style={{ width: '60%', marginRight: 8 }} />
           )}
           {keys.length > 1 ? (
             <Icon
@@ -98,11 +98,11 @@ class DynamicFieldSet extends React.Component {
         {formItems}
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add field
+            <Icon type="plus" />添加成员邮箱
           </Button>
         </FormItem>
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="primary" htmlType="submit">Submit</Button>
+          <Button type="primary" htmlType="submit">发送邀请</Button>
         </FormItem>
       </Form>
     );
@@ -119,4 +119,5 @@ const mapDispatchToProps = {
     
 }
 
-export default WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+//export default WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+export default DynamicFieldSet = connect(mapStateToProps, mapDispatchToProps)(DynamicFieldSet)
