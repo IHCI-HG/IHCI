@@ -1,0 +1,119 @@
+.container {
+    display: block;
+    width:960px;
+    margin: auto;
+    background:#ffffff;
+    border-radius:3px;
+    padding-top: 10px;
+    margin-top: 20px;
+
+
+.nav {
+    width: 940px;
+    margin-left: 20px;
+}
+
+ a {
+    font-family:PingFangSC-Regular;
+    font-size:18px;
+    color:rgba(51,51,51,0.87);
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+#favour {
+    margin-right: 750px;
+    margin-top: 6px;
+}
+
+.small-container{
+    display: flex;
+    width: 960px;
+    background:#ffffff;
+}
+
+.scroll-team {
+   background:#ffffff;
+   box-shadow:1px 1px 4px 0 rgba(204,204,204,0.50);
+   width:260px;
+   height:450px;
+   margin-left: 15px;
+   padding-bottom: 20px;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+.teamList-container {
+    width: 250px;
+    overflow: hidden;
+}
+
+
+.markedTeam, .allTeam {
+    margin-left: 10px;
+    width:228px;
+    margin-top: 20px;
+}
+
+#border {
+    width:228px;
+}
+
+.scroll-member {
+    width: 695px;
+    height:450px;
+    margin-left: 26px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.memberList-container {
+    width: 685px;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+span {
+    font-family:PingFangSC-Regular;
+    font-size:16px;
+    color:#333333;
+}
+
+.addbtn{
+    display: flex;
+}
+
+.icon-container {
+    background:#305f61;
+    width:34px;
+    height:34px;
+    border-radius:100%;
+}
+
+#addIcon {
+    margin: 8px;
+  }
+
+  p {
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#333333;
+    letter-spacing:0;
+    line-height:20px;
+    text-align:left;
+    margin-top: 8px;
+    margin-left: 13px;
+  }
+
+  li {
+      margin-top: 30px;
+  }
+
+  li:hover{
+      cursor: pointer;
+  }
+
+
+}

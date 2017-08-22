@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Todo from './Todo'
 import AddTodo from "./AddTodo";
@@ -19,9 +20,3 @@ export default class TodoList extends Component {
     )
   }
 }
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired
-  }).isRequired).isRequired
-};

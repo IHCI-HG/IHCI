@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .member-background{
     background:#ffffff;
     border-radius:3px;
@@ -199,4 +200,27 @@ li{
     position: relative;
     left: 45px;
     top:-25px;
+=======
+.member {
+    width: 121px;
+    height: 34px;
+    display: flex;
+
+    .picture {
+        background:#305f61;
+        width:34px;
+        height:34px;
+        border-radius:100%;
+    }
+
+    p {
+        font-family:PingFangSC-Regular;
+        font-size:14px;
+        color:#333333;
+        letter-spacing:0;    
+        line-height:20px;
+        text-align:left;   
+        margin: 8px 0px 6px 13px;     
+    }
+>>>>>>> origin/jin.chengneng
 }

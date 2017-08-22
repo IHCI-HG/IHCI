@@ -2,13 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import './power-control.scss'
+<<<<<<< HEAD
 
 const favourites = require('../team/images/favourites.png')
 const more = require('../team/images/more.png')
 const more_unfold = require('../team/images/more_unfold.png')
 const add = require('../team/images/add.png')
 
+=======
+ 
+ 
+>>>>>>> origin/jin.chengneng
 class PowerControl extends Component{
+
+    constructor(props){
+        super(props);
+        this.state={
+            name: "姓名"
+        }
+        
+    }
 
 
     head(){
@@ -69,9 +82,17 @@ class PowerControl extends Component{
 
     render(){
         return (
+<<<<<<< HEAD
             <div className = "member-background">
                 {this.head()}
                 {this.content()}
+=======
+            <div className="member">
+                <div className="picture">
+
+                </div>
+                <p>{this.state.name}</p>
+>>>>>>> origin/jin.chengneng
             </div>
         )
     }
@@ -85,7 +106,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    //login: (arg) => login(arg),
+    
 }
 
 export default PowerControl = connect(mapStateToProps, mapDispatchToProps)(PowerControl);

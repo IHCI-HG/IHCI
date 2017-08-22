@@ -8,7 +8,10 @@ TeamSchema.plugin(mongoosePaginate);
 let Team = mongoose.model('TeamSchema',TeamSchema);
 
 exports.createTeam = function(req, res){
+    //let team = new Team(JSON.parse(req.body));
+
     let team = new Team(req.body);
+    //console.log(req.body)
 
     team.save(function (err, team){
         if(err){
@@ -16,7 +19,8 @@ exports.createTeam = function(req, res){
                 message: 'create team failed'
             });
         }else {
-            res.jsonp(team);
+            //res.jsonp(eval("("+team+")"));
+            res.jsonp(team);            
         }
     })
 };

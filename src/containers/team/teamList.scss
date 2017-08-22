@@ -1,6 +1,8 @@
 
 .teamList-container {
-    margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto;
 
 
   .small-container {
@@ -14,9 +16,10 @@
     font-size:18px;
     color:#333333;
   }
-
+ 
  
   li {
+      list-style: none;
       width: 210px;
       height: 140px;
       float: left;
@@ -55,7 +58,4 @@
       color:#333333;
       text-align:center;
   }
-  
-
-
 }
