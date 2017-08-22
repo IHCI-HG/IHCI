@@ -18,6 +18,7 @@ constructor(props){
             name: this.props.teamName,
             mark: this.props.mark,
             inMarkedTeam: this.props.inMarkedTeam,
+            members: [],
         }
 
         //handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
@@ -38,7 +39,7 @@ constructor(props){
         });  
     }
 
-    handleMark=(index)=>{
+    handleMark=()=>{
         console.log(this.state);
         //var value=this.state.favor;
         //var mk=this.state.mark;

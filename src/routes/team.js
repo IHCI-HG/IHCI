@@ -1,5 +1,6 @@
 import { injectReducer } from '../reducers'
 import { TeamList } from '../containers/team/teamList'
+//import { teamMember } from '../containers/team/teamMember'
 
 // export const team = (store) => ({
 //     path: 'team',
@@ -32,12 +33,12 @@ export const teamList = (store) => ({
     }
 });
 
-// export const createTeam = (store) => ({
-//     path: 'createTeam',
-//     getComponent(nextState, cb) {
-//         require.ensure([], (require) => {
-//             const component = require('../containers/team/createTeam').default
-//             cb(null, component) 
-//         }, 'team')
-//     }
-// });
+ export const teamMember = (store) => ({
+     path: 'teamMember',
+     getComponent(nextState, cb) {
+         require.ensure([], (require) => {
+             const component = require('../containers/team/teamMember').default
+             cb(null, component) 
+         }, 'team')
+     }
+ });

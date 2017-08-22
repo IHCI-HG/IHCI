@@ -50,29 +50,32 @@ class TeamList extends Component{
              ownTeams:[],
              //创建新团队属性
              name:"",
-             members: [this.props.user.user, "test@test.test"]
+             info:{},
+            //members: [this.props.user.user, "test@test.test"]
         };
-
-        this.getTeamList();
 
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         //this._handleTeamMark=this.handleTeamMark.bind(this);
         this.handleInputChange=this.handleInputChange.bind(this);
+
+        this.getTeamList();
     }
 
 
-    //获取团队列表
+  
     getTeamList() {
-        $.get('http://' + window.location.host + '/api/project/team/queryTeam', function(teams) {
-            //console.log(teams)
-            this.setState ({
-                teams: teams
-            })
-        }.bind(this))
+        $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
+            then((data) => {
+                //console.log(data)
+                const team = data.data.teams
+                console.log(team)
+                this.setState({
+                    info: team
+                })
+            }).then(()=>{console.log(this.state.info)})
     }
-
 
     handleMouseover=()=>{
          this.setState({
@@ -130,7 +133,8 @@ class TeamList extends Component{
         } else {
             message.error('请输入团队名称');
         }
-
+        console.log(this.state)
+       //添加新团队项到我拥有的团队列表
         var name = this.state.name;
         this.setState({
             ownTeams: [
@@ -139,14 +143,16 @@ class TeamList extends Component{
                     teamName: name,
                     mark: 0,
                     inMarkedTeam: 0,
-                    _id: id
+                    members:[],
                 },
             ]
         })
+
+        browserHistory.push("/teamMember")
     }
     
     //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
-    handleTeamMark(index){
+    /*handleTeamMark(index){
         this.state.teams.map(function(item){  
             //有星标且原来不在星标团队中
            if(item.mark && !item.inMarkedTeam){ 
@@ -162,7 +168,7 @@ class TeamList extends Component{
                    markedTeams: this.state.markedTeams.filter((elem, i) => index !== i)
                })
         });
-    }
+    }*/
    
     //星标团队
     markedTeam(){
@@ -222,29 +228,35 @@ class TeamList extends Component{
                                     <TeamItem 
                                         teamName={item.teamName} 
                                         mark={item.mark} 
+                                        onClick={() => browserHistory.push("/teamMember")}
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
                          )})
                      }
                     
-                    <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Modal"
-                >
+                     <Modal
+                         isOpen={this.state.modalIsOpen}
+                         onAfterOpen={this.afterOpenModal}
+                         onRequestClose={this.closeModal}
+                         style={customStyles}
+                         contentLabel="Modal"
+                     >
 
-                    <div className="createTeam-container">
-                        <div className="header">
-                            <p className="title">创建新团队</p>
-                            <img id="cancel" src={close} onClick={this.closeModal} />
-                        </div>
-                        <input type="text" placeholder="团队名称"  onChange={this.handleInputChange} autoFocus></input>
-                        <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
-                    </div>
-                </Modal>
+                         <div className="createTeam-container">
+                             <div className="header">
+                                 <p className="title">创建新团队</p>
+                                 <img id="cancel" src={close} onClick={this.closeModal} />
+                             </div>
+                             <input 
+                                type="text" 
+                                placeholder="团队名称" 
+                                onChange={this.handleInputChange} 
+                                autoFocus
+                            ></input>
+                             <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
+                         </div>
+                     </Modal>
                 </ul>
                 
             </div>
@@ -271,14 +283,13 @@ class TeamList extends Component{
                                     <li key={item._id}>
                                         <TeamItem 
                                             teamName={item.name} 
-                                            mark={item.mark} 
+                                            mark={item.isStared} 
                                             //handleTeamMark={this.handleTeamMark}
                                             ></TeamItem>
                                     </li>
                             )})
                         }
                     </ul>
-                    
                 </div>
             )
     }
