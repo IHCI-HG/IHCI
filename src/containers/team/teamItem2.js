@@ -17,7 +17,7 @@ class TeamItem2 extends Component{
     render(){
         return (
             <div className="container1">
-                <div className="picture">
+                <div className="pic">
                 </div>
                 <p>{this.state.name}</p>
             </div>

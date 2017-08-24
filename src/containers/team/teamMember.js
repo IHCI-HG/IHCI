@@ -52,7 +52,6 @@ class TeamMember extends Component{
         this.state={
             _id: '',
             currentTeam:'',
-            mark: 0,
             inMarkedTeam: 0,
             members: [],
             searchText: '',
@@ -107,7 +106,7 @@ class TeamMember extends Component{
     render(){
 
         return (
-            <div className="container">
+            <div className="out-container">
                 <div className="nav" >
                     <Breadcrumb>
                         <Breadcrumb.Item><a onClick={() => browserHistory.push("/teamList")}>团队</a></Breadcrumb.Item>
@@ -123,7 +122,7 @@ class TeamMember extends Component{
                     </Breadcrumb>
                 </div>
 
-                <div className="small-container">
+                <div className="content">
                     <div className="teamList-container">
                         <form action="" className="input-kw-form">
                             <input type="search" style={{ width: 220, height:30, marginLeft:25, marginTop:24 }} placeholder="查找团队" />

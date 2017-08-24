@@ -1,4 +1,4 @@
-.container {
+.out-container {
     display: block;
     width:960px;
     margin: auto;
@@ -28,7 +28,7 @@ img:hover {
     margin-top: 6px;
 }
 
-.small-container{
+.content{
     display: flex;
     width: 960px;
     background:#ffffff;
@@ -109,6 +109,7 @@ span {
 
   li {
       margin-top: 30px;
+      height: 40px;
   }
 
   li:hover{
