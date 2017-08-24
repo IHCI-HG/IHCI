@@ -50,7 +50,6 @@ class TeamList extends Component{
              ownTeams:[],
              //创建新团队属性
              name:"",
-             info:{},
             //members: [this.props.user.user, "test@test.test"]
         };
 
@@ -72,9 +71,9 @@ class TeamList extends Component{
                 const team = data.data.teams
                 console.log(team)
                 this.setState({
-                    info: team
+                    teams: team
                 })
-            }).then(()=>{console.log(this.state.info)})
+            }).then(()=>{console.log(this.state.teams)})
     }
 
     handleMouseover=()=>{
@@ -188,10 +187,11 @@ class TeamList extends Component{
                             this.state.markedTeams.map(function (item) {
                                 return (
                                     <li key={item._id}>
-                                        <TeamItem 
-                                            teamName={item.teamName} 
-                                            mark={item.mark} 
-                                            //handleTeamMark={this.handleTeamMark}
+                                        <TeamItem
+                                            teamName={item.teamID}
+                                            mark={item.isStared}
+                                            onClick={() => browserHistory.push("/teamMember")}
+                                        //handleTeamMark={this.handleTeamMark}
                                         ></TeamItem>
                                     </li>
                             )})
@@ -226,8 +226,8 @@ class TeamList extends Component{
                              return (
                                 <li key={item._id}>
                                     <TeamItem 
-                                        teamName={item.teamName} 
-                                        mark={item.mark} 
+                                        teamName={item.teamID} 
+                                        mark={item.isStared} 
                                         onClick={() => browserHistory.push("/teamMember")}
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
@@ -281,11 +281,12 @@ class TeamList extends Component{
                             this.state.teams.map(function (item) {
                                 return (
                                     <li key={item._id}>
-                                        <TeamItem 
-                                            teamName={item.name} 
-                                            mark={item.isStared} 
-                                            //handleTeamMark={this.handleTeamMark}
-                                            ></TeamItem>
+                                        <TeamItem
+                                            teamName={item.teamID}
+                                            mark={item.isStared}
+                                            onClick={() => browserHistory.push("/teamMember")}
+                                        //handleTeamMark={this.handleTeamMark}
+                                        ></TeamItem>
                                     </li>
                             )})
                         }
