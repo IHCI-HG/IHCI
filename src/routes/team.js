@@ -28,6 +28,8 @@ export const teamList = (store) => ({
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
             const component = require('../containers/team/teamList').default
+            const reducer = require('../reducers/team').default
+            injectReducer(store, { key: 'team', reducer })
             cb(null, component) 
         }, 'team')
     }

@@ -9,7 +9,6 @@ import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
-
 const close = require('./images/close.png')
 const add = require('./images/add.png')
 
@@ -62,15 +61,12 @@ class TeamList extends Component{
 
         this.getTeamList();
     }
-
-
   
     getTeamList() {
         $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
             then((data) => {
                 //console.log(data)
                 const team = data.data.teams
-                console.log(team)
                 this.setState({
                     info: team
                 })
@@ -82,6 +78,7 @@ class TeamList extends Component{
              background:'#fff'
          });
      }
+
      handleMouseOut=()=>{
          this.setState({
              background:'rgba(0,0,0,0)'

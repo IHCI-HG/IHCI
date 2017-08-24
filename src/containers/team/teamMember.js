@@ -51,7 +51,7 @@ class TeamMember extends Component{
         super(props);
         this.state={
             _id: '',
-            currentTeam:'',
+            currentTeam: '',
             mark: 0,
             inMarkedTeam: 0,
             members: [],
