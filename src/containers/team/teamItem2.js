@@ -9,7 +9,7 @@ class TeamItem2 extends Component{
     constructor(props){
         super(props);
         this.state={
-            name: 'iHCI',
+            name: this.props.name,
         }
 
     }
