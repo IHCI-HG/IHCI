@@ -1,4 +1,4 @@
-.member {
+.manager {
     width: 100%;
     height: 34px;
     display: flex;
@@ -10,7 +10,7 @@
         border-radius:100%;
     }
 
-    p {
+    #name {
         font-family:PingFangSC-Regular;
         font-size:14px;
         color:#333333;
