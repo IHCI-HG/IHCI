@@ -132,10 +132,13 @@ class TeamMember extends Component{
                 <div className="nav" >
                     <Breadcrumb>
                         <Breadcrumb.Item><a onClick={() => browserHistory.push("/teamList")}>团队</a></Breadcrumb.Item>
-                        <Breadcrumb.Item><a href="#">{ this.state.currentTeam }</a></Breadcrumb.Item>
-                        <Tooltip placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
-                            <img id="favour" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
-                        </Tooltip>
+                        <Breadcrumb.Item>
+                            <Tooltip placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
+                                 <img id="favour" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
+                            </Tooltip>
+                            <a href="#">{ this.state.currentTeam } </a>
+                        </Breadcrumb.Item>
+                        
                     </Breadcrumb>
                 </div>
 
