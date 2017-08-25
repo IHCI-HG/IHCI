@@ -11,6 +11,7 @@
 .nav {
     width: 940px;
     margin-left: 20px;
+    display: flex;
 }
 
  a {
@@ -18,15 +19,23 @@
     font-size:18px;
     color:rgba(51,51,51,0.87);
 }
+a:hover {
+    color: #305f61;
+}
 
 img:hover {
     cursor: pointer;
 }
 
-#favour {
-    margin-right: 860px;
-    margin-top: 6px;
+#teamBC{
+    flex:1
 }
+
+// #favourite {
+//     // margin-right: 860px;
+//     // margin-top: 6px;
+//     width: 300px;
+// }
 
 .content{
     display: flex;

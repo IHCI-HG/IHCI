@@ -155,22 +155,28 @@ class TeamList extends Component{
             ]
         });
         console.log(this.state);
-    }
-
-    handleTeamMark(){
-        var team=[];
-        this.state.teams.map(function(item){  
-           if(item.marked==1){
-               team.add(item);
-           } 
-        });
-        
-        this.setState({
-            markedTeams:team
+        console.log("team name(value): "+this.state.name);
+        browserHistory.push({
+            pathname: '/teamMember',
+            // query: { modal: true },
+            state: { currTeamName: this.state.name }
         })
-
-        browserHistory.push("/teamMember")
     }
+
+    // handleTeamMark(){
+    //     var team=[];
+    //     this.state.teams.map(function(item){  
+    //        if(item.marked==1){
+    //            team.add(item);
+    //        } 
+    //     });
+        
+    //     this.setState({
+    //         markedTeams:team
+    //     })
+
+    //     browserHistory.push("/teamMember")
+    // }
     
     //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
     // handleTeamMark(){
@@ -202,11 +208,16 @@ class TeamList extends Component{
                         {  
                             this.state.markedTeams.map(function (item) {
                                 return (
-                                    <li key={item._id}>
+                                    <li key={item._id}
+                                        onClick={() =>browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: item.teamID }
+                                            })}>
                                         <TeamItem
                                             teamName={item.teamID}
                                             inMarkedTeam={item.isStared}
-                                            onClick={() => browserHistory.push("/teamMember")}
+                                            
                                            //_handleTeamMark={this.handleTeamMark.bind(this)} 
                                         ></TeamItem>
                                     </li>
@@ -238,11 +249,16 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                <li key={item._id}>
+                                <li key={item._id}
+                                    onClick={() => browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: item.teamID }
+                                            })}>
                                     <TeamItem 
                                         teamName={item.teamID} 
                                         inMarkedTeam={item.isStared} 
-                                        onClick={() => browserHistory.push("/teamMember")}
+                                        
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
@@ -294,11 +310,16 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key={item._id}>
+                                    <li key={item._id}
+                                        onClick={() => browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: item.teamID }
+                                            })}>
                                         <TeamItem
                                             teamName={item.teamID}
                                             inMarkedTeam={item.isStared}
-                                            onClick={() => browserHistory.push("/teamMember")}
+                                            
                                         //handleTeamMark={this.handleTeamMark}
                                         ></TeamItem>
                                     </li>
