@@ -47,10 +47,7 @@ class TeamList extends Component{
              teams:[],
              markedTeams:[],
              ownTeams:[],
-<<<<<<< HEAD
-=======
              //创建新团队属性
->>>>>>> zml
              name:"",
             //members: [this.props.user.user, "test@test.test"]
         };
@@ -58,21 +55,9 @@ class TeamList extends Component{
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-<<<<<<< HEAD
-        this.handleTeamMark=this.handleTeamMark.bind(this);        
-=======
         //this._handleTeamMark=this.handleTeamMark.bind(this);
->>>>>>> zml
         this.handleInputChange=this.handleInputChange.bind(this);
 
-<<<<<<< HEAD
-
-   //获取团队列表
-   // getTeamList() {
-   //
-   // }
-
-=======
         this.getTeamList();
     }
   
@@ -97,7 +82,6 @@ class TeamList extends Component{
                 })
             }).then(()=>{console.log(this.state.teams)})
     }
->>>>>>> zml
 
     handleMouseover=()=>{
          this.setState({
@@ -131,25 +115,6 @@ class TeamList extends Component{
         });
     }
 
-<<<<<<< HEAD
-    handleSubmit(){
-        // console.log(this.state)
-        $.ajax({
-            method: 'POST',
-            url: 'http://' + window.location.host + '/api/project/team/createTeam',
-            data: this.state
-        }).done(function (data) {
-            //console.log(data)
-            if (data != {}) {
-                notification.open({
-                    message: '创建成功',
-                    //description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
-                });
-                
-            }
-        })
-
-=======
     handleSubmit() {
         var id = this.props.user.user +" "+ Date();
         this.setState({
@@ -177,7 +142,6 @@ class TeamList extends Component{
         }
         console.log(this.state)
        //添加新团队项到我拥有的团队列表
->>>>>>> zml
         var name = this.state.name;
         this.setState({
             ownTeams: [
@@ -204,12 +168,8 @@ class TeamList extends Component{
         this.setState({
             markedTeams:team
         })
-<<<<<<< HEAD
-        console.log(team)
-=======
 
         browserHistory.push("/teamMember")
->>>>>>> zml
     }
     
     //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
@@ -227,22 +187,6 @@ class TeamList extends Component{
    
     //星标团队
     markedTeam(){
-<<<<<<< HEAD
-        
-        return(
-            <div className="small-container">
-                <span className="title">星标团队</span>
-                <ul>
-                     {  
-                        this.state.markedTeams.map(function (item) {
-                             return (
-                                 <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
-                         )})
-                     }
-                </ul>
-            </div>
-        )
-=======
         if(!this.state.markedTeams.length)
             return(
                 <div className="small-container">
@@ -271,7 +215,6 @@ class TeamList extends Component{
                     </ul>
                 </div>
             )
->>>>>>> zml
     }
     
 
@@ -282,16 +225,6 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
-<<<<<<< HEAD
-                     {  
-                        this.state.ownTeams.map(function (item) {
-                             return (
-                                 <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
-                         )})
-                     }
-                    
-=======
->>>>>>> zml
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal} 
                        onMouseOver={this.handleMouseover} onMouseOut={this.handleMouseOut} 
@@ -302,45 +235,9 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
-<<<<<<< HEAD
-                    <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Modal">
-
-                    <div className="createTeam-container">
-                        <div className="header">
-                            <p className="title">创建新团队</p>
-                            <img id="cancel" src={close} onClick={this.closeModal} />
-                        </div>
-                        <input type="text" placeholder="团队名称" value={this.state.name} onChange={this.handleInputChange}></input>
-                        <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
-                    </div>
-                </Modal>
-                </ul>
-                
-            </div>
-        )
-    }
- 
-    //我参与的团队   
-    myTeam(){
-       
-        return(
-            <div className="small-container">
-                <span className="title">我参与的团队</span>
-                <ul>
-=======
-
->>>>>>> zml
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-<<<<<<< HEAD
-                                 <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
-=======
                                 <li key={item._id}>
                                     <TeamItem 
                                         teamName={item.teamID} 
@@ -349,7 +246,6 @@ class TeamList extends Component{
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
->>>>>>> zml
                          )})
                      }
                     
