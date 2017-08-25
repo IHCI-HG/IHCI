@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form} from 'antd';
 import  TeamItem2  from './teamItem2'
 import MemberItem from './memberItem'
+import $ from 'jquery'
 import DynamicFieldSet from './dynamicFieldSet' /*引入动态增减表单项*/
 import './dynamicFieldSet.scss'
 import './teamMember.scss'
@@ -55,11 +56,32 @@ class TeamMember extends Component{
             inMarkedTeam: 0,
             members: [],
             searchText: '',
+            teams: [],
+            markedTeams: [],
         }
         
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.getTeamList();
+    }
+
+    getTeamList() {
+        $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
+            then((data) => {
+                //console.log(data)
+                const team = data.data.teams
+                var markTeam = [];
+                team.map(function (item) {
+                    if(item.isStared)
+                        markTeam.push(item);
+                })
+                console.log(team)
+                this.setState({
+                    teams: team,
+                    markedTeams: markTeam,
+                })
+            }).then(()=>{console.log(this.state)})
     }
 
      openModal() {
@@ -76,15 +98,15 @@ class TeamMember extends Component{
     }
 
 
-    menu(){
-        return (         
-            <Select defaultValue={this.state.currentTeam} value={this.state.currentTeam} style={{ width: 100 }} onSelect={this.handleChange.bind(this)}>
-                <Option value="team1">team1</Option>
-                <Option value="team2">team2</Option>
-                <Option value="team3">team3</Option>
-            </Select>
-        );
-    }
+    // menu(){
+    //     return (         
+    //         <Select defaultValue={this.state.currentTeam} value={this.state.currentTeam} style={{ width: 100 }} onSelect={this.handleChange.bind(this)}>
+    //             <Option value="team1">team1</Option>
+    //             <Option value="team2">team2</Option>
+    //             <Option value="team3">team3</Option>
+    //         </Select>
+    //     );
+    // }
 
     handleSearch=(value)=>{
 
@@ -110,12 +132,7 @@ class TeamMember extends Component{
                 <div className="nav" >
                     <Breadcrumb>
                         <Breadcrumb.Item><a onClick={() => browserHistory.push("/teamList")}>团队</a></Breadcrumb.Item>
-                        {/*<Dropdown overlay={this.menu()} trigger={['click']}>
-                            <a className="ant-dropdown-link" href="#">
-                                {this.state.currentTeam} <Icon type="down" />
-                            </a>
-                        </Dropdown>*/}
-                        {this.menu()}
+                        <Breadcrumb.Item><a href="#">{ this.state.currentTeam }</a></Breadcrumb.Item>
                         <Tooltip placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
                             <img id="favour" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
                         </Tooltip>
@@ -132,8 +149,16 @@ class TeamMember extends Component{
                                 <p>星标团队</p>
                                 <img id="border" src={border} />
                                 <ul>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
+                                    {  
+                                       this.state.markedTeams.map(function (item) {
+                                            return (
+                                            <li key={item._id}>
+                                                <TeamItem2 
+                                                    name={item.teamID} 
+                                                ></TeamItem2>
+                                            </li>
+                                        )})
+                                    }
                                 </ul>
                             </div>
 
@@ -141,14 +166,16 @@ class TeamMember extends Component{
                                 <p>所有团队</p>
                                 <img id="border" src={border} />
                                 <ul>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
+                                    {  
+                                       this.state.teams.map(function (item) {
+                                            return (
+                                            <li key={item._id}>
+                                                <TeamItem2 
+                                                    name={item.teamID} 
+                                                ></TeamItem2>
+                                            </li>
+                                        )})
+                                    }
                                 </ul>
                             </div>
                         </div>
