@@ -1,5 +1,7 @@
 const teamInitialState = {
-   teams:[]
+   teams: [],
+   markedTeams: [],
+   ownTeams: [],
 }
 
 const team = (state = teamInitialState, action) => {
