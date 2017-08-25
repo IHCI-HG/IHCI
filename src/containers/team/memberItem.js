@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import './power-control.scss'
+import './memberItem.scss'
  
  
-class PowerControl extends Component{
+class MemberItem extends Component{
 
     constructor(props){
         super(props);
@@ -13,7 +13,6 @@ class PowerControl extends Component{
         }
         
     }
-
 
     render(){
         return (
@@ -38,4 +37,4 @@ const mapDispatchToProps = {
     
 }
 
-export default PowerControl = connect(mapStateToProps, mapDispatchToProps)(PowerControl);
+export default MemberItem = connect(mapStateToProps, mapDispatchToProps)(MemberItem);

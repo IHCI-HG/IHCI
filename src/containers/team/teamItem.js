@@ -4,8 +4,8 @@ import { browserHistory } from 'react-router'
 import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
-const favour = './images/favourites.png'
-const favourFilling = './images/favourites-filling.png'
+const favour = require('./images/favourites.png')
+const favourFilling = require('./images/favourites-filling.png')
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
@@ -14,13 +14,16 @@ constructor(props){
         this.state={
             background:'rgba(0,0,0,0)',
             showIcon:'none',
-            favor:favour,
-            name:this.props.teamName,
-            mark:0
+            //favor:this.state.mark ? favourFilling : favour,
+            name: this.props.teamName,
+            //mark: this.props.mark,
+            inMarkedTeam: this.props.inMarkedTeam,
+            members: [],
         }
-        this.handleMark=this.handleMark.bind(this);
-        // this.updateTeamMark=this.updateTeamMark.bind(this);
+
+        //this._handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
     }
+
     handleMouseover=()=>{
         this.setState({
             background: 'rgba(249,249,249,0.9)',
@@ -36,36 +39,33 @@ constructor(props){
     }
 
     handleMark=()=>{
-        console.log(this.state);
-        var value=this.state.favor;
-        var mk=this.state.mark;
-        if(value==favour){
-            value=favourFilling;
-            mk=1;
-        }else{
-            value=favour;
-            mk=0;
-        }
-        console.log(value+" "+mk);
+        console.log(this.state)
+        //setState的回调
         this.setState({
-            favor:value,
-            mark:mk
-        });
-        this.props.handleTeamMark();
-        // console.log(this.state);
-        // console.log(this.state.mark);
+            inMarkedTeam: !this.state.inMarkedTeam,
+            },()=>{
+                    console.log(this.state)
+            }); 
+        //this.handleTeamMark(index);//调用父节点teamlist的方法
     }
+    
     render(){
         return (
-            <div className="container" checked={this.state.mark} style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
-                <div className="picture" ></div>
-                <div className="icon"  style={{display:this.state.showIcon}} >
-                     <Tooltip placement="right" title="标记为星标团队">
-                         <img id="favourites" onClick={this.handleMark} src={require(this.state.favor)}/>
-                     </Tooltip>
-                     <Tooltip placement="right" title="编辑">
-                         <img id="edit"  src={edit}/>
-                     </Tooltip>
+            <div className="container"/* checked={this.state.mark}*/ style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
+                <div className="container2">
+                    <div className="picture" ></div>
+                    <div className="icon" style={{ display: this.state.showIcon }}>
+                        <Tooltip placement="right" title={this.state.inMarkedTeam ? "取消星标":"标记为星标团队" }>
+                            <img 
+                                id="favourites" 
+                                onClick={this.handleMark.bind(this.index)} 
+                                src={this.state.inMarkedTeam ? favourFilling : favour} 
+                            />
+                        </Tooltip>
+                        <Tooltip placement="right" title="编辑">
+                            <img id="edit" src={edit} />
+                        </Tooltip>
+                </div>
                 </div>
                 <p>{this.state.name}</p>
             </div>

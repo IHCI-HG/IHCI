@@ -1,0 +1,19 @@
+.container1 {
+    width: 94px;
+    height: 40px;
+    display: flex;
+
+    .pic {
+        background:#d8d8d8;
+        width:60px;
+        height:40px;
+    }
+
+    p {
+        font-family:PingFangSC-Regular;
+        font-size:13px;
+        color:#333333;
+        letter-spacing:0;
+        text-align:left;        
+    }
+}

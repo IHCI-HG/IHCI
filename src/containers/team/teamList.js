@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-import Modal from 'react-modal'
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import Modal from 'react-modal';
 import './teamList.scss'
 import './teamItem.scss'
 import TeamItem from './teamItem'; 
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
-
 
 const close = require('./images/close.png')
 const add = require('./images/add.png')
@@ -24,14 +23,14 @@ const customStyles = {
         },
 
     content : {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
+        //top: '50%',
+        //left: '50%',
+        //right: 'auto',
+        //bottom: 'auto',
+        //marginRight: '-50%',
+        //transform: 'translate(-50%, -50%)',
         border:'none',
-        backgroundColor:'rgba(0, 0, 0, 0)'
+        backgroundColor:'rgba(0, 0, 0, 0)',
     },
 
 };
@@ -48,6 +47,10 @@ class TeamList extends Component{
              teams:[],
              markedTeams:[],
              ownTeams:[],
+<<<<<<< HEAD
+=======
+             //创建新团队属性
+>>>>>>> zml
              name:"",
             //members: [this.props.user.user, "test@test.test"]
         };
@@ -55,22 +58,53 @@ class TeamList extends Component{
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+<<<<<<< HEAD
         this.handleTeamMark=this.handleTeamMark.bind(this);        
+=======
+        //this._handleTeamMark=this.handleTeamMark.bind(this);
+>>>>>>> zml
         this.handleInputChange=this.handleInputChange.bind(this);
-    }
 
+<<<<<<< HEAD
 
    //获取团队列表
    // getTeamList() {
    //
    // }
 
+=======
+        this.getTeamList();
+    }
+  
+    getTeamList() {
+        $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
+            then((data) => {
+                //console.log(data)
+                const team = data.data.teams
+                var markTeam = [];
+                var ownTeam = [];
+                team.map(function (item) {
+                    if(item.isStared)
+                        markTeam.push(item);
+                    if(item.isManager)
+                        ownTeam.push(item);
+                })
+                console.log(team)
+                this.setState({
+                    teams: team,
+                    markedTeams: markTeam,
+                    ownTeams: ownTeam
+                })
+            }).then(()=>{console.log(this.state.teams)})
+    }
+>>>>>>> zml
 
     handleMouseover=()=>{
          this.setState({
              background:'#fff'
          });
      }
+
      handleMouseOut=()=>{
          this.setState({
              background:'rgba(0,0,0,0)'
@@ -97,6 +131,7 @@ class TeamList extends Component{
         });
     }
 
+<<<<<<< HEAD
     handleSubmit(){
         // console.log(this.state)
         $.ajax({
@@ -114,13 +149,45 @@ class TeamList extends Component{
             }
         })
 
+=======
+    handleSubmit() {
+        var id = this.props.user.user +" "+ Date();
+        this.setState({
+            _id: id
+        });
+        if (this.state.name != '') {
+            $.ajax({
+                method: 'POST',
+                url: 'http://' + window.location.host + '/api/project/team/createTeam',
+                //data: JSON.stringify(this.state)
+                data: this.state
+            }).done(function (data) {
+                //console.log(data)
+                if (data != {}) {
+                    notification.open({
+                        message: '创建成功',
+                        description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+                    });
+                    //成功创建后跳转到改团队页面
+                    //browserHistory.push('teamList');
+                }
+            })
+        } else {
+            message.error('请输入团队名称');
+        }
+        console.log(this.state)
+       //添加新团队项到我拥有的团队列表
+>>>>>>> zml
         var name = this.state.name;
         this.setState({
             ownTeams: [
+                ...this.state.ownTeams,
                 {
-                    teamName:name,
+                    teamName: name,
+                    mark: 0,
+                    inMarkedTeam: 0,
+                    members:[],
                 },
-                ...this.state.ownTeams
             ]
         });
         console.log(this.state);
@@ -137,11 +204,30 @@ class TeamList extends Component{
         this.setState({
             markedTeams:team
         })
+<<<<<<< HEAD
         console.log(team)
+=======
+
+        browserHistory.push("/teamMember")
+>>>>>>> zml
     }
+    
+    //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
+    // handleTeamMark(){
+    //     var teamArray=[];
+    //     this.state.teams.map(function(item){  
+    //        if(item.inMarkedTeam){
+    //            teamArray.push(item);
+    //        }        
+    //     });
+    //     this.setState({
+    //         markedTeams: teamArray,
+    //     })
+    // }
    
     //星标团队
     markedTeam(){
+<<<<<<< HEAD
         
         return(
             <div className="small-container">
@@ -156,6 +242,36 @@ class TeamList extends Component{
                 </ul>
             </div>
         )
+=======
+        if(!this.state.markedTeams.length)
+            return(
+                <div className="small-container">
+                    <span className="title">星标团队</span>
+                    <ul><li>还没有星标团队哦~</li></ul>
+                </div>
+            )
+        else
+            return(
+                <div className="small-container">
+                    <span className="title">星标团队</span>
+                    <ul>
+                        {  
+                            this.state.markedTeams.map(function (item) {
+                                return (
+                                    <li key={item._id}>
+                                        <TeamItem
+                                            teamName={item.teamID}
+                                            inMarkedTeam={item.isStared}
+                                            onClick={() => browserHistory.push("/teamMember")}
+                                           //_handleTeamMark={this.handleTeamMark.bind(this)} 
+                                        ></TeamItem>
+                                    </li>
+                            )})
+                        }
+                    </ul>
+                </div>
+            )
+>>>>>>> zml
     }
     
 
@@ -166,6 +282,7 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
+<<<<<<< HEAD
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
@@ -173,6 +290,8 @@ class TeamList extends Component{
                          )})
                      }
                     
+=======
+>>>>>>> zml
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal} 
                        onMouseOver={this.handleMouseover} onMouseOut={this.handleMouseOut} 
@@ -183,6 +302,7 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
+<<<<<<< HEAD
                     <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -212,19 +332,89 @@ class TeamList extends Component{
             <div className="small-container">
                 <span className="title">我参与的团队</span>
                 <ul>
+=======
+
+>>>>>>> zml
                      {  
-                        this.state.teams.map(function (item) {
+                        this.state.ownTeams.map(function (item) {
                              return (
+<<<<<<< HEAD
                                  <li><TeamItem teamName={item.teamName} marked={item.marked} handleTeamMark={item.handleTeamMark}></TeamItem></li>
+=======
+                                <li key={item._id}>
+                                    <TeamItem 
+                                        teamName={item.teamID} 
+                                        inMarkedTeam={item.isStared} 
+                                        onClick={() => browserHistory.push("/teamMember")}
+                                        //handleTeamMark={this.handleTeamMark}
+                                    ></TeamItem>
+                                </li>
+>>>>>>> zml
                          )})
                      }
+                    
+                     <Modal
+                         isOpen={this.state.modalIsOpen}
+                         onAfterOpen={this.afterOpenModal}
+                         onRequestClose={this.closeModal}
+                         style={customStyles}
+                         contentLabel="Modal"
+                     >
+
+                         <div className="createTeam-container">
+                             <div className="header">
+                                 <p className="title">创建新团队</p>
+                                 <img id="cancel" src={close} onClick={this.closeModal} />
+                             </div>
+                             <input 
+                                type="text" 
+                                placeholder="团队名称" 
+                                onChange={this.handleInputChange} 
+                                autoFocus
+                            ></input>
+                             <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
+                         </div>
+                     </Modal>
                 </ul>
                 
             </div>
         )
     }
+ 
+    //我参与的团队
+    myTeam(){
+        if(!this.state.teams.length)
+            return(
+                <div className="small-container">
+                    <span className="title">我参与的团队</span>
+                    <ul><li>你还没有团队哦~</li></ul>
+                </div>
+            )
+        else
+            return(
+                <div className="small-container">
+                    <span className="title">我参与的团队</span>
+                    <ul>
+                        {  
+                            this.state.teams.map(function (item) {
+                                return (
+                                    <li key={item._id}>
+                                        <TeamItem
+                                            teamName={item.teamID}
+                                            inMarkedTeam={item.isStared}
+                                            onClick={() => browserHistory.push("/teamMember")}
+                                        //handleTeamMark={this.handleTeamMark}
+                                        ></TeamItem>
+                                    </li>
+                            )})
+                        }
+                    </ul>
+                </div>
+            )
+    }
 
     render(){
+        //this._handleTeamMark=this.handleTeamMark.bind(this);
         return (
             <div className="teamList-container">
                 {this.markedTeam()}

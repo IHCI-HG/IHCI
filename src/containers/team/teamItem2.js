@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import './power-control.scss'
- 
- 
-class PowerControl extends Component{
+import { Tooltip  } from 'antd';
+import './teamItem2.scss'
+
+class TeamItem2 extends Component{
 
     constructor(props){
         super(props);
         this.state={
-            name: "姓名"
+            name: 'iHCI',
         }
-        
-    }
 
+    }
 
     render(){
         return (
-            <div className="member">
-                <div className="picture">
-
+            <div className="container1">
+                <div className="pic">
                 </div>
                 <p>{this.state.name}</p>
             </div>
@@ -35,7 +33,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    
+    //login: (arg) => login(arg),
 }
 
-export default PowerControl = connect(mapStateToProps, mapDispatchToProps)(PowerControl);
+export default TeamItem2 = connect(mapStateToProps, mapDispatchToProps)(TeamItem2);

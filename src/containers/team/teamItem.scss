@@ -4,23 +4,25 @@
         border:1px solid #eeeeee;
         width:210px;
         height:140px;
+        margin-top: -10px;
+
+    .container2 {
+        display: flex;
+        margin-top: 10px;
     }
-
-
 
     .picture {
         position: relative;
-        float:left;
         background:#eeeeee;
         width:150px;
         height:94px;
-        margin: 10px 16px 10px 15px;
+        margin: 0px 16px 0px 15px;
     }
 
     .icon {
         float:right;
         width: 14px;
-        margin: 15px 10px 0 0;
+        margin: 0px 10px 0 0;
     }
 
     #favourites {
@@ -38,5 +40,5 @@
         font-size:16px;
         color:#333333;
         text-align:center;
-        margin-top: 10px;
     }
+}
