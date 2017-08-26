@@ -28,9 +28,6 @@ export const actions = {
 const team = (state = teamInitialState, action) => {
     
     switch (action.type) {
-        // case 'test':
-        //     console.log(state)
-        //     return state
         case GET_TEAMLIST:
             //console.log(action.teams)
             return {

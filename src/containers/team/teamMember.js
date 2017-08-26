@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import Modal from 'react-modal'
-import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form, Button, notification} from 'antd';
+import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form, Button, notification, message} from 'antd';
 import  TeamItem2  from './teamItem2'
 import ManagerItem from './managerItem'
 import MemberItem from './memberItem'
@@ -67,7 +67,7 @@ class TeamMember extends Component{
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.getCurrTeamName();
+        //this.getCurrTeamName();
         this.getTeamList();
         this.getMembers(currentTeam);
         this.handleInputChange=this.handleInputChange.bind(this);
@@ -85,7 +85,7 @@ class TeamMember extends Component{
         // }),()=>{
         //     console.log("curr: "+this.state.currentTeam);
         // };
-        currentTeam=currTeamName;
+        //currentTeam=currTeamName;
         //console.log("params: "+currentTeam);
     }
 
@@ -183,10 +183,11 @@ class TeamMember extends Component{
         var search=false;
         const text=this.state.searchText.trim();
         if(text==""){
-            notification.open({
-                message: '团队名称不能为空！',
-                // description: '团队名称不能为空！',
-            });
+            // notification.open({
+            //     message: '团队名称不能为空！',
+            //     // description: '团队名称不能为空！',
+            // });
+            message.error('团队名称不能为空！');
         }else{
             this.state.teams.map(function (item) {
                 if(item.teamName==text){
@@ -196,10 +197,11 @@ class TeamMember extends Component{
                 }
             });
             if(!search){
-                notification.open({
-                    // message: '搜索失败',
-                    message: '请确认您是否在此团队中！',
-                });
+                // notification.open({
+                //     // message: '搜索失败',
+                //     message: '请确认您是否在此团队中！',
+                // });
+                message.error('搜索失败,请确认您是否在此团队中！');
             }else{
                 this.getMembers(currentTeam);
             }
