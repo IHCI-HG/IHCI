@@ -78,7 +78,7 @@ class TeamMember extends Component{
     getCurrTeamName(){
         var data=this.props.location.state;
         var {currTeamName}=data;
-        console.log("params: "+currTeamName);
+        //console.log("params: "+currTeamName);
         // console.log("get current team name: "+this.props.router.params.state.currTeamName);
         // this.setState({ 
         //     currentTeam: currTeamName 
@@ -86,7 +86,7 @@ class TeamMember extends Component{
         //     console.log("curr: "+this.state.currentTeam);
         // };
         currentTeam=currTeamName;
-        console.log("params: "+currentTeam);
+        //console.log("params: "+currentTeam);
     }
 
     getTeamList() {
@@ -99,26 +99,28 @@ class TeamMember extends Component{
                     if(item.isStared)
                         markTeam.push(item);
                 })
-                console.log(team)
+                //console.log(team)
                 this.setState({
                     teams: team,
                     markedTeams: markTeam,
                 })
-            }).then(()=>{console.log("GET teams: "+this.state)})
+            }).then(()=>{
+                //console.log("GET teams: "+this.state)
+            })
     }
 
     getMembers(team) {
-        console.log("getting members...")
+        //console.log("getting members...")
         $.get('http://rapapi.org/mockjsdata/24695/queryTeam?teamID='+team).
             then((data) => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     managers: data.data.managers,
                     members: data.data.members,
                 })
-                console.log("data:"+data)
+                //console.log("data:"+data)
             }).then(()=>{
-                console.log("GETMEMBERS- state: "+this.state.managers)
+                //console.log("GETMEMBERS- state: "+this.state.managers)
             })
     }
 
@@ -187,7 +189,7 @@ class TeamMember extends Component{
             });
         }else{
             this.state.teams.map(function (item) {
-                if(item.teamID==text){
+                if(item.teamName==text){
                     search=true;
                     currentTeam=text;
                     console.log("curr team: "+currentTeam);
@@ -242,7 +244,7 @@ class TeamMember extends Component{
                                             return (
                                             <li key={item._id} >
                                                 <TeamItem2 
-                                                    name={item.teamID} 
+                                                    name={item.teamName} 
                                                 ></TeamItem2>
                                             </li>
                                         )})
@@ -259,7 +261,7 @@ class TeamMember extends Component{
                                             return (
                                             <li key={item._id} >
                                                 <TeamItem2 
-                                                    name={item.teamID} 
+                                                    name={item.teamName} 
                                                 ></TeamItem2>
                                             </li>
                                         )})

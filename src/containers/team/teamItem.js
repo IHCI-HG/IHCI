@@ -53,7 +53,14 @@ constructor(props){
         return (
             <div className="container"/* checked={this.state.mark}*/ style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
                 <div className="container2">
-                    <div className="picture" ></div>
+                    <div className="picture" >
+                        <img src="http://via.placeholder.com/150x93" 
+                        onClick={() =>browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: this.state.name}
+                                            })}/>
+                    </div>
                     <div className="icon" style={{ display: this.state.showIcon }}>
                         <Tooltip placement="right" title={this.state.inMarkedTeam ? "取消星标":"标记为星标团队" }>
                             <img 

@@ -9,6 +9,8 @@ import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
+import { getTeamlist } from '../../reducers/team'
+
 const close = require('./images/close.png')
 const add = require('./images/add.png')
 
@@ -60,7 +62,12 @@ class TeamList extends Component{
 
         this.getTeamList();
     }
-  
+    
+    componentDidMount(){
+        //this.props.getTeamlist();
+    }
+
+
     getTeamList() {
         $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
             then((data) => {
@@ -74,13 +81,19 @@ class TeamList extends Component{
                     if(item.isManager)
                         ownTeam.push(item);
                 })
-                console.log(team)
+                //console.log(team)
                 this.setState({
                     teams: team,
                     markedTeams: markTeam,
                     ownTeams: ownTeam
                 })
-            }).then(()=>{console.log(this.state.teams)})
+            }).then(()=>{
+                //console.log(this.state.teams)
+                this.props.getTeamlist(this.state.teams,this.state.markedTeams,this.state.ownTeams)
+                // this.props.getTeamlist()
+            }).then(()=>{
+                console.log(this.props.team)
+            })
     }
 
     handleMouseover=()=>{
@@ -140,7 +153,7 @@ class TeamList extends Component{
         } else {
             message.error('请输入团队名称');
         }
-        console.log(this.state)
+        //console.log(this.state)
        //添加新团队项到我拥有的团队列表
         var name = this.state.name;
         this.setState({
@@ -154,8 +167,8 @@ class TeamList extends Component{
                 },
             ]
         });
-        console.log(this.state);
-        console.log("team name(value): "+this.state.name);
+        //console.log(this.state);
+        //console.log("team name(value): "+this.state.name);
         browserHistory.push({
             pathname: '/teamMember',
             // query: { modal: true },
@@ -209,13 +222,9 @@ class TeamList extends Component{
                             this.state.markedTeams.map(function (item) {
                                 return (
                                     <li key={item._id}
-                                        onClick={() =>browserHistory.push({
-                                                pathname: '/teamMember',
-                                                // query: { modal: true },
-                                                state: { currTeamName: item.teamID }
-                                            })}>
+                                        >
                                         <TeamItem
-                                            teamName={item.teamID}
+                                            teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             
                                            //_handleTeamMark={this.handleTeamMark.bind(this)} 
@@ -249,14 +258,9 @@ class TeamList extends Component{
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                <li key={item._id}
-                                    onClick={() => browserHistory.push({
-                                                pathname: '/teamMember',
-                                                // query: { modal: true },
-                                                state: { currTeamName: item.teamID }
-                                            })}>
+                                <li key={item._id}>
                                     <TeamItem 
-                                        teamName={item.teamID} 
+                                        teamName={item.teamName} 
                                         inMarkedTeam={item.isStared} 
                                         
                                         //handleTeamMark={this.handleTeamMark}
@@ -310,14 +314,9 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key={item._id}
-                                        onClick={() => browserHistory.push({
-                                                pathname: '/teamMember',
-                                                // query: { modal: true },
-                                                state: { currTeamName: item.teamID }
-                                            })}>
+                                    <li key={item._id}>
                                         <TeamItem
-                                            teamName={item.teamID}
+                                            teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             
                                         //handleTeamMark={this.handleTeamMark}
@@ -351,7 +350,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    
+    getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3)
 }
 
 export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)
