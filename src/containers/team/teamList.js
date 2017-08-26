@@ -66,8 +66,19 @@ class TeamList extends Component{
             then((data) => {
                 //console.log(data)
                 const team = data.data.teams
+                var markTeam = [];
+                var ownTeam = [];
+                team.map(function (item) {
+                    if(item.isStared)
+                        markTeam.push(item);
+                    if(item.isManager)
+                        ownTeam.push(item);
+                })
+                console.log(team)
                 this.setState({
-                    teams: team
+                    teams: team,
+                    markedTeams: markTeam,
+                    ownTeams: ownTeam
                 })
             }).then(()=>{console.log(this.state.teams)})
     }
@@ -142,29 +153,43 @@ class TeamList extends Component{
                     members:[],
                 },
             ]
+        });
+        console.log(this.state);
+        console.log("team name(value): "+this.state.name);
+        browserHistory.push({
+            pathname: '/teamMember',
+            // query: { modal: true },
+            state: { currTeamName: this.state.name }
         })
-
-        browserHistory.push("/teamMember")
     }
+
+    // handleTeamMark(){
+    //     var team=[];
+    //     this.state.teams.map(function(item){  
+    //        if(item.marked==1){
+    //            team.add(item);
+    //        } 
+    //     });
+        
+    //     this.setState({
+    //         markedTeams:team
+    //     })
+
+    //     browserHistory.push("/teamMember")
+    // }
     
     //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
-    /*handleTeamMark(index){
-        this.state.teams.map(function(item){  
-            //有星标且原来不在星标团队中
-           if(item.mark && !item.inMarkedTeam){ 
-               this.setState({
-                   markedTeams: [
-                       ...this.state.markedTeams,
-                       item,
-                   ]
-               })
-           }//取消星标且原来在星标团队中 
-           else if (!item.mark && item.inMarkedTeam)
-               this.setState({
-                   markedTeams: this.state.markedTeams.filter((elem, i) => index !== i)
-               })
-        });
-    }*/
+    // handleTeamMark(){
+    //     var teamArray=[];
+    //     this.state.teams.map(function(item){  
+    //        if(item.inMarkedTeam){
+    //            teamArray.push(item);
+    //        }        
+    //     });
+    //     this.setState({
+    //         markedTeams: teamArray,
+    //     })
+    // }
    
     //星标团队
     markedTeam(){
@@ -183,12 +208,17 @@ class TeamList extends Component{
                         {  
                             this.state.markedTeams.map(function (item) {
                                 return (
-                                    <li key={item._id}>
+                                    <li key={item._id}
+                                        onClick={() =>browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: item.teamID }
+                                            })}>
                                         <TeamItem
                                             teamName={item.teamID}
-                                            mark={item.isStared}
-                                            onClick={() => browserHistory.push("/teamMember")}
-                                        //handleTeamMark={this.handleTeamMark}
+                                            inMarkedTeam={item.isStared}
+                                            
+                                           //_handleTeamMark={this.handleTeamMark.bind(this)} 
                                         ></TeamItem>
                                     </li>
                             )})
@@ -200,7 +230,6 @@ class TeamList extends Component{
     
 
     //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
-    //if(!this.props.isManager)
     myOwnTeam(){
        
         return(
@@ -217,15 +246,19 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
-
                      {  
                         this.state.ownTeams.map(function (item) {
                              return (
-                                <li key={item._id}>
+                                <li key={item._id}
+                                    onClick={() => browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: item.teamID }
+                                            })}>
                                     <TeamItem 
                                         teamName={item.teamID} 
-                                        mark={item.isStared} 
-                                        onClick={() => browserHistory.push("/teamMember")}
+                                        inMarkedTeam={item.isStared} 
+                                        
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
@@ -277,11 +310,16 @@ class TeamList extends Component{
                         {  
                             this.state.teams.map(function (item) {
                                 return (
-                                    <li key={item._id}>
+                                    <li key={item._id}
+                                        onClick={() => browserHistory.push({
+                                                pathname: '/teamMember',
+                                                // query: { modal: true },
+                                                state: { currTeamName: item.teamID }
+                                            })}>
                                         <TeamItem
                                             teamName={item.teamID}
-                                            mark={item.isStared}
-                                            onClick={() => browserHistory.push("/teamMember")}
+                                            inMarkedTeam={item.isStared}
+                                            
                                         //handleTeamMark={this.handleTeamMark}
                                         ></TeamItem>
                                     </li>

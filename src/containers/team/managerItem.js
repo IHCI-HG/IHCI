@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import './memberItem.scss'
+import './managerItem.scss'
  
  
-class MemberItem extends Component{
+class ManagerItem extends Component{
 
     constructor(props){
         super(props);
@@ -16,11 +16,12 @@ class MemberItem extends Component{
 
     render(){
         return (
-            <div className="member">
+            <div className="manager">
                 <div className="picture">
 
                 </div>
-                <p>{this.state.name}</p>
+                <p id="name">{this.state.name}</p>
+                <div style={{marginLeft:5}}><p style={{color:'gray'}}>（管理员）</p></div>
             </div>
         )
     }
@@ -37,4 +38,4 @@ const mapDispatchToProps = {
     
 }
 
-export default MemberItem = connect(mapStateToProps, mapDispatchToProps)(MemberItem);
+export default ManagerItem = connect(mapStateToProps, mapDispatchToProps)(ManagerItem);

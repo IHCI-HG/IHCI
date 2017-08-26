@@ -16,15 +16,14 @@ constructor(props){
             showIcon:'none',
             //favor:this.state.mark ? favourFilling : favour,
             name: this.props.teamName,
-            mark: this.props.mark,
+            //mark: this.props.mark,
             inMarkedTeam: this.props.inMarkedTeam,
             members: [],
         }
 
-        //handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
-        //this.handleMark=this.handleMark.bind(this);
-        // this.updateTeamMark=this.updateTeamMark.bind(this);
+        //this._handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
     }
+
     handleMouseover=()=>{
         this.setState({
             background: 'rgba(249,249,249,0.9)',
@@ -40,40 +39,27 @@ constructor(props){
     }
 
     handleMark=()=>{
-        console.log(this.state);
-        //var value=this.state.favor;
-        //var mk=this.state.mark;
-        //if(value==favour){
-        //    value=favourFilling;
-        //    mk=1;
-        //}else{
-        //    value=favour;
-        //    mk=0;
-        //}
-        //console.log(value+" "+mk);//
+        console.log(this.state)
+        //setState的回调
         this.setState({
-            mark: !this.state.mark,
-        });
+            inMarkedTeam: !this.state.inMarkedTeam,
+            },()=>{
+                    console.log(this.state)
+            }); 
         //this.handleTeamMark(index);//调用父节点teamlist的方法
-        
-        this.setState({
-            isMarkedTeam: !this.state.isMarkedTeam,
-        });
-        console.log(this.state);
-        // console.log(this.state.mark);
     }
-
+    
     render(){
         return (
             <div className="container"/* checked={this.state.mark}*/ style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
                 <div className="container2">
                     <div className="picture" ></div>
                     <div className="icon" style={{ display: this.state.showIcon }}>
-                        <Tooltip placement="right" title="标记为星标团队">
+                        <Tooltip placement="right" title={this.state.inMarkedTeam ? "取消星标":"标记为星标团队" }>
                             <img 
                                 id="favourites" 
                                 onClick={this.handleMark.bind(this.index)} 
-                                src={this.state.mark ? favourFilling : favour} 
+                                src={this.state.inMarkedTeam ? favourFilling : favour} 
                             />
                         </Tooltip>
                         <Tooltip placement="right" title="编辑">

@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import Modal from 'react-modal'
-import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form} from 'antd';
+import { Menu, Select, Input, Icon, Breadcrumb, Tooltip, Form, Button, notification} from 'antd';
 import  TeamItem2  from './teamItem2'
+import ManagerItem from './managerItem'
 import MemberItem from './memberItem'
+import $ from 'jquery'
 import DynamicFieldSet from './dynamicFieldSet' /*引入动态增减表单项*/
 import './dynamicFieldSet.scss'
 import './teamMember.scss'
 import './teamItem2.scss'
+import './managerItem.scss'
 import './memberItem.scss'
 import './addMember.scss'
 const Option = Select.Option;
@@ -44,6 +47,7 @@ const customStyles = {
     },
 
 };
+var currentTeam='';
  
 class TeamMember extends Component{
 
@@ -51,19 +55,74 @@ class TeamMember extends Component{
         super(props);
         this.state={
             _id: '',
-            currentTeam: '',
-            mark: 0,
+            // currentTeam:'',
             inMarkedTeam: 0,
             members: [],
+            managers:[],
             searchText: '',
+            teams: [],
+            markedTeams: [],
         }
         
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.getCurrTeamName();
+        this.getTeamList();
+        this.getMembers(currentTeam);
+        this.handleInputChange=this.handleInputChange.bind(this);
+        // this.handleSearch=this.handleSearch.bind(this);
+        
     }
 
-     openModal() {
+    getCurrTeamName(){
+        var data=this.props.location.state;
+        var {currTeamName}=data;
+        console.log("params: "+currTeamName);
+        // console.log("get current team name: "+this.props.router.params.state.currTeamName);
+        // this.setState({ 
+        //     currentTeam: currTeamName 
+        // }),()=>{
+        //     console.log("curr: "+this.state.currentTeam);
+        // };
+        currentTeam=currTeamName;
+        console.log("params: "+currentTeam);
+    }
+
+    getTeamList() {
+        $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
+            then((data) => {
+                //console.log(data)
+                const team = data.data.teams
+                var markTeam = [];
+                team.map(function (item) {
+                    if(item.isStared)
+                        markTeam.push(item);
+                })
+                console.log(team)
+                this.setState({
+                    teams: team,
+                    markedTeams: markTeam,
+                })
+            }).then(()=>{console.log("GET teams: "+this.state)})
+    }
+
+    getMembers(team) {
+        console.log("getting members...")
+        $.get('http://rapapi.org/mockjsdata/24695/queryTeam?teamID='+team).
+            then((data) => {
+                console.log(data)
+                this.setState({
+                    managers: data.data.managers,
+                    members: data.data.members,
+                })
+                console.log("data:"+data)
+            }).then(()=>{
+                console.log("GETMEMBERS- state: "+this.state.managers)
+            })
+    }
+
+    openModal() {
         this.setState({ modalIsOpen: true });
     }
 
@@ -77,25 +136,31 @@ class TeamMember extends Component{
     }
 
 
-    menu(){
-        return (         
-            <Select defaultValue={this.state.currentTeam} value={this.state.currentTeam} style={{ width: 100 }} onSelect={this.handleChange.bind(this)}>
-                <Option value="team1">team1</Option>
-                <Option value="team2">team2</Option>
-                <Option value="team3">team3</Option>
-            </Select>
-        );
-    }
+    // menu(){
+    //     return (         
+    //         <Select defaultValue={this.state.currentTeam} value={this.state.currentTeam} style={{ width: 100 }} onSelect={this.handleChange.bind(this)}>
+    //             <Option value="team1">team1</Option>
+    //             <Option value="team2">team2</Option>
+    //             <Option value="team3">team3</Option>
+    //         </Select>
+    //     );
+    // }
 
-    handleSearch=(value)=>{
+    // handleTeamChange=(value)=>{
 
+    // }
+
+    handleTeamChange=(value)=>{
+        currentTeam=value;
+        this.getMembers(currentTeam);
     }
 
 
     handleChange=(value)=>{
-        this.setState({
-            currentTeam:value,
-        });
+        // this.setState({
+        //     currentTeam:value,
+        // });
+        currentTeam=value;
     }
 
     handleMark=()=>{
@@ -104,52 +169,101 @@ class TeamMember extends Component{
         });
     }
 
+    handleInputChange(event){
+        const text = event.target.value;
+        this.setState({
+            searchText: text
+        });
+    }
+
+    handleSearch=()=>{
+        console.log("search");
+        var search=false;
+        const text=this.state.searchText.trim();
+        if(text==""){
+            notification.open({
+                message: '团队名称不能为空！',
+                // description: '团队名称不能为空！',
+            });
+        }else{
+            this.state.teams.map(function (item) {
+                if(item.teamID==text){
+                    search=true;
+                    currentTeam=text;
+                    console.log("curr team: "+currentTeam);
+                }
+            });
+            if(!search){
+                notification.open({
+                    // message: '搜索失败',
+                    message: '请确认您是否在此团队中！',
+                });
+            }else{
+                this.getMembers(currentTeam);
+            }
+        }
+    }
+
     render(){
 
         return (
-            <div className="container">
+            <div className="out-container">
                 <div className="nav" >
-                    <Breadcrumb>
-                        <Breadcrumb.Item><a onClick={() => browserHistory.push("/teamList")}>团队</a></Breadcrumb.Item>
-                        {/*<Dropdown overlay={this.menu()} trigger={['click']}>
-                            <a className="ant-dropdown-link" href="#">
-                                {this.state.currentTeam} <Icon type="down" />
-                            </a>
-                        </Dropdown>*/}
-                        {this.menu()}
-                        <Tooltip placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
-                            <img id="favour" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
+                    <div className="teamBC">
+                        <div style={{float:'left',width:40}}>
+                            <a onClick={() => browserHistory.push("/teamList")}>团队</a>
+                        </div>
+                        <div style={{float:'left',width:13,fontSize:18}}>/</div>
+                        <div style={{marginLeft:53}}>
+                            <a href="#">{ currentTeam } </a>
+                        </div>
+                    </div>
+                    <div style={{marginLeft:5,marginTop:9}}>
+                        <Tooltip  placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
+                            <img id="favourite" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
                         </Tooltip>
-                    </Breadcrumb>
+                    </div>
                 </div>
 
-                <div className="small-container">
+                <div className="content">
                     <div className="teamList-container">
                         <form action="" className="input-kw-form">
-                            <input type="search" style={{ width: 220, height:30, marginLeft:25, marginTop:24 }} placeholder="查找团队" />
+                            <Input type="search" style={{ width: 180, height:30, marginLeft:25, marginRight:5,marginTop:24 }} 
+                                onChange={this.handleInputChange} placeholder="输入团队名称" />
+                            <Button shape="circle" icon="search" onClick={this.handleSearch.bind(this)}/>
                         </form>
                         <div className="scroll-team">
                             <div className="markedTeam">
-                                <p>星标团队</p>
+                                <p style={{marginBottom:3}}>星标团队</p>
                                 <img id="border" src={border} />
                                 <ul>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
+                                    {  
+                                       this.state.markedTeams.map(function (item) {
+                                            return (
+                                            <li key={item._id} >
+                                                <TeamItem2 
+                                                    name={item.teamID} 
+                                                ></TeamItem2>
+                                            </li>
+                                        )})
+                                    }
                                 </ul>
                             </div>
 
                             <div className="allTeam">
-                                <p>所有团队</p>
+                                <p style={{marginBottom:3}}>所有团队</p>
                                 <img id="border" src={border} />
                                 <ul>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
-                                    <li><TeamItem2></TeamItem2></li>
+                                    {  
+                                       this.state.teams.map(function (item) {
+                                            return (
+                                            <li key={item._id} >
+                                                <TeamItem2 
+                                                    name={item.teamID} 
+                                                ></TeamItem2>
+                                            </li>
+                                        )})
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -168,17 +282,28 @@ class TeamMember extends Component{
                                     </div>
                                 </li>
                                 {/*返回成员列表*/}
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
-                                <li><MemberItem></MemberItem></li>
+                                {  
+                                    this.state.managers.map(function (item) {
+                                        {/*console.log("managers item:"+item)*/}
+                                        return (
+                                        <li key={item._id}>
+                                            <ManagerItem 
+                                                name={item} 
+                                            ></ManagerItem>
+                                        </li>
+                                    )})
+                                }
+                                {  
+                                    this.state.members.map(function (item) {
+                                        {/*console.log("managers item:"+item)*/}
+                                        return (
+                                        <li key={item._id}>
+                                            <MemberItem 
+                                                name={item} 
+                                            ></MemberItem>
+                                        </li>
+                                    )})
+                                }
                                 <Modal
                                     isOpen={this.state.modalIsOpen}
                                     onAfterOpen={this.afterOpenModal}
