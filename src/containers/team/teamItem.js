@@ -4,8 +4,6 @@ import { browserHistory } from 'react-router'
 import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
-import { handleStar } from '../../reducers/team'
-
 
 const favour = require('./images/favourites.png')
 const favourFilling = require('./images/favourites-filling.png')
@@ -45,9 +43,9 @@ class TeamItem extends Component{
     handleMark=()=>{
         //console.log(this.state)
         //setState的回调
-        this.setState({
-            inMarkedTeam: !this.state.inMarkedTeam,
-            });
+        // this.setState({
+        //     inMarkedTeam: !this.state.inMarkedTeam,
+        //     });
         //this.handleTeamMark(index);//调用父节点teamlist的方法
         this.props.handleStar(this.props.teamID);
     }
@@ -86,15 +84,5 @@ class TeamItem extends Component{
 
 }
 
-function mapStateToProps(state) {
-    return {
-        team: state.team,
-    }
-}
+export default TeamItem
 
-const mapDispatchToProps = {
-    //login: (arg) => login(arg),
-    handleStar : (arg) => handleStar(arg),
-}
-
-export default TeamItem = connect(mapStateToProps, mapDispatchToProps)(TeamItem);

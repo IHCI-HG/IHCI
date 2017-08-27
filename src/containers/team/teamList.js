@@ -9,7 +9,8 @@ import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
-import { getTeamlist, setCurrentTeam } from '../../reducers/team'
+
+import { getTeamlist, setCurrentTeam, handleStar } from '../../reducers/team'
 
 const close = require('./images/close.png')
 const add = require('./images/add.png')
@@ -215,7 +216,7 @@ class TeamList extends Component{
     // }
 
     //星标团队
-    markedTeam(){
+    markedTeam = () => {
         if(!this.props.team.markedTeams.length)
             return(
                 <div className="small-container">
@@ -239,6 +240,7 @@ class TeamList extends Component{
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}
+                                            handleStar = {this.props.handleStar}
                                            //_handleTeamMark={this.handleTeamMark.bind(this)}
                                         ></TeamItem>
                                     </li>
@@ -251,7 +253,7 @@ class TeamList extends Component{
 
 
     //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
-    myOwnTeam(){
+    myOwnTeam = () => {
 
         return(
             <div className="small-container">
@@ -278,6 +280,7 @@ class TeamList extends Component{
                                         teamName={item.teamName}
                                         inMarkedTeam={item.isStared}
                                         teamID = {item.teamID}
+                                        handleStar = {this.props.handleStar}
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
@@ -313,7 +316,7 @@ class TeamList extends Component{
     }
 
     //我参与的团队
-    myTeam(){
+    myTeam = () => {
         if(!this.props.team.teams.length)
             return(
                 <div className="small-container">
@@ -335,6 +338,7 @@ class TeamList extends Component{
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}
+                                            handleStar = {this.props.handleStar}
                                         //handleTeamMark={this.handleTeamMark}
                                         ></TeamItem>
                                     </li>
@@ -349,9 +353,42 @@ class TeamList extends Component{
         //this._handleTeamMark=this.handleTeamMark.bind(this);
         return (
             <div className="teamList-container">
-                {this.markedTeam()}
+                {/* {this.markedTeam()}
                 {this.myOwnTeam()}
-                {this.myTeam()}
+                {this.myTeam()} */}
+
+                {
+                    this.props.team.teams && this.props.team.teams.length > 0 ?
+                        <div className="small-container">
+                            <span className="title">我参与的团队</span>
+                            <ul>
+                                {
+                                    this.props.team.teams.map(function (item) {
+                                        console.log(this);
+                                        return (
+                                            <li key={item._id}>
+                                                <TeamItem
+                                                    key={item._id}
+                                                    teamName={item.teamName}
+                                                    inMarkedTeam={item.isStared}
+                                                    teamID={item.teamID}
+                                                    handleStar={this.props.handleStar}
+                                                ></TeamItem>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    :
+                        <div className="small-container">
+                            <span className="title">我参与的团队</span>
+                            <ul><li>你还没有团队哦~</li></ul>
+                        </div>
+                }
+                {
+                    console.log(this.props)
+                }
             </div>
         )
     }
@@ -368,7 +405,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3),
     setCurrentTeam: (arg) => setCurrentTeam(arg),
-    handleStar : (arg) => handleStar(arg),
+    handleStar: (arg) => handleStar(arg)
 }
 
 export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)
