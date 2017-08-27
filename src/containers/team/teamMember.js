@@ -212,7 +212,7 @@ class TeamMember extends Component{
                     </div>
                     <div style={{marginLeft:5,marginTop:9}}>
                         <Tooltip  placement="right" title={this.state.mark ? "取消星标":"标记为星标团队" }>
-                            <img id="favourite" onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
+                            <img onClick={this.handleMark.bind(this)} src={this.state.mark ? favourFilling : favour} />
                         </Tooltip>
                     </div>
                 </div>

@@ -97,12 +97,12 @@ class DynamicFieldSet extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         {formItems}
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
+          <Button type="dashed" onClick={this.add} style={{ width: '50%', marginLeft: '10%' }}>
             <Icon type="plus" />添加成员邮箱
           </Button>
         </FormItem>
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="primary" htmlType="submit">发送邀请</Button>
+          <Button type="primary" htmlType="submit" style={{marginLeft: '25%', marginTop: 0 }}>发送邀请</Button>
         </FormItem>
       </Form>
     );
