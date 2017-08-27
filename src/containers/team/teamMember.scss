@@ -46,8 +46,10 @@ img:hover {
 .scroll-team {
    background:#ffffff;
    box-shadow:1px 1px 4px 0 rgba(204,204,204,0.50);
+//    top: 185px;
+//    bottom: 0px;
    width:260px;
-   height:450px;
+   //height:450px;
    margin-left: 15px;
    padding-bottom: 20px;
    overflow-y: scroll;
@@ -72,7 +74,7 @@ img:hover {
 
 .scroll-member {
     width: 695px;
-    height:450px;
+   // height:450px;
     margin-left: 26px;
     overflow-y: scroll;
     overflow-x: hidden;

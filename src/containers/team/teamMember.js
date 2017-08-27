@@ -138,19 +138,6 @@ class TeamMember extends Component{
     }
 
 
-    // menu(){
-    //     return (         
-    //         <Select defaultValue={this.state.currentTeam} value={this.state.currentTeam} style={{ width: 100 }} onSelect={this.handleChange.bind(this)}>
-    //             <Option value="team1">team1</Option>
-    //             <Option value="team2">team2</Option>
-    //             <Option value="team3">team3</Option>
-    //         </Select>
-    //     );
-    // }
-
-    // handleTeamChange=(value)=>{
-
-    // }
 
     handleTeamChange=(value)=>{
         currentTeam=value;
@@ -209,7 +196,8 @@ class TeamMember extends Component{
     }
 
     render(){
-
+        var h1=$(window).height()-185;
+        var h2=$(window).height()-142;
         return (
             <div className="out-container">
                 <div className="nav" >
@@ -236,7 +224,7 @@ class TeamMember extends Component{
                                 onChange={this.handleInputChange} placeholder="输入团队名称" />
                             <Button shape="circle" icon="search" onClick={this.handleSearch.bind(this)}/>
                         </form>
-                        <div className="scroll-team">
+                        <div className="scroll-team" style={{height:h1}}>
                             <div className="markedTeam">
                                 <p style={{marginBottom:3}}>星标团队</p>
                                 <img id="border" src={border} />
@@ -275,7 +263,7 @@ class TeamMember extends Component{
 
                     <div className="memberList-container">
                         <span>所有成员</span>
-                        <div className="scroll-member">
+                        <div className="scroll-member" style={{height:h2}}>
                             <ul>
                                 <li onClick={this.openModal}>
                                     <div className="addbtn" >

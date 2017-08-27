@@ -257,8 +257,10 @@ class TeamList extends Component{
                 <ul>
                     <li key="add" onClick={this.openModal}>
                        <div className="addbtn" onClick={this.openModal} 
-                       onMouseOver={this.handleMouseover} onMouseOut={this.handleMouseOut} 
-                       style={{background:this.state.background}}>
+                            onMouseOver={this.handleMouseover} 
+                            onMouseOut={this.handleMouseOut} 
+                            style={{background:this.state.background}}
+                        >
                           <div className="icon-container" >
                              <img id="addIcon" src={add}/>
                           </div>
@@ -272,7 +274,6 @@ class TeamList extends Component{
                                     <TeamItem 
                                         teamName={item.teamName} 
                                         inMarkedTeam={item.isStared} 
-                                        
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
