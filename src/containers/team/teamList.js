@@ -9,7 +9,7 @@ import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
-import { getTeamlist } from '../../reducers/team'
+import { getTeamlist, setCurrentTeam } from '../../reducers/team'
 
 const close = require('./images/close.png')
 const add = require('./images/add.png')
@@ -44,13 +44,16 @@ class TeamList extends Component{
         super(props);
 
         this.state = {
-             modalIsOpen: false,  
-             background:'rgba(0,0,0,0)',
-             teams:[],
-             markedTeams:[],
-             ownTeams:[],
-             //创建新团队属性
-             name:"",
+            modalIsOpen: false,  
+            background:'rgba(0,0,0,0)',
+            teams: this.props.team.teams,
+            markedTeams:this.props.team.markedTeams,
+            ownTeams:this.props.team.ownTeams,
+            // teams: [],
+            // markedTeams: [],
+            // ownTeams: [],
+            //创建新团队属性
+            name:"",
             //members: [this.props.user.user, "test@test.test"]
         };
 
@@ -60,11 +63,15 @@ class TeamList extends Component{
         //this._handleTeamMark=this.handleTeamMark.bind(this);
         this.handleInputChange=this.handleInputChange.bind(this);
 
-        this.getTeamList();
+        //this.getTeamList();
+        //console.log(this.props.team.teams.length)
     }
     
     componentDidMount(){
-        //this.props.getTeamlist();
+  
+        if(this.props.team.teams.length == 0){
+            this.getTeamList();            
+        }
     }
 
 
@@ -88,16 +95,16 @@ class TeamList extends Component{
                     ownTeams: ownTeam
                 })
             }).then(()=>{
-                //console.log(this.state.teams)
-                this.props.getTeamlist(this.state.teams,this.state.markedTeams,this.state.ownTeams)
-                // this.props.getTeamlist()
+                this.props.getTeamlist(this.state.teams,this.state.markedTeams,this.state.ownTeams);
+                //this.props.setCurrentTeam('test');
             }).then(()=>{
-                console.log(this.props.team)
+                //console.log(this.props.team)
             })
     }
 
     handleMouseover=()=>{
          this.setState({
+             
              background:'#fff'
          });
      }
@@ -133,6 +140,7 @@ class TeamList extends Component{
         this.setState({
             _id: id
         });
+        
         if (this.state.name != '') {
             $.ajax({
                 method: 'POST',
@@ -141,13 +149,20 @@ class TeamList extends Component{
                 data: this.state
             }).done(function (data) {
                 //console.log(data)
-                if (data != {}) {
+                if (data !={}) {
                     notification.open({
                         message: '创建成功',
-                        description: '恭喜你创建团队成功，页面将自动跳转到我的团队页面！',
+                        description: '恭喜你创建团队成功，页面已自动跳转到我的团队页面！',
                     });
+                    //state: { currTeamName: this.state.name }
                     //成功创建后跳转到改团队页面
-                    //browserHistory.push('teamList');
+                    // this.props.setCurrentTeam(this.state.name);
+                    //this.props.setCurrentTeam();          
+                    browserHistory.push({
+                        pathname: '/teamMember',
+                        // query: { modal: true },
+                        //state: { currTeamName: this.state.name }
+                    })
                 }
             })
         } else {
@@ -169,11 +184,6 @@ class TeamList extends Component{
         });
         //console.log(this.state);
         //console.log("team name(value): "+this.state.name);
-        browserHistory.push({
-            pathname: '/teamMember',
-            // query: { modal: true },
-            state: { currTeamName: this.state.name }
-        })
     }
 
     // handleTeamMark(){
@@ -351,7 +361,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3)
+    getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3),
+    setCurrentTeam: (arg) => setCurrentTeam(arg),
+    // setCurrentTeam: () => setCurrentTeam()
 }
 
 export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)
