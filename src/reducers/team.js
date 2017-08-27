@@ -4,59 +4,12 @@ export const HANDLE_STAR = 'HANDLE_STAR'
 
 const teamInitialState = {
    teams: [
-       {
-           teamName: "testTeam1",
-           isManager: true,
-           isStared: true,
-           teamID: 1
-       },
-       {
-           teamName: "testTeam2",
-           isManager: false,
-           isStared: true,
-           teamID: 2
-       },
-       {
-           teamName: "testTeam3",
-           isManager: false,
-           isStared: false,
-           teamID: 3
-       },
-       {
-           teamName: "testTeam4",
-           isManager: false,
-           isStared: false,
-           teamID: 4
-       },
-       {
-           teamName: "testTeam5",
-           isManager: false,
-           isStared: false,
-           teamID: 5
-       },
    ],
    markedTeams: [
-       {
-           teamName: "testTeam1",
-           isManager: false,
-           isStared: true,
-           teamID: 1
-       },
-       {
-           teamName: "testTeam2",
-           isManager: false,
-           isStared: true,
-           teamID: 2
-       },
    ],
    ownTeams: [
-       {
-           teamName: "testTeam1",
-           isManager: true,
-           isStared: true,
-           teamID: 1
-       },
    ],
+
    currentTeam: ''
 }
 

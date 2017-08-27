@@ -51,7 +51,7 @@ export function login(arg) {
             method: 'POST',
             body: {
                 username: arg.username,
-                password: arg.password, 
+                password: arg.password,
             }
         });
 
@@ -81,7 +81,7 @@ export function signOut(arg) {
             dispatch,
             getStore,
             url: '/api/project/signout',
-            method: 'GET'
+            method: 'GET',
         });
 
         dispatch({

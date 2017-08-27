@@ -8,7 +8,7 @@ import TeamItem from './teamItem';
 import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
-
+import { getTestTeamData , postTestData } from '../../actions/team'
 
 import { getTeamlist, setCurrentTeam, handleStar } from '../../reducers/team'
 
@@ -70,9 +70,11 @@ class TeamList extends Component{
 
     componentDidMount(){
 
-        // if(this.props.team.teams.length == 0){
-        //     this.getTeamList();
-        // }
+        this.props.getTestTeamData("这是自定义传给接口的参数", 1111111)
+        this.props.postTestData({asasdasd: "复杂的数据结构", xxxxx: {
+            awdawdaw: "awdawdawdawd",
+            awdwadawdawd: [1,2,3,4,5,5]
+        }})
 
     }
 
@@ -369,7 +371,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3),
     setCurrentTeam: (arg) => setCurrentTeam(arg),
-    handleStar: (arg) => handleStar(arg)
+    handleStar: (arg) => handleStar(arg),
+    getTestTeamData,
+    postTestData,
 }
 
 export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)

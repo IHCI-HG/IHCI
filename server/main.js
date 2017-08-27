@@ -23,6 +23,7 @@ const projects = require('./routes/project_route');
 const label = require('./routes/label_route');
 const article = require('./routes/acticle_route')
 const team = require('./routes/team_route')
+const testData = require('./routes/test-data')
 
 const app = express();
 app.disable('x-powered-by');
@@ -50,7 +51,7 @@ app.use(session({
   })
 }));
 
-
+testData(app)
 routes(app);
 user(app);
 user_data(app);

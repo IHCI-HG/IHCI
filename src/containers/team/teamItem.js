@@ -5,6 +5,7 @@ import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
 
+
 const favour = require('./images/favourites.png')
 const favourFilling = require('./images/favourites-filling.png')
 const edit = require('./images/edit.png')
