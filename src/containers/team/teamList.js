@@ -230,7 +230,7 @@ class TeamList extends Component{
                     <span className="title">星标团队</span>
                     <ul>
                         {
-                            this.props.team.markedTeams.map(function (item) {
+                            this.props.team.markedTeams.map((item) => {
                                 return (
                                     <li
                                         key={item._id}
@@ -241,7 +241,6 @@ class TeamList extends Component{
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}
                                             handleStar = {this.props.handleStar}
-                                           //_handleTeamMark={this.handleTeamMark.bind(this)}
                                         ></TeamItem>
                                     </li>
                             )})
@@ -272,7 +271,7 @@ class TeamList extends Component{
                        <p>创建新团队</p>
                     </li>
                      {
-                        this.props.team.ownTeams.map(function (item) {
+                        this.props.team.ownTeams.map((item) => {
                              return (
                                 <li key={item._id}>
                                     <TeamItem
@@ -281,7 +280,6 @@ class TeamList extends Component{
                                         inMarkedTeam={item.isStared}
                                         teamID = {item.teamID}
                                         handleStar = {this.props.handleStar}
-                                        //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
                          )})
@@ -330,7 +328,7 @@ class TeamList extends Component{
                     <span className="title">我参与的团队</span>
                     <ul>
                         {
-                            this.props.team.teams.map(function (item) {
+                            this.props.team.teams.map((item) => {
                                 return (
                                     <li key={item._id}>
                                         <TeamItem
@@ -339,7 +337,6 @@ class TeamList extends Component{
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}
                                             handleStar = {this.props.handleStar}
-                                        //handleTeamMark={this.handleTeamMark}
                                         ></TeamItem>
                                     </li>
                             )})
@@ -353,42 +350,9 @@ class TeamList extends Component{
         //this._handleTeamMark=this.handleTeamMark.bind(this);
         return (
             <div className="teamList-container">
-                {/* {this.markedTeam()}
+                {this.markedTeam()}
                 {this.myOwnTeam()}
-                {this.myTeam()} */}
-
-                {
-                    this.props.team.teams && this.props.team.teams.length > 0 ?
-                        <div className="small-container">
-                            <span className="title">我参与的团队</span>
-                            <ul>
-                                {
-                                    this.props.team.teams.map(function (item) {
-                                        console.log(this);
-                                        return (
-                                            <li key={item._id}>
-                                                <TeamItem
-                                                    key={item._id}
-                                                    teamName={item.teamName}
-                                                    inMarkedTeam={item.isStared}
-                                                    teamID={item.teamID}
-                                                    handleStar={this.props.handleStar}
-                                                ></TeamItem>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </div>
-                    :
-                        <div className="small-container">
-                            <span className="title">我参与的团队</span>
-                            <ul><li>你还没有团队哦~</li></ul>
-                        </div>
-                }
-                {
-                    console.log(this.props)
-                }
+                {this.myTeam()}
             </div>
         )
     }

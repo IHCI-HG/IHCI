@@ -26,6 +26,7 @@ class TeamItem extends Component{
         //this._handleTeamMark = this.props.handleTeamMark;//父节点teamlist里的方法
     }
 
+
     handleMouseover=()=>{
         this.setState({
             background: 'rgba(249,249,249,0.9)',
