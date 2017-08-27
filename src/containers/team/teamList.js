@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import Modal from 'react-modal';
 import './teamList.scss'
 import './teamItem.scss'
-import TeamItem from './teamItem'; 
+import TeamItem from './teamItem';
 import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
@@ -44,7 +44,7 @@ class TeamList extends Component{
         super(props);
 
         this.state = {
-            modalIsOpen: false,  
+            modalIsOpen: false,
             background:'rgba(0,0,0,0)',
             teams: this.props.team.teams,
             markedTeams:this.props.team.markedTeams,
@@ -66,12 +66,13 @@ class TeamList extends Component{
         //this.getTeamList();
         //console.log(this.props.team.teams.length)
     }
-    
+
     componentDidMount(){
-  
-        if(this.props.team.teams.length == 0){
-            this.getTeamList();            
-        }
+
+        // if(this.props.team.teams.length == 0){
+        //     this.getTeamList();
+        // }
+
     }
 
 
@@ -139,7 +140,7 @@ class TeamList extends Component{
         this.setState({
             _id: id
         });
-        
+
         if (this.state.name != '') {
             $.ajax({
                 method: 'POST',
@@ -156,7 +157,7 @@ class TeamList extends Component{
                     //state: { currTeamName: this.state.name }
                     //成功创建后跳转到改团队页面
                     // this.props.setCurrentTeam(this.state.name);
-                    //this.props.setCurrentTeam();          
+                    //this.props.setCurrentTeam();
                     browserHistory.push({
                         pathname: '/teamMember',
                         // query: { modal: true },
@@ -187,32 +188,32 @@ class TeamList extends Component{
 
     // handleTeamMark(){
     //     var team=[];
-    //     this.state.teams.map(function(item){  
+    //     this.state.teams.map(function(item){
     //        if(item.marked==1){
     //            team.add(item);
-    //        } 
+    //        }
     //     });
-        
+
     //     this.setState({
     //         markedTeams:team
     //     })
 
     //     browserHistory.push("/teamMember")
     // }
-    
+
     //点击星标会添加到星标团队，取消星标从星标团队中删除，并作为属性传给teamitem
     // handleTeamMark(){
     //     var teamArray=[];
-    //     this.state.teams.map(function(item){  
+    //     this.state.teams.map(function(item){
     //        if(item.inMarkedTeam){
     //            teamArray.push(item);
-    //        }        
+    //        }
     //     });
     //     this.setState({
     //         markedTeams: teamArray,
     //     })
     // }
-   
+
     //星标团队
     markedTeam(){
         if(!this.props.team.markedTeams.length)
@@ -227,16 +228,18 @@ class TeamList extends Component{
                 <div className="small-container">
                     <span className="title">星标团队</span>
                     <ul>
-                        {  
+                        {
                             this.props.team.markedTeams.map(function (item) {
                                 return (
-                                    <li key={item._id}
+                                    <li
+                                        key={item._id}
                                         >
                                         <TeamItem
+                                            key={item._id}
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}
-                                           //_handleTeamMark={this.handleTeamMark.bind(this)} 
+                                           //_handleTeamMark={this.handleTeamMark.bind(this)}
                                         ></TeamItem>
                                     </li>
                             )})
@@ -245,19 +248,19 @@ class TeamList extends Component{
                 </div>
             )
     }
-    
+
 
     //我拥有的团队，需要判断是否为团队主管或超级管理员，不是则没有此项
     myOwnTeam(){
-       
+
         return(
             <div className="small-container">
                 <span className="title">我拥有的团队</span>
                 <ul>
                     <li key="add" onClick={this.openModal}>
-                       <div className="addbtn" onClick={this.openModal} 
-                            onMouseOver={this.handleMouseover} 
-                            onMouseOut={this.handleMouseOut} 
+                       <div className="addbtn" onClick={this.openModal}
+                            onMouseOver={this.handleMouseover}
+                            onMouseOut={this.handleMouseOut}
                             style={{background:this.state.background}}
                         >
                           <div className="icon-container" >
@@ -266,20 +269,21 @@ class TeamList extends Component{
                        </div>
                        <p>创建新团队</p>
                     </li>
-                     {  
+                     {
                         this.props.team.ownTeams.map(function (item) {
                              return (
                                 <li key={item._id}>
-                                    <TeamItem 
-                                        teamName={item.teamName} 
-                                        inMarkedTeam={item.isStared} 
+                                    <TeamItem
+                                        key={item._id}
+                                        teamName={item.teamName}
+                                        inMarkedTeam={item.isStared}
                                         teamID = {item.teamID}
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
                          )})
                      }
-                    
+
                      <Modal
                          isOpen={this.state.modalIsOpen}
                          onAfterOpen={this.afterOpenModal}
@@ -293,21 +297,21 @@ class TeamList extends Component{
                                  <p className="title">创建新团队</p>
                                  <img id="cancel" src={close} onClick={this.closeModal} />
                              </div>
-                             <input 
-                                type="text" 
-                                placeholder="团队名称" 
-                                onChange={this.handleInputChange} 
+                             <input
+                                type="text"
+                                placeholder="团队名称"
+                                onChange={this.handleInputChange}
                                 autoFocus
                             ></input>
                              <button onClick={this.handleSubmit.bind(this)}>完成创建</button>
                          </div>
                      </Modal>
                 </ul>
-                
+
             </div>
         )
     }
- 
+
     //我参与的团队
     myTeam(){
         if(!this.props.team.teams.length)
@@ -322,11 +326,12 @@ class TeamList extends Component{
                 <div className="small-container">
                     <span className="title">我参与的团队</span>
                     <ul>
-                        {  
+                        {
                             this.props.team.teams.map(function (item) {
                                 return (
                                     <li key={item._id}>
                                         <TeamItem
+                                            key={item._id}
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}

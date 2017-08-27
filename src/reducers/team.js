@@ -3,9 +3,60 @@ export const SET_CURRENT_TEAM = 'SET_CURRENT_TEAM'
 export const HANDLE_STAR = 'HANDLE_STAR'
 
 const teamInitialState = {
-   teams: [],
-   markedTeams: [],
-   ownTeams: [],
+   teams: [
+       {
+           teamName: "testTeam1",
+           isManager: true,
+           isStared: true,
+           teamID: 1
+       },
+       {
+           teamName: "testTeam2",
+           isManager: false,
+           isStared: true,
+           teamID: 2
+       },
+       {
+           teamName: "testTeam3",
+           isManager: false,
+           isStared: false,
+           teamID: 3
+       },
+       {
+           teamName: "testTeam4",
+           isManager: false,
+           isStared: false,
+           teamID: 4
+       },
+       {
+           teamName: "testTeam5",
+           isManager: false,
+           isStared: false,
+           teamID: 5
+       },
+   ],
+   markedTeams: [
+       {
+           teamName: "testTeam1",
+           isManager: false,
+           isStared: true,
+           teamID: 1
+       },
+       {
+           teamName: "testTeam2",
+           isManager: false,
+           isStared: true,
+           teamID: 2
+       },
+   ],
+   ownTeams: [
+       {
+           teamName: "testTeam1",
+           isManager: true,
+           isStared: true,
+           teamID: 1
+       },
+   ],
    currentTeam: ''
 }
 
@@ -45,7 +96,7 @@ export const actions = {
 };
 
 const team = (state = teamInitialState, action) => {
-    
+
     switch (action.type) {
         case GET_TEAMLIST:
             //console.log(action.teams)
@@ -63,21 +114,40 @@ const team = (state = teamInitialState, action) => {
             }
 
         case HANDLE_STAR:
-            state.teams.map((item) => {
-                //console.log(item.isStared)
-                if(item.teamID == action.teamID){
-                    item.isStared = !item.isStared;                    
+            // state.teams.map((item) => {
+            //     //console.log(item.isStared)
+            //     if(item.teamID == action.teamID){
+            //         item.isStared = !item.isStared;
+            //     }
+            // })
+            // var newMarkedTeams = [];
+            // state.teams.map((item)=>{
+            //     if(item.isStared === true){
+            //         newMarkedTeams.push(item);
+            //     }
+            // })
+
+            var teams = [...state.teams];
+            var index = 0
+            for (var index = 0; index < teams.length; index++) {
+                if(teams[index].teamID == action.teamID) {
+                    teams[index] = {
+                        ...teams[index],
+                        isStared: !teams[index].isStared
+                    }
                 }
-            })
-            var newMarkedTeams = [];
-            state.teams.map((item)=>{
-                if(item.isStared === true){
-                    newMarkedTeams.push(item);
+            }
+            var markedTeams = [];
+            for (var index = 0; index < teams.length; index++) {
+                if(teams[index].isStared == true) {
+                    markedTeams.push(teams[index])
                 }
-            })
+            }
+
             return{
                 ...state,
-                markedTeams: newMarkedTeams
+                teams,
+                markedTeams
             }
         default:
             // console.log(state);

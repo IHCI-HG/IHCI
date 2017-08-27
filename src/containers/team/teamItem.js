@@ -39,7 +39,7 @@ class TeamItem extends Component{
         this.setState({
             background:'rgba(0,0,0,0)',
             showIcon:'none',
-        });  
+        });
     }
 
     handleMark=()=>{
@@ -47,31 +47,31 @@ class TeamItem extends Component{
         //setState的回调
         this.setState({
             inMarkedTeam: !this.state.inMarkedTeam,
-            }); 
+            });
         //this.handleTeamMark(index);//调用父节点teamlist的方法
-        this.props.handleStar(this.state.id);
+        this.props.handleStar(this.props.teamID);
     }
-    
+
     render(){
         return (
             <div className="container"/* checked={this.state.mark}*/ style={{background:this.state.background}} onMouseOver={this.handleMouseover}  onMouseOut={this.handleMouseOut}>
                 <div className="container2">
                     <div className="picture" >
-                        <img src="http://via.placeholder.com/150x93" 
+                        <img src="http://via.placeholder.com/150x93"
                         onClick={() =>browserHistory.push({
                                                 pathname: '/teamMember',
                                                 // query: { modal: true },
-                                                state: { currTeamName: this.state.name}
+                                                state: { currTeamName: this.props.teamName}
                                             })}/>
                     </div>
                     <div className="icon" style={{ display: this.state.showIcon }}>
-                        <Tooltip placement="right" title={this.state.inMarkedTeam ? "取消星标":"标记为星标团队" }>
-                            <img 
-                                id="favourites" 
+                        <Tooltip placement="right" title={this.props.inMarkedTeam ? "取消星标":"标记为星标团队" }>
+                            <img
+                                id="favourites"
                                 onClick={
                                     this.handleMark.bind(this.index)
-                                } 
-                                src={this.state.inMarkedTeam ? favourFilling : favour} 
+                                }
+                                src={this.props.inMarkedTeam ? favourFilling : favour}
                             />
                         </Tooltip>
                         <Tooltip placement="right" title="编辑">
@@ -79,7 +79,7 @@ class TeamItem extends Component{
                         </Tooltip>
                 </div>
                 </div>
-                <p>{this.state.name}</p>
+                <p>{this.props.teamName}</p>
             </div>
         )
     }
@@ -94,7 +94,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     //login: (arg) => login(arg),
-    handleStar : (arg) => handleStar(arg),    
+    handleStar : (arg) => handleStar(arg),
 }
 
 export default TeamItem = connect(mapStateToProps, mapDispatchToProps)(TeamItem);
