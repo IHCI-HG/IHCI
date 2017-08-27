@@ -104,7 +104,6 @@ class TeamList extends Component{
 
     handleMouseover=()=>{
          this.setState({
-             
              background:'#fff'
          });
      }
@@ -216,7 +215,7 @@ class TeamList extends Component{
    
     //星标团队
     markedTeam(){
-        if(!this.state.markedTeams.length)
+        if(!this.props.team.markedTeams.length)
             return(
                 <div className="small-container">
                     <span className="title">星标团队</span>
@@ -229,14 +228,14 @@ class TeamList extends Component{
                     <span className="title">星标团队</span>
                     <ul>
                         {  
-                            this.state.markedTeams.map(function (item) {
+                            this.props.team.markedTeams.map(function (item) {
                                 return (
                                     <li key={item._id}
                                         >
                                         <TeamItem
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
-                                            
+                                            teamID = {item.teamID}
                                            //_handleTeamMark={this.handleTeamMark.bind(this)} 
                                         ></TeamItem>
                                     </li>
@@ -268,12 +267,13 @@ class TeamList extends Component{
                        <p>创建新团队</p>
                     </li>
                      {  
-                        this.state.ownTeams.map(function (item) {
+                        this.props.team.ownTeams.map(function (item) {
                              return (
                                 <li key={item._id}>
                                     <TeamItem 
                                         teamName={item.teamName} 
                                         inMarkedTeam={item.isStared} 
+                                        teamID = {item.teamID}
                                         //handleTeamMark={this.handleTeamMark}
                                     ></TeamItem>
                                 </li>
@@ -310,7 +310,7 @@ class TeamList extends Component{
  
     //我参与的团队
     myTeam(){
-        if(!this.state.teams.length)
+        if(!this.props.team.teams.length)
             return(
                 <div className="small-container">
                     <span className="title">我参与的团队</span>
@@ -323,13 +323,13 @@ class TeamList extends Component{
                     <span className="title">我参与的团队</span>
                     <ul>
                         {  
-                            this.state.teams.map(function (item) {
+                            this.props.team.teams.map(function (item) {
                                 return (
                                     <li key={item._id}>
                                         <TeamItem
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
-                                            
+                                            teamID = {item.teamID}
                                         //handleTeamMark={this.handleTeamMark}
                                         ></TeamItem>
                                     </li>
@@ -363,7 +363,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3),
     setCurrentTeam: (arg) => setCurrentTeam(arg),
-    // setCurrentTeam: () => setCurrentTeam()
+    handleStar : (arg) => handleStar(arg),
 }
 
 export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)

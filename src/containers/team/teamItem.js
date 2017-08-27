@@ -4,18 +4,22 @@ import { browserHistory } from 'react-router'
 import { Tooltip  } from 'antd';
 import './teamItem.scss'
 
+import { handleStar } from '../../reducers/team'
+
+
 const favour = require('./images/favourites.png')
 const favourFilling = require('./images/favourites-filling.png')
 const edit = require('./images/edit.png')
 
 class TeamItem extends Component{
-constructor(props){
+    constructor(props){
         super(props);
         this.state={
             background:'rgba(0,0,0,0)',
             showIcon:'none',
             //favor:this.state.mark ? favourFilling : favour,
             name: this.props.teamName,
+            id: this.props.teamID,
             //mark: this.props.mark,
             inMarkedTeam: this.props.inMarkedTeam,
             members: [],
@@ -39,14 +43,13 @@ constructor(props){
     }
 
     handleMark=()=>{
-        console.log(this.state)
+        //console.log(this.state)
         //setState的回调
         this.setState({
             inMarkedTeam: !this.state.inMarkedTeam,
-            },()=>{
-                    console.log(this.state)
             }); 
         //this.handleTeamMark(index);//调用父节点teamlist的方法
+        this.props.handleStar(this.state.id);
     }
     
     render(){
@@ -65,7 +68,9 @@ constructor(props){
                         <Tooltip placement="right" title={this.state.inMarkedTeam ? "取消星标":"标记为星标团队" }>
                             <img 
                                 id="favourites" 
-                                onClick={this.handleMark.bind(this.index)} 
+                                onClick={
+                                    this.handleMark.bind(this.index)
+                                } 
                                 src={this.state.inMarkedTeam ? favourFilling : favour} 
                             />
                         </Tooltip>
@@ -83,12 +88,13 @@ constructor(props){
 
 function mapStateToProps(state) {
     return {
-
+        team: state.team,
     }
 }
 
 const mapDispatchToProps = {
     //login: (arg) => login(arg),
+    handleStar : (arg) => handleStar(arg),    
 }
 
 export default TeamItem = connect(mapStateToProps, mapDispatchToProps)(TeamItem);

@@ -11,7 +11,6 @@ class MemberItem extends Component{
         this.state={
             name: this.props.name
         }
-        
     }
 
     render(){
