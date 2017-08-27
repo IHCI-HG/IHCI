@@ -16,15 +16,10 @@ export function getTestTeamData(userData1, userData2) {
                 userData2,
             }
         });
-
         const data = result.data
         if(result && result.code == 200) {
             dispatch(getTeamlist(data.teams, data.markedTeams, data.ownTeams))
         }
-        if(result && result.code != 200) {
-            console.err(result.msg);
-        }
-
     };
 }
 
@@ -47,10 +42,7 @@ export function postTestData(somePostData) {
         });
         const data = result.data
         if(result && result.code == 200) {
-            console.log(data);
-        }
-        if(result && result.code != 200) {
-            console.err(result.msg);
+            return data
         }
     };
 }

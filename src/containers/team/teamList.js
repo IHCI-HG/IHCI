@@ -70,7 +70,10 @@ class TeamList extends Component{
 
     componentDidMount(){
 
-        this.props.getTestTeamData("这是自定义传给接口的参数", 1111111)
+        if(this.props.team.teams && this.props.team.teams.length < 1) {
+            this.props.getTestTeamData("这是自定义传给接口的参数", 1111111)
+        }
+
         this.props.postTestData({asasdasd: "复杂的数据结构", xxxxx: {
             awdawdaw: "awdawdawdawd",
             awdwadawdawd: [1,2,3,4,5,5]
@@ -235,10 +238,9 @@ class TeamList extends Component{
                             this.props.team.markedTeams.map((item) => {
                                 return (
                                     <li
-                                        key={item._id}
+                                        key={"marked-team-item-" + item.teamID}
                                         >
                                         <TeamItem
-                                            key={item._id}
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}
@@ -275,9 +277,8 @@ class TeamList extends Component{
                      {
                         this.props.team.ownTeams.map((item) => {
                              return (
-                                <li key={item._id}>
+                                <li key={"own-teams-" + item.teamID}>
                                     <TeamItem
-                                        key={item._id}
                                         teamName={item.teamName}
                                         inMarkedTeam={item.isStared}
                                         teamID = {item.teamID}
@@ -332,9 +333,8 @@ class TeamList extends Component{
                         {
                             this.props.team.teams.map((item) => {
                                 return (
-                                    <li key={item._id}>
+                                    <li key={"teams-" + item.teamID}>
                                         <TeamItem
-                                            key={item._id}
                                             teamName={item.teamName}
                                             inMarkedTeam={item.isStared}
                                             teamID = {item.teamID}

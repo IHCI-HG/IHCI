@@ -66,8 +66,6 @@ module.exports = function(app){
         });
     });
 
-
-
     app.post('/api/project/team/postTestData',function(req, res){
         res.send({
             code: 200,
@@ -77,9 +75,5 @@ module.exports = function(app){
             }
         });
     });
-
-
-
-
 
 };
