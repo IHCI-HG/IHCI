@@ -1,9 +1,11 @@
 export const GET_TEAMLIST = 'GET_TEAMLIST'
+export const SET_CURRENT_TEAM = 'SET_CURRENT_TEAM'
 
 const teamInitialState = {
    teams: [],
    markedTeams: [],
    ownTeams: [],
+   currentTeam: ''
 }
 
 export function getTeamlist(teams, markedTeams, ownTeams){
@@ -15,6 +17,19 @@ export function getTeamlist(teams, markedTeams, ownTeams){
     }
 };
 
+export function setCurrentTeam(currentTeam){
+    return {
+        type: SET_CURRENT_TEAM,
+        currentTeam: currentTeam
+    }
+}
+
+// export function setCurrentTeam(){
+//     return {
+//         type: SET_CURRENT_TEAM
+//     }
+// }
+
 // export function getTeamlist(){
 //     return {
 //         type: GET_TEAMLIST
@@ -22,7 +37,8 @@ export function getTeamlist(teams, markedTeams, ownTeams){
 // }
 
 export const actions = {
-    getTeamlist
+    getTeamlist,
+    setCurrentTeam
 };
 
 const team = (state = teamInitialState, action) => {
@@ -31,10 +47,16 @@ const team = (state = teamInitialState, action) => {
         case GET_TEAMLIST:
             //console.log(action.teams)
             return {
+                ...state,
                 teams: action.teams,
                 markedTeams: action.markedTeams,
-                ownTeams: action.ownTeams
-            };
+                ownTeams: action.ownTeams,
+            }
+        case SET_CURRENT_TEAM:
+            return {
+                ...state,
+                currentTeam: action.currentTeam,
+            }
         default:
             // console.log(state);
             return state

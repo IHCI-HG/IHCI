@@ -9,7 +9,7 @@ import { notification, message } from 'antd';
 import $ from 'jquery'
 import './createTeam.scss'
 
-import { getTeamlist } from '../../reducers/team'
+import { getTeamlist, setCurrentTeam } from '../../reducers/team'
 
 const close = require('./images/close.png')
 const add = require('./images/add.png')
@@ -46,9 +46,9 @@ class TeamList extends Component{
         this.state = {
             modalIsOpen: false,  
             background:'rgba(0,0,0,0)',
-             teams: this.props.team.teams,
-             markedTeams:this.props.team.markedTeams,
-             ownTeams:this.props.team.ownTeams,
+            teams: this.props.team.teams,
+            markedTeams:this.props.team.markedTeams,
+            ownTeams:this.props.team.ownTeams,
             // teams: [],
             // markedTeams: [],
             // ownTeams: [],
@@ -95,7 +95,8 @@ class TeamList extends Component{
                     ownTeams: ownTeam
                 })
             }).then(()=>{
-                this.props.getTeamlist(this.state.teams,this.state.markedTeams,this.state.ownTeams)
+                this.props.getTeamlist(this.state.teams,this.state.markedTeams,this.state.ownTeams);
+                //this.props.setCurrentTeam('test');
             }).then(()=>{
                 //console.log(this.props.team)
             })
@@ -103,6 +104,7 @@ class TeamList extends Component{
 
     handleMouseover=()=>{
          this.setState({
+             
              background:'#fff'
          });
      }
@@ -138,6 +140,7 @@ class TeamList extends Component{
         this.setState({
             _id: id
         });
+        
         if (this.state.name != '') {
             $.ajax({
                 method: 'POST',
@@ -153,6 +156,8 @@ class TeamList extends Component{
                     });
                     //state: { currTeamName: this.state.name }
                     //成功创建后跳转到改团队页面
+                    // this.props.setCurrentTeam(this.state.name);
+                    //this.props.setCurrentTeam();          
                     browserHistory.push({
                         pathname: '/teamMember',
                         // query: { modal: true },
@@ -355,7 +360,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3)
+    getTeamlist: (arg1, arg2, arg3) => getTeamlist(arg1, arg2, arg3),
+    setCurrentTeam: (arg) => setCurrentTeam(arg),
+    // setCurrentTeam: () => setCurrentTeam()
 }
 
 export default TeamList = connect(mapStateToProps, mapDispatchToProps)(TeamList)
