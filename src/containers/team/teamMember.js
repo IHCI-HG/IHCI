@@ -60,20 +60,30 @@ class TeamMember extends Component{
             members: [],
             managers:[],
             searchText: '',
-            teams: [],
-            markedTeams: [],
+            teams: this.props.team.teams,
+            markedTeams: this.props.team.markedTeams,
+            // teams: [],
+            // markedTeams: []
         }
         
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         //this.getCurrTeamName();
-        this.getTeamList();
+        //this.getTeamList();
         this.getMembers(currentTeam);
         this.handleInputChange=this.handleInputChange.bind(this);
         // this.handleSearch=this.handleSearch.bind(this);
+
+        console.log(this.state)
         
     }
+
+    // componentDidMount(){
+    //     if(this.props.team.teams && this.props.team.teams.length < 1) {
+    //         this.props.getTestTeamData("这是自定义传给接口的参数", 1111111)
+    //     }
+    // }
 
     getCurrTeamName(){
         var data=this.props.location.state;
@@ -89,25 +99,25 @@ class TeamMember extends Component{
         //console.log("params: "+currentTeam);
     }
 
-    getTeamList() {
-        $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
-            then((data) => {
-                //console.log(data)
-                const team = data.data.teams
-                var markTeam = [];
-                team.map(function (item) {
-                    if(item.isStared)
-                        markTeam.push(item);
-                })
-                //console.log(team)
-                this.setState({
-                    teams: team,
-                    markedTeams: markTeam,
-                })
-            }).then(()=>{
-                //console.log("GET teams: "+this.state)
-            })
-    }
+    // getTeamList() {
+    //     $.get('http://rapapi.org/mockjsdata/24695/queryTeams?userName=a%40a.a').
+    //         then((data) => {
+    //             //console.log(data)
+    //             const team = data.data.teams
+    //             var markTeam = [];
+    //             team.map(function (item) {
+    //                 if(item.isStared)
+    //                     markTeam.push(item);
+    //             })
+    //             //console.log(team)
+    //             this.setState({
+    //                 teams: team,
+    //                 markedTeams: markTeam,
+    //             })
+    //         }).then(()=>{
+    //             //console.log("GET teams: "+this.state)
+    //         })
+    // }
 
     getMembers(team) {
         //console.log("getting members...")
@@ -176,7 +186,7 @@ class TeamMember extends Component{
             // });
             message.error('团队名称不能为空！');
         }else{
-            this.state.teams.map(function (item) {
+            this.props.team.teams.map(function (item) {
                 if(item.teamName==text){
                     search=true;
                     currentTeam=text;
@@ -230,7 +240,7 @@ class TeamMember extends Component{
                                 <img id="border" src={border} />
                                 <ul>
                                     {  
-                                       this.state.markedTeams.map(function (item) {
+                                       this.props.team.markedTeams.map(function (item) {
                                             return (
                                             <li key={item._id} >
                                                 <TeamItem2 
@@ -247,7 +257,7 @@ class TeamMember extends Component{
                                 <img id="border" src={border} />
                                 <ul>
                                     {  
-                                       this.state.teams.map(function (item) {
+                                       this.props.team.teams.map(function (item) {
                                             return (
                                             <li key={item._id} >
                                                 <TeamItem2 
@@ -326,7 +336,7 @@ class TeamMember extends Component{
 
 function mapStateToProps(state) {
     return {
-
+        team: state.team
     }
 }
 
